@@ -1,0 +1,8 @@
+{
+  "case_id": "REFUND_001",
+  "order_id": "ORD_001",
+  "claim_text": "The black jacket arrived with a tear on the left sleeve.",
+  "image_paths": [
+    "data/images/refund_001.jpg"
+  ]
+}
