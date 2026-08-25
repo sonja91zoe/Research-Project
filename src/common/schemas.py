@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -55,3 +58,22 @@ class Member4Output(BaseModel):
     decision: str
 
     reason: str
+
+
+@dataclass
+class EvidenceFeatures:
+    """Normalized inputs consumed by the Week 5 decision baseline."""
+
+    image_quality: float
+    damage_confidence: float
+    claim_image_consistency: float
+    image_order_match: float
+    evidence_completeness: float
+    policy_match: float
+    policy_eligible: bool
+
+    refund_amount: float
+
+    order_id: Optional[str] = None
+    product_name: Optional[str] = None
+    product_category: Optional[str] = None

@@ -1,8 +1,21 @@
 {
-  "case_id": "REFUND_001",
-  "order_id": "ORD_001",
+  "case_id": "refund_001",
+  "order_id": "ORD001",
   "claim_text": "The black jacket arrived with a tear on the left sleeve.",
   "image_paths": [
     "data/images/refund_001.jpg"
-  ]
+  ],
+  "product_name": "Black Jacket",
+  "product_category": "Jacket",
+  "refund_amount": 129.0,
+  "evidence_features": {
+    "image_quality": 0.90,
+    "damage_confidence": 0.88,
+    "claim_image_consistency": 0.92,
+    "image_order_match": 0.95,
+    "evidence_completeness": 0.90,
+    "policy_match": 0.94,
+    "policy_eligible": true
+  },
+  "expected_decision": "AUTO_REFUND"
 }
