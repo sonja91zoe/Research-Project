@@ -1,0 +1,32 @@
+{
+  "member1": {
+    "case_id": "REFUND_001",
+    "product": "jacket",
+    "claimed_defect": "tear",
+    "claimed_location": "left_sleeve",
+    "image_quality": 0.90,
+    "blur_score": 0.10,
+    "lighting_score": 0.91,
+    "relevant_region_visible": true,
+    "image_usable": true
+  },
+  "member2": {
+    "case_id": "REFUND_001",
+    "detected_product": "jacket",
+    "damage_detected": true,
+    "damage_type": "tear",
+    "damage_location": "left_sleeve",
+    "damage_confidence": 0.92,
+    "claim_image_consistency": 0.94
+  },
+  "member3": {
+    "case_id": "REFUND_001",
+    "order_valid": true,
+    "image_order_consistency": 0.91,
+    "policy_eligible": true,
+    "policy_match_score": 0.93,
+    "evidence_completeness": 0.90,
+    "refund_amount": 35.0,
+    "policy_source": "Damaged Goods Policy Section 3.2"
+  }
+}
