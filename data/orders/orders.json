@@ -1,0 +1,14 @@
+[
+  {"order_id":"ORD001","product_name":"Black Jacket","product_category":"Jacket","price":129.0,"purchase_date":"2026-08-01","status":"delivered","final_sale":false},
+  {"order_id":"ORD002","product_name":"Grey Hoodie","product_category":"Hoodie","price":79.0,"purchase_date":"2026-08-02","status":"delivered","final_sale":false},
+  {"order_id":"ORD003","product_name":"White T-Shirt","product_category":"T-Shirt","price":35.0,"purchase_date":"2026-08-03","status":"delivered","final_sale":false},
+  {"order_id":"ORD004","product_name":"Blue Jacket","product_category":"Jacket","price":220.0,"purchase_date":"2026-06-01","status":"delivered","final_sale":false},
+  {"order_id":"ORD005","product_name":"Green Hoodie","product_category":"Hoodie","price":95.0,"purchase_date":"2026-08-05","status":"delivered","final_sale":true},
+  {"order_id":"ORD006","product_name":"Red Jacket","product_category":"Jacket","price":149.0,"purchase_date":"2026-08-06","status":"processing","final_sale":false},
+  {"order_id":"ORD007","product_name":"Black Hoodie","product_category":"Hoodie","price":89.0,"purchase_date":"2026-08-07","status":"delivered","final_sale":false},
+  {"order_id":"ORD008","product_name":"Navy T-Shirt","product_category":"T-Shirt","price":42.0,"purchase_date":"2026-08-08","status":"delivered","final_sale":false},
+  {"order_id":"ORD009","product_name":"Brown Jacket","product_category":"Jacket","price":189.0,"purchase_date":"2026-08-09","status":"delivered","final_sale":false},
+  {"order_id":"ORD010","product_name":"Cream Hoodie","product_category":"Hoodie","price":110.0,"purchase_date":"2026-08-10","status":"delivered","final_sale":false},
+  {"order_id":"ORD011","product_name":"Yellow T-Shirt","product_category":"T-Shirt","price":39.0,"purchase_date":"2026-08-11","status":"delivered","final_sale":false},
+  {"order_id":"ORD012","product_name":"Leather Jacket","product_category":"Jacket","price":499.0,"purchase_date":"2026-08-12","status":"delivered","final_sale":false}
+]

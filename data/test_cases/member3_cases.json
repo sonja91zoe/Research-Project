@@ -1,0 +1,14 @@
+[
+  {"case_id":"M3_001","order_id":"ORD001","claim_text":"tear on black jacket sleeve","detected_product":"Black Jacket","damage_detected":true,"damage_type":"tear","image_present":true,"request_date":"2026-08-10","expected_eligible":true},
+  {"case_id":"M3_002","order_id":"ORD002","claim_text":"stain on grey hoodie","detected_product":"Grey Hoodie","damage_detected":true,"damage_type":"stain","image_present":true,"request_date":"2026-08-12","expected_eligible":true},
+  {"case_id":"M3_003","order_id":"ORD003","claim_text":"hole in white t-shirt","detected_product":"White T-Shirt","damage_detected":true,"damage_type":"hole","image_present":true,"request_date":"2026-08-15","expected_eligible":true},
+  {"case_id":"M3_004","order_id":"ORD004","claim_text":"tear on blue jacket","detected_product":"Blue Jacket","damage_detected":true,"damage_type":"tear","image_present":true,"request_date":"2026-08-15","expected_eligible":false},
+  {"case_id":"M3_005","order_id":"ORD005","claim_text":"stain on final sale hoodie","detected_product":"Green Hoodie","damage_detected":true,"damage_type":"stain","image_present":true,"request_date":"2026-08-12","expected_eligible":false},
+  {"case_id":"M3_006","order_id":"ORD006","claim_text":"tear on jacket","detected_product":"Red Jacket","damage_detected":true,"damage_type":"tear","image_present":true,"request_date":"2026-08-12","expected_eligible":false},
+  {"case_id":"M3_007","order_id":"ORD007","claim_text":"stain on hoodie but no image","detected_product":"Black Hoodie","damage_detected":true,"damage_type":"stain","image_present":false,"request_date":"2026-08-13","expected_eligible":false},
+  {"case_id":"M3_008","order_id":"ORD008","claim_text":"damage not visible","detected_product":"Navy T-Shirt","damage_detected":false,"damage_type":"no_damage","image_present":true,"request_date":"2026-08-14","expected_eligible":false},
+  {"case_id":"M3_009","order_id":"ORD009","claim_text":"tear on ordered jacket","detected_product":"Grey Hoodie","damage_detected":true,"damage_type":"tear","image_present":true,"request_date":"2026-08-15","expected_eligible":false},
+  {"case_id":"M3_010","order_id":"ORD010","claim_text":"unsupported colour issue","detected_product":"Cream Hoodie","damage_detected":true,"damage_type":"colour_issue","image_present":true,"request_date":"2026-08-16","expected_eligible":false},
+  {"case_id":"M3_011","order_id":"ORD999","claim_text":"tear on unknown order","detected_product":"Yellow T-Shirt","damage_detected":true,"damage_type":"tear","image_present":true,"request_date":"2026-08-17","expected_eligible":false},
+  {"case_id":"M3_012","order_id":"ORD012","claim_text":"broken zip on leather jacket","detected_product":"Leather Jacket","damage_detected":true,"damage_type":"broken_zip","image_present":true,"request_date":"2026-08-18","expected_eligible":true}
+]

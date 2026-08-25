@@ -1,0 +1,42 @@
+[
+  {
+    "policy_id": "POL-DAMAGE-30",
+    "title": "Damaged Clothing Refund Policy",
+    "policy_text": "Delivered clothing with a visible tear, hole, stain, or broken zip may be refunded within 30 days when image evidence matches the ordered product.",
+    "policy_source": "Mock Refund Policy, section 3.2",
+    "keywords": ["clothing", "jacket", "hoodie", "shirt", "damage", "tear", "hole", "stain", "zip"],
+    "refund_window_days": 30,
+    "requires_image": true,
+    "eligible_damage_types": ["tear", "hole", "stain", "broken_zip"]
+  },
+  {
+    "policy_id": "POL-WRONG-ITEM-14",
+    "title": "Wrong Item Refund Policy",
+    "policy_text": "An incorrect delivered item may be refunded within 14 days when the received product and order record do not match.",
+    "policy_source": "Mock Refund Policy, section 4.1",
+    "keywords": ["wrong", "incorrect", "item", "product", "order", "mismatch"],
+    "refund_window_days": 14,
+    "requires_image": true,
+    "eligible_damage_types": ["wrong_item"]
+  },
+  {
+    "policy_id": "POL-NO-DAMAGE",
+    "title": "No Visible Damage Policy",
+    "policy_text": "A damage claim is not eligible for automatic refund when submitted evidence shows no visible damage.",
+    "policy_source": "Mock Refund Policy, section 3.5",
+    "keywords": ["no", "visible", "damage", "undamaged"],
+    "refund_window_days": 30,
+    "requires_image": true,
+    "eligible_damage_types": ["no_damage"]
+  },
+  {
+    "policy_id": "POL-FINAL-SALE",
+    "title": "Final Sale Exclusion",
+    "policy_text": "Final-sale products are excluded from refunds unless required by applicable consumer law.",
+    "policy_source": "Mock Refund Policy, section 6.1",
+    "keywords": ["final", "sale", "excluded", "exclusion"],
+    "refund_window_days": 0,
+    "requires_image": false,
+    "eligible_damage_types": []
+  }
+]
