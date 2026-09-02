@@ -1,11 +1,11 @@
-"""Refund-risk bands for the Week 4 mock Agent."""
+"""Rule-based refund-risk classification for Student 4 Week 5."""
 
 LOW_RISK_MAX = 50.0
 MEDIUM_RISK_MAX = 200.0
 
 
-def calculate_refund_risk(refund_amount):
-    """Classify the financial risk of a proposed refund."""
+def calculate_refund_risk(refund_amount: float) -> str:
+    """Classify financial risk using the requested refund amount."""
 
     if refund_amount < 0:
         raise ValueError("refund_amount cannot be negative")
@@ -17,4 +17,3 @@ def calculate_refund_risk(refund_amount):
         return "MEDIUM"
 
     return "HIGH"
-

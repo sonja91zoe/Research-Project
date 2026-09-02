@@ -1,16 +1,25 @@
-"""Week 4 mock workflow Agent for Student 4."""
+"""Student 4 Week 5 rule-based confidence and decision Agent."""
 
-from src.common.schemas import Member4Output
+from src.common.schemas import (
+    Member1Output,
+    Member2Output,
+    Member3Output,
+    Member4Output,
+)
 from src.decision.confidence import (
     calculate_evidence_confidence,
     get_confidence_label,
 )
-from src.decision.risk import calculate_refund_risk
 from src.decision.decision import make_decision
+from src.decision.risk import calculate_refund_risk
 
 
-def run_agent(member1, member2, member3):
-    """Combine mock outputs from Members 1-3 and return Member4Output."""
+def run_agent(
+    member1: Member1Output,
+    member2: Member2Output,
+    member3: Member3Output,
+) -> Member4Output:
+    """Combine Members 1–3 outputs into the final refund decision."""
 
     case_ids = {
         member1.case_id,
@@ -19,15 +28,23 @@ def run_agent(member1, member2, member3):
     }
 
     if len(case_ids) != 1:
-        raise ValueError("Member outputs have different case_id values.")
+        raise ValueError(
+            "Member outputs have different case_id values."
+        )
 
     evidence_confidence = calculate_evidence_confidence(
         member1,
         member2,
         member3,
     )
-    confidence_label = get_confidence_label(evidence_confidence)
-    refund_risk = calculate_refund_risk(member3.refund_amount)
+
+    confidence_label = get_confidence_label(
+        evidence_confidence
+    )
+
+    refund_risk = calculate_refund_risk(
+        member3.refund_amount
+    )
 
     decision, reason = make_decision(
         confidence_label,

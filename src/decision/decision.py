@@ -1,4 +1,6 @@
-"""Decision matrix for the Week 4 mock Agent."""
+"""Rule-based refund decision engine for Student 4 Week 5."""
+
+MIN_CLAIM_IMAGE_CONSISTENCY = 0.50
 
 DECISION_MATRIX = {
     ("HIGH", "LOW"): "AUTO_REFUND",
@@ -13,11 +15,20 @@ DECISION_MATRIX = {
 }
 
 
-def make_decision(confidence_label, refund_risk, member1, member2, member3):
+def make_decision(
+    confidence_label,
+    refund_risk,
+    member1,
+    member2,
+    member3,
+):
     """Apply override rules first, then use the decision matrix."""
 
     if not member1.image_usable:
-        return "REQUEST_MORE_EVIDENCE", "The uploaded image is not usable."
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "The uploaded image is not usable.",
+        )
 
     if not member1.relevant_region_visible:
         return (
@@ -26,10 +37,16 @@ def make_decision(confidence_label, refund_risk, member1, member2, member3):
         )
 
     if not member3.order_valid:
-        return "HUMAN_REVIEW", "The order could not be validated."
+        return (
+            "HUMAN_REVIEW",
+            "The order could not be validated.",
+        )
 
     if not member3.policy_eligible:
-        return "HUMAN_REVIEW", "Refund-policy eligibility is not confirmed."
+        return (
+            "HUMAN_REVIEW",
+            "Refund-policy eligibility is not confirmed.",
+        )
 
     if not member2.damage_detected:
         return (
@@ -37,17 +54,30 @@ def make_decision(confidence_label, refund_risk, member1, member2, member3):
             "The submitted image does not show detectable damage.",
         )
 
-    if member2.claim_image_consistency < 0.50:
+    if (
+        member2.claim_image_consistency
+        < MIN_CLAIM_IMAGE_CONSISTENCY
+    ):
         return (
             "REQUEST_MORE_EVIDENCE",
-            "The image does not sufficiently support the customer claim.",
+            "The image does not sufficiently support "
+            "the customer claim.",
         )
 
-    decision = DECISION_MATRIX[(confidence_label, refund_risk)]
+    matrix_key = (confidence_label, refund_risk)
+
+    if matrix_key not in DECISION_MATRIX:
+        raise ValueError(
+            "Unsupported confidence and risk combination: "
+            f"{matrix_key}."
+        )
+
+    decision = DECISION_MATRIX[matrix_key]
+
     reason = (
-        f"Decision matrix result: confidence={confidence_label}, "
+        "Decision matrix result: "
+        f"confidence={confidence_label}, "
         f"refund risk={refund_risk}."
     )
 
     return decision, reason
-
