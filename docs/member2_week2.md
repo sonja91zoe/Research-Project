@@ -42,6 +42,21 @@ YOLO-derived defect crop. End-to-end metrics count `uncertain` predictions as
 misses for class recall while separately reporting selective accuracy and
 coverage.
 
+The completed second run evaluated all 70 images. Automatic-prediction accuracy
+was 44.4% at 90.0% coverage, end-to-end accuracy was 40.0%, and macro F1 was
+34.5%. `stain_or_spot` recall reached 77.1% (27/35), but `hole_or_tear` recall
+was only 2.9% (1/35). The CLIP implementation is therefore retained as a
+reproducible Week 2 baseline, not represented as a production-ready detector.
+The committed machine-readable result and interpretation are in
+`data/member2/week2/results/`.
+
+The next image-model iteration should use a small pretrained object detector
+trained with the recovered YOLO annotations. The same detector can remain the
+visual component in later weeks; Week 3 should consume its output when checking
+claim consistency rather than replacing the visual model. The 70 current images
+should remain held out from detector training, and clean controls must be added
+before making any `no_damage` performance claim.
+
 The source datasets are Wargön Innovation's `Garment_condition_holes` and
 `Garment_condition_spots`, both published under CC BY 4.0. Attribution and
 links are recorded in `data/member2/week1/README.md`.

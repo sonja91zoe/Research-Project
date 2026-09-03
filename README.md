@@ -21,4 +21,7 @@ It uses the shared `Member2Output` schema, preserves the Week 1 damage labels,
 and routes poor evidence or low-confidence predictions to human review. See
 `docs/member2_week2.md`. GitHub Actions runs its tests and the free CLIP
 full-image-plus-YOLO-crop evaluation on `student2-week5`.
+The recorded baseline result is in `data/member2/week2/results/`; it documents
+good stain detection but inadequate hole recall and the planned detector
+upgrade without introducing Week 3 claim verification.
 
