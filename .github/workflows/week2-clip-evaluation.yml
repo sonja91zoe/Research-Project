@@ -33,7 +33,7 @@ jobs:
       - name: Run free CLIP evaluation
         run: >-
           python -m src.damage_detection.evaluate
-          --manifest data/member2/week1/damage_dataset_v1.csv
+          --manifest data/member2/week2/image_manifest.csv
           --images data/member2/week1/images
           --output-dir artifacts/member2_week2
       - name: Upload predictions and metrics

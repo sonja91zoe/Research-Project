@@ -24,3 +24,8 @@ were renamed `hole_001.jpg`–`hole_035.jpg` and
 
 The derived CSV contains provisional project annotations and must not be
 presented as annotations supplied by Wargön Innovation.
+
+For image-only Week 2 evaluation, use
+`data/member2/week2/image_manifest.csv` and the recovered upstream YOLO labels.
+Do not derive image classes from Week 1 claim verdicts: a negative claim case
+does not necessarily mean that its image is undamaged.

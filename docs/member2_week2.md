@@ -29,14 +29,27 @@ no paid model API and needs no API key.
 ## Current evaluation status
 
 The local Week 1 collection has been audited: all 70 expected JPEG files are
-present and readable. Sixty source photos currently have explicit image-only
-ground truth in the Week 1 manifest (25 `hole_or_tear`, 20 `stain_or_spot`, and
-15 `no_damage`). The remaining 10 source photos occur only in recipes for
-ambiguous derived variants, so they are excluded until those variants are
-materialized or the original photos receive a second human label. This is a
-data-integrity result, not model accuracy; no result is fabricated from folder
-or filename labels.
+present and readable. The first CLIP run incorrectly reused claim-verification
+fields as image-only ground truth. Original YOLO annotations were subsequently
+recovered by matching the renamed JPEGs to the upstream datasets. The dedicated
+Week 2 manifest now contains 35 `hole_or_tear` and 35 `stain_or_spot` images.
+It does not claim to evaluate `no_damage`, because this positive-defect subset
+contains no independently sourced clean controls.
+
+The first whole-image run is retained as a baseline and data-pipeline finding.
+The second evaluation uses prompt ensembles and combines each full image with a
+YOLO-derived defect crop. End-to-end metrics count `uncertain` predictions as
+misses for class recall while separately reporting selective accuracy and
+coverage.
 
 The source datasets are Wargön Innovation's `Garment_condition_holes` and
 `Garment_condition_spots`, both published under CC BY 4.0. Attribution and
 links are recorded in `data/member2/week1/README.md`.
+
+## Recovered annotation provenance
+
+`data/member2/week2/source_file_mapping.csv` records the perceptual and pixel
+match from each renamed image to its upstream filename. All 70 accepted matches
+have pixel RMSE below 1.0 after normalization. Corresponding normalized YOLO
+labels are stored in `data/member2/week2/labels/`; crops are generated during
+evaluation and are not committed as duplicate image assets.

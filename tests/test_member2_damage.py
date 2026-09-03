@@ -11,7 +11,7 @@ from src.damage_detection.damage import (
     DamagePrediction,
     FixedBackend,
 )
-from src.damage_detection.evaluate import calculate_metrics
+from src.damage_detection.evaluate import calculate_metrics, create_yolo_crop
 
 
 class Member2DamageTests(unittest.TestCase):
@@ -73,10 +73,10 @@ class Member2DamageTests(unittest.TestCase):
 
     def test_clip_backend_maps_prompt_without_downloading_model(self):
         def fake_classifier(image_path, candidate_labels):
+            stain_prompts = set(ClipBackend.LABEL_PROMPTS["stain_or_spot"])
             return [
-                {"label": ClipBackend.LABEL_PROMPTS["stain_or_spot"], "score": 0.72},
-                {"label": ClipBackend.LABEL_PROMPTS["hole_or_tear"], "score": 0.18},
-                {"label": ClipBackend.LABEL_PROMPTS["no_damage"], "score": 0.10},
+                {"label": label, "score": 0.24 if label in stain_prompts else 0.0467}
+                for label in candidate_labels
             ]
 
         with TemporaryDirectory() as directory:
@@ -84,15 +84,11 @@ class Member2DamageTests(unittest.TestCase):
                 self.make_image(directory)
             )
             self.assertEqual(prediction.damage_type, "stain_or_spot")
-            self.assertAlmostEqual(prediction.confidence, 0.72)
+            self.assertGreater(prediction.confidence, 0.70)
 
     def test_clip_backend_marks_close_scores_uncertain(self):
         def fake_classifier(image_path, candidate_labels):
-            return [
-                {"label": ClipBackend.LABEL_PROMPTS["hole_or_tear"], "score": 0.48},
-                {"label": ClipBackend.LABEL_PROMPTS["stain_or_spot"], "score": 0.46},
-                {"label": ClipBackend.LABEL_PROMPTS["no_damage"], "score": 0.06},
-            ]
+            return [{"label": label, "score": 1 / len(candidate_labels)} for label in candidate_labels]
 
         with TemporaryDirectory() as directory:
             prediction = ClipBackend(classifier=fake_classifier).predict(
@@ -111,6 +107,25 @@ class Member2DamageTests(unittest.TestCase):
         self.assertEqual(metrics["evaluated_images"], 2)
         self.assertEqual(metrics["reviewed_images"], 1)
         self.assertEqual(metrics["accuracy_on_automatic_predictions"], 0.5)
+        self.assertAlmostEqual(metrics["end_to_end_accuracy"], 1 / 3)
+        self.assertEqual(metrics["per_class"]["stain_or_spot"]["recall"], 0.0)
+
+    def test_yolo_crop_is_created(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            image_path = root / "garment.jpg"
+            label_path = root / "garment.txt"
+            output_path = root / "crop.jpg"
+            from PIL import Image
+
+            Image.new("RGB", (100, 100), "white").save(image_path)
+            label_path.write_text("0 0.5 0.5 0.1 0.1\n", encoding="utf-8")
+            result = create_yolo_crop(image_path, label_path, output_path)
+            self.assertEqual(result, output_path)
+            self.assertTrue(output_path.is_file())
+            with Image.open(output_path) as crop:
+                self.assertLess(crop.width, 100)
+                self.assertLess(crop.height, 100)
 
 
 if __name__ == "__main__":

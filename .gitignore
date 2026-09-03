@@ -5,3 +5,5 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 .vscode/
+data/member2/week2/recovered/
+data/member2/week2/recovered_v2/

@@ -100,9 +100,21 @@ class ClipBackend:
 
     MODEL_NAME = "openai/clip-vit-base-patch32"
     LABEL_PROMPTS = {
-        "hole_or_tear": "a garment with a visible hole, rip, or torn fabric",
-        "stain_or_spot": "a garment with a visible stain, spot, mark, or discoloration",
-        "no_damage": "a clean undamaged garment with no hole, tear, stain, or spot",
+        "hole_or_tear": (
+            "a close-up photo of a hole in garment fabric",
+            "torn clothing with ripped fabric edges",
+            "a visible opening caused by missing or torn textile fibers",
+        ),
+        "stain_or_spot": (
+            "a close-up photo of a stain on garment fabric",
+            "clothing with a visible spot or localized discoloration",
+            "a mark or residue visibly different from the surrounding textile",
+        ),
+        "no_damage": (
+            "clean intact garment fabric without damage",
+            "undamaged clothing with no hole, tear, stain, or spot",
+            "normal textile texture without a defect",
+        ),
     }
 
     def __init__(
@@ -130,31 +142,48 @@ class ClipBackend:
             )
         return self._classifier
 
-    def predict(self, image_path: Path) -> DamagePrediction:
+    def score(self, image_path: Path) -> dict[str, float]:
         classifier = self._get_classifier()
+        prompts = [prompt for group in self.LABEL_PROMPTS.values() for prompt in group]
         results = classifier(
             str(image_path),
-            candidate_labels=list(self.LABEL_PROMPTS.values()),
+            candidate_labels=prompts,
         )
-        if len(results) < 2:
-            raise RuntimeError("CLIP backend returned fewer than two candidate scores")
+        if len(results) < len(prompts):
+            raise RuntimeError("CLIP backend returned incomplete candidate scores")
 
-        prompt_to_label = {prompt: label for label, prompt in self.LABEL_PROMPTS.items()}
-        ranked = sorted(results, key=lambda result: float(result["score"]), reverse=True)
-        best, second = ranked[0], ranked[1]
-        confidence = float(best["score"])
-        margin = confidence - float(second["score"])
-        predicted_label = prompt_to_label[str(best["label"])]
+        scores_by_prompt = {str(result["label"]): float(result["score"]) for result in results}
+        class_scores = {
+            label: sum(scores_by_prompt[prompt] for prompt in label_prompts) / len(label_prompts)
+            for label, label_prompts in self.LABEL_PROMPTS.items()
+        }
+        total = sum(class_scores.values())
+        return {label: score / total for label, score in class_scores.items()}
+
+    def predict_many(self, image_paths: list[Path]) -> DamagePrediction:
+        if not image_paths:
+            raise ValueError("at least one image view is required")
+        view_scores = [self.score(path) for path in image_paths]
+        combined = {
+            label: sum(scores[label] for scores in view_scores) / len(view_scores)
+            for label in self.LABEL_PROMPTS
+        }
+        ranked = sorted(combined.items(), key=lambda item: item[1], reverse=True)
+        (predicted_label, confidence), (_, second_score) = ranked[:2]
+        margin = confidence - second_score
 
         if confidence < self.min_confidence or margin < self.min_margin:
             return DamagePrediction(
                 "uncertain",
                 confidence,
-                f"CLIP result is uncertain (top-two margin={margin:.3f}).",
+                f"CLIP multi-view result is uncertain (top-two margin={margin:.3f}).",
             )
         return DamagePrediction(
             predicted_label,
             confidence,
-            f"CLIP matched '{best['label']}' (top-two margin={margin:.3f}).",
+            f"CLIP combined {len(image_paths)} view(s) (top-two margin={margin:.3f}).",
         )
+
+    def predict(self, image_path: Path) -> DamagePrediction:
+        return self.predict_many([image_path])
 
