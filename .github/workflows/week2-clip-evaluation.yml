@@ -2,6 +2,10 @@ name: Week 2 CLIP evaluation
 
 on:
   workflow_dispatch:
+  push:
+    branches: [student2-week5]
+    paths:
+      - ".github/workflows/week2-clip-evaluation.yml"
 
 jobs:
   evaluate-member2:
