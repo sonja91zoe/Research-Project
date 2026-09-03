@@ -14,3 +14,10 @@ Project skeleton for a risk-aware refund AI system.
 - `tests/`: automated tests
 - `app/`: application entry points
 
+## Member 2 — Damage Detection V1
+
+Hangyi Zhang's Week 2 image-only damage detector is in `src/damage_detection/`.
+It uses the shared `Member2Output` schema, preserves the Week 1 damage labels,
+and routes poor evidence or low-confidence predictions to human review. See
+`docs/member2_week2.md`. GitHub Actions runs its tests on `student2-week5`.
+

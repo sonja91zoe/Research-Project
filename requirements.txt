@@ -19,3 +19,6 @@ threadpoolctl==3.6.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
 tzdata==2026.3
+Pillow>=10,<13
+torch>=2.2,<3
+transformers>=4.46,<6
