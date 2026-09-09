@@ -1,0 +1,22 @@
+{
+  "dataset_kind": "synthetic_contract_regression",
+  "base": {
+    "case": {"order_id": "order_fixture", "claim_text": "The garment has a hole.", "image_paths": ["fixture.jpg"]},
+    "member1": {"claimed_defect": "hole", "claimed_location": null, "image_quality": 0.9, "blur_score": 0.9, "lighting_score": 0.9, "relevant_region_visible": true, "image_usable": true},
+    "member2": {"damage_detected": true, "damage_type": "hole_or_tear", "damage_location": null, "damage_confidence": 0.9, "evidence_quality": "good"}
+  },
+  "cases": [
+    {"case_id": "W3-P01", "expected_verdict": "positive"},
+    {"case_id": "W3-P02", "member1": {"claimed_defect": "stain"}, "member2": {"damage_type": "stain_or_spot"}, "expected_verdict": "positive"},
+    {"case_id": "W3-P03", "member1": {"claimed_location": "left sleeve"}, "member2": {"damage_location": "left_sleeve"}, "expected_verdict": "positive"},
+    {"case_id": "W3-P04", "member1": {"claimed_location": "sleeve"}, "member2": {"damage_location": "right_sleeve"}, "expected_verdict": "positive"},
+    {"case_id": "W3-N01", "member1": {"claimed_defect": "stain"}, "expected_verdict": "negative"},
+    {"case_id": "W3-N02", "member1": {"claimed_location": "collar"}, "member2": {"damage_location": "pocket"}, "expected_verdict": "negative"},
+    {"case_id": "W3-N03", "member1": {"claimed_location": "left_sleeve"}, "member2": {"damage_location": "right_sleeve"}, "expected_verdict": "negative"},
+    {"case_id": "W3-N04", "member1": {"claimed_defect": "hole"}, "member2": {"damage_type": "stain_or_spot"}, "expected_verdict": "negative"},
+    {"case_id": "W3-A01", "member1": {"image_usable": false}, "expected_verdict": "ambiguous"},
+    {"case_id": "W3-A02", "member2": {"damage_confidence": 0.69}, "expected_verdict": "ambiguous"},
+    {"case_id": "W3-A03", "member1": {"claimed_location": "left_sleeve"}, "member2": {"damage_location": null}, "expected_verdict": "ambiguous"},
+    {"case_id": "W3-A04", "member1": {"claimed_location": "left_sleeve"}, "member2": {"damage_location": "sleeve"}, "expected_verdict": "ambiguous"}
+  ]
+}

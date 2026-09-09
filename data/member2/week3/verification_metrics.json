@@ -1,0 +1,116 @@
+{
+  "cases": 12,
+  "accuracy": 1.0,
+  "macro_precision": 1.0,
+  "macro_recall": 1.0,
+  "macro_f1": 1.0,
+  "per_class": {
+    "positive": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "negative": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "ambiguous": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    }
+  },
+  "expected_counts": {
+    "positive": 4,
+    "negative": 4,
+    "ambiguous": 4
+  },
+  "predicted_counts": {
+    "positive": 4,
+    "negative": 4,
+    "ambiguous": 4
+  },
+  "evaluation_name": "Week3 claim-verification contract regression",
+  "scope": "rule_and_interface_behaviour_only",
+  "includes_visual_model_inference": false,
+  "includes_location_cases": true,
+  "limitation": "Metrics validate specified verification behaviour on synthetic contract cases. They are not visual-model or real-world accuracy estimates.",
+  "case_results": [
+    {
+      "case_id": "W3-P01",
+      "expected": "positive",
+      "predicted": "positive",
+      "reason_code": "damage_type_matches"
+    },
+    {
+      "case_id": "W3-P02",
+      "expected": "positive",
+      "predicted": "positive",
+      "reason_code": "damage_type_matches"
+    },
+    {
+      "case_id": "W3-P03",
+      "expected": "positive",
+      "predicted": "positive",
+      "reason_code": "damage_type_and_location_match"
+    },
+    {
+      "case_id": "W3-P04",
+      "expected": "positive",
+      "predicted": "positive",
+      "reason_code": "damage_type_and_location_match"
+    },
+    {
+      "case_id": "W3-N01",
+      "expected": "negative",
+      "predicted": "negative",
+      "reason_code": "damage_type_mismatch"
+    },
+    {
+      "case_id": "W3-N02",
+      "expected": "negative",
+      "predicted": "negative",
+      "reason_code": "location_mismatch"
+    },
+    {
+      "case_id": "W3-N03",
+      "expected": "negative",
+      "predicted": "negative",
+      "reason_code": "location_mismatch"
+    },
+    {
+      "case_id": "W3-N04",
+      "expected": "negative",
+      "predicted": "negative",
+      "reason_code": "damage_type_mismatch"
+    },
+    {
+      "case_id": "W3-A01",
+      "expected": "ambiguous",
+      "predicted": "ambiguous",
+      "reason_code": "insufficient_image_quality"
+    },
+    {
+      "case_id": "W3-A02",
+      "expected": "ambiguous",
+      "predicted": "ambiguous",
+      "reason_code": "visual_review_required"
+    },
+    {
+      "case_id": "W3-A03",
+      "expected": "ambiguous",
+      "predicted": "ambiguous",
+      "reason_code": "detected_location_missing_or_unsupported"
+    },
+    {
+      "case_id": "W3-A04",
+      "expected": "ambiguous",
+      "predicted": "ambiguous",
+      "reason_code": "detected_location_not_specific_enough"
+    }
+  ]
+}

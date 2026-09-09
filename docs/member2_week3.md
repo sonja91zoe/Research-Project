@@ -30,10 +30,21 @@ Owner: Hangyi Zhang. Prepared 2026-09-10. Status: uncommitted draft for user rev
    boundary values, missing evidence, mismatches, source grouping and data audit.
 5. Prepared the user-requested final root README cleanup to match the supplied
    screenshot. After this one edit, README files are frozen and must not be changed.
+6. Added supported garment-region normalization and joint type/location checking.
+   Exact regions match directly; a general `sleeve` or `knee` claim may match a
+   detected left/right subregion. A side-specific claim with only a general detected
+   region abstains, while two different supported regions produce a negative verdict.
+7. Added a reproducible 12-case contract regression and multiclass metric generator.
+   It reports 100% accuracy, macro precision, macro recall and macro F1 on the
+   specified rule cases. These figures validate deterministic interface behaviour;
+   the evaluation performs no image inference and is not a real-world model result.
 
 ## Validation scope
 
-Run `python -m pytest tests/test_member2_week3.py -q`. The local verification uses
+Run `python -m pytest tests/test_member2_week3.py -q`. The expanded suite contains
+58 passing tests. Generate the scoped metric report with
+`python -m src.damage_detection.evaluate_verification data/member2/week3/verification_cases.json data/member2/week3/verification_metrics.json`.
+The local verification uses
 the actual unchanged shared schema downloaded from the working branch. It checks
 this new module and the real 100-case manifest; it is not a full repository
 regression run or a new visual-model evaluation. Model weights/images were not
@@ -42,8 +53,10 @@ downloaded, training was not triggered, and no visual performance claim is made.
 ## Remaining research work
 
 Independent clean controls, materialized ambiguous variants, second-person label
-review, broader claim-language support and independent calibration/evaluation
-remain necessary. The prepared audit makes these gaps explicit rather than
+review, broader claim-language support and a real location-annotated image set
+remain necessary. The current 100-case dataset has generic defect claims only, so
+real location accuracy cannot be measured from it. The prepared audit makes these
+gaps explicit rather than
 creating ground truth from predictions or claims. Connecting this adapter inside
 another member's workflow is outside the user's permitted edit scope.
 

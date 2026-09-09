@@ -5,9 +5,11 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 from src.common.schemas import CaseInput, Member1Output, Member2Output
-from src.damage_detection.verification import HandoffContext, verify_claim, recommend_handoff
+from src.damage_detection.verification import (HandoffContext, compare_location,
+                                                verify_claim, recommend_handoff)
 from src.damage_detection.prepare_week3 import prepare
 from src.damage_detection.week3_demo import run
+from src.damage_detection.evaluate_verification import evaluate, metrics
 
 
 def inputs():
@@ -45,7 +47,7 @@ def test_mismatch_is_manual_not_refund_or_automatic_rejection():
 @pytest.mark.parametrize("field,value", [("claimed_defect", None), ("claimed_defect", "no hole"),
     ("claimed_defect", "hole and stain"), ("claimed_defect", "wrong size"),
     ("image_usable", False), ("relevant_region_visible", False),
-    ("claimed_location", "sleeve"), ("product", "shirt")])
+    ("product", "shirt")])
 def test_unsupported_or_insufficient_claim_abstains(field, value):
     c, q, v, h = inputs()
     setattr(q, field, value)
@@ -178,3 +180,41 @@ def test_json_fixture_executes_shared_contract():
     output = run(payload)
     assert output["handoff"]["decision"] == payload["expected_decision"]
     assert output["handoff"]["advisory_only"] is True
+
+
+@pytest.mark.parametrize("claimed,detected,score", [
+    (None, None, None), ("left sleeve", "left_sleeve", 1.0),
+    ("sleeve", "right_sleeve", 1.0), ("left_sleeve", "sleeve", None),
+    ("left_sleeve", "right_sleeve", 0.0), ("collar", "pocket", 0.0),
+    ("unknown region", "front", None), ("front", None, None)])
+def test_location_comparison(claimed, detected, score):
+    assert compare_location(claimed, detected)[0] == score
+
+
+def test_type_and_location_joint_verdicts():
+    c, q, v, _ = inputs()
+    q.claimed_location, v.damage_location = "left sleeve", "left_sleeve"
+    result = verify_claim(c, q, v)
+    assert (result.verdict, result.type_consistency, result.location_consistency) == ("positive", 1, 1)
+    v.damage_location = "right_sleeve"
+    result = verify_claim(c, q, v)
+    assert (result.verdict, result.consistency_score, result.reason_code) == ("negative", 0, "location_mismatch")
+    v.damage_location = None
+    assert verify_claim(c, q, v).verdict == "ambiguous"
+
+
+def test_week3_contract_metrics_are_reproducible_and_scoped():
+    path = Path(__file__).parents[1] / "data/member2/week3/verification_cases.json"
+    report = evaluate(json.loads(path.read_text(encoding="utf-8")))
+    assert report["cases"] == 12
+    assert report["accuracy"] == 1.0
+    assert report["macro_precision"] == report["macro_recall"] == report["macro_f1"] == 1.0
+    assert report["includes_visual_model_inference"] is False
+    assert report["includes_location_cases"] is True
+
+
+def test_metrics_reject_invalid_inputs():
+    with pytest.raises(ValueError):
+        metrics([], [])
+    with pytest.raises(ValueError):
+        metrics(["positive"], ["typo"])
