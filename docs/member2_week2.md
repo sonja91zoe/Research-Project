@@ -67,6 +67,13 @@ Training remains manual because it is substantially more expensive than unit
 testing. Until clean controls are added, a run with no detected box is routed to
 `uncertain` rather than asserted to be `no_damage`.
 
+The first 10-epoch YOLO smoke run completed successfully but exposed mixed box
+and polygon rows in the source labels. Its held-in validation performance was
+not acceptable (recall 1.24%, mAP50 0.58%), so its weights are retained only as
+a pipeline baseline. The dataset builder now converts every polygon to a
+normalized bounding box before training. The next workflow run uses 20 epochs
+at 512 pixels and automatically evaluates `best.pt` on the 70 held-out images.
+
 The source datasets are Wargön Innovation's `Garment_condition_holes` and
 `Garment_condition_spots`, both published under CC BY 4.0. Attribution and
 links are recorded in `data/member2/week1/README.md`.

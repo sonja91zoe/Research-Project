@@ -13,7 +13,12 @@ from src.damage_detection.damage import (
 )
 from src.damage_detection.evaluate import calculate_metrics, create_yolo_crop
 from src.damage_detection.yolo import YoloBackend
-from scripts.prepare_yolo_dataset import SourceDataset, prepare_dataset, source_group
+from scripts.prepare_yolo_dataset import (
+    SourceDataset,
+    normalize_annotation,
+    prepare_dataset,
+    source_group,
+)
 
 
 class Member2DamageTests(unittest.TestCase):
@@ -197,6 +202,16 @@ class Member2DamageTests(unittest.TestCase):
             self.assertEqual(counts, {"train": 0, "val": 1, "excluded": 1})
             label = next((root / "prepared" / "val" / "labels").glob("*.txt"))
             self.assertTrue(label.read_text(encoding="utf-8").startswith("1 "))
+
+    def test_segmentation_polygon_is_converted_to_box(self):
+        converted = normalize_annotation(
+            ["0", "0.2", "0.3", "0.6", "0.3", "0.6", "0.7", "0.2", "0.7"],
+            class_id=1,
+        )
+        fields = converted.split()
+        self.assertEqual(fields[0], "1")
+        self.assertEqual(len(fields), 5)
+        self.assertEqual([float(value) for value in fields[1:]], [0.4, 0.5, 0.4, 0.4])
 
 
 if __name__ == "__main__":

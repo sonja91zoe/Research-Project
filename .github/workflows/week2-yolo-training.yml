@@ -6,11 +6,11 @@ on:
       epochs:
         description: Training epochs (CPU time increases with this value)
         required: true
-        default: "10"
+        default: "20"
       image_size:
         description: Training image size
         required: true
-        default: "416"
+        default: "512"
   push:
     branches: [student2-week5]
     paths:
@@ -43,9 +43,16 @@ jobs:
         run: >-
           python scripts/train_yolo.py
           --data "$RUNNER_TEMP/member2_yolo_data/data.yaml"
-          --epochs "${{ inputs.epochs || '10' }}"
-          --image-size "${{ inputs.image_size || '416' }}"
+          --epochs "${{ inputs.epochs || '20' }}"
+          --image-size "${{ inputs.image_size || '512' }}"
           --output artifacts/member2_yolo
+      - name: Evaluate on held-out Week 2 images
+        run: >-
+          python -m src.damage_detection.evaluate_yolo
+          --weights artifacts/member2_yolo/damage_detector/weights/best.pt
+          --manifest data/member2/week2/image_manifest.csv
+          --images data/member2/week1/images
+          --output-dir artifacts/member2_yolo/held_out_evaluation
       - name: Upload model and training metrics
         uses: actions/upload-artifact@v4
         with:

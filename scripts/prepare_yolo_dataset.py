@@ -25,13 +25,34 @@ def held_out_groups(mapping_path: Path) -> set[str]:
         return {source_group(row["source_file"]) for row in csv.DictReader(handle)}
 
 
+def normalize_annotation(fields: list[str], class_id: int) -> str:
+    """Return one five-field box row from a box or segmentation polygon."""
+    values = [float(value) for value in fields[1:]]
+    if len(fields) == 5:
+        cx, cy, width, height = values
+    elif len(values) >= 6 and len(values) % 2 == 0:
+        xs = values[0::2]
+        ys = values[1::2]
+        left, right = min(xs), max(xs)
+        top, bottom = min(ys), max(ys)
+        cx, cy = (left + right) / 2, (top + bottom) / 2
+        width, height = right - left, bottom - top
+    else:
+        raise ValueError(f"Unsupported YOLO annotation with {len(fields)} fields")
+    if width <= 0 or height <= 0:
+        raise ValueError("YOLO annotation has a non-positive box size")
+    coordinates = (cx, cy, width, height)
+    if any(value < 0 or value > 1 for value in coordinates):
+        raise ValueError("YOLO annotation coordinates must be normalized to 0..1")
+    return f"{class_id} " + " ".join(f"{value:.8f}" for value in coordinates)
+
+
 def remap_label(source: Path, target: Path, class_id: int) -> None:
     lines = []
     for line in source.read_text(encoding="utf-8").splitlines():
         fields = line.split()
-        if len(fields) >= 5:
-            fields[0] = str(class_id)
-            lines.append(" ".join(fields))
+        if fields:
+            lines.append(normalize_annotation(fields, class_id))
     target.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
 
 
