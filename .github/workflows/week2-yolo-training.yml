@@ -1,0 +1,50 @@
+name: Week 2 YOLO training
+
+on:
+  workflow_dispatch:
+    inputs:
+      epochs:
+        description: Training epochs (CPU time increases with this value)
+        required: true
+        default: "10"
+      image_size:
+        description: Training image size
+        required: true
+        default: "416"
+
+jobs:
+  train-member2-yolo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install YOLO dependencies
+        run: pip install -r requirements-yolo.txt
+      - name: Download public source datasets
+        run: python scripts/download_yolo_sources.py --output "$RUNNER_TEMP/member2_sources"
+      - name: Build leakage-safe two-class dataset
+        run: >-
+          python scripts/prepare_yolo_dataset.py
+          --holes "$RUNNER_TEMP/member2_sources/holes"
+          --spots "$RUNNER_TEMP/member2_sources/spots"
+          --mapping data/member2/week2/source_file_mapping.csv
+          --output "$RUNNER_TEMP/member2_yolo_data"
+      - name: Train detector
+        run: >-
+          python scripts/train_yolo.py
+          --data "$RUNNER_TEMP/member2_yolo_data/data.yaml"
+          --epochs "${{ inputs.epochs }}"
+          --image-size "${{ inputs.image_size }}"
+          --output artifacts/member2_yolo
+      - name: Upload model and training metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: member2-week2-yolo-model
+          path: artifacts/member2_yolo
+          retention-days: 14

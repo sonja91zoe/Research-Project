@@ -24,4 +24,6 @@ full-image-plus-YOLO-crop evaluation on `student2-week5`.
 The recorded baseline result is in `data/member2/week2/results/`; it documents
 good stain detection but inadequate hole recall and the planned detector
 upgrade without introducing Week 3 claim verification.
+The optional `Week 2 YOLO training` workflow is manual so model training does
+not consume GitHub Actions time on every code push.
 

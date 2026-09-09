@@ -12,6 +12,8 @@ from src.damage_detection.damage import (
     FixedBackend,
 )
 from src.damage_detection.evaluate import calculate_metrics, create_yolo_crop
+from src.damage_detection.yolo import YoloBackend
+from scripts.prepare_yolo_dataset import SourceDataset, prepare_dataset, source_group
 
 
 class Member2DamageTests(unittest.TestCase):
@@ -126,6 +128,75 @@ class Member2DamageTests(unittest.TestCase):
             with Image.open(output_path) as crop:
                 self.assertLess(crop.width, 100)
                 self.assertLess(crop.height, 100)
+
+    def test_yolo_backend_maps_highest_confidence_box(self):
+        class Values:
+            def __init__(self, values):
+                self.values = values
+
+            def tolist(self):
+                return self.values
+
+        class Boxes:
+            conf = Values([0.42, 0.88])
+            cls = Values([0, 1])
+
+            def __len__(self):
+                return 2
+
+        class Result:
+            boxes = Boxes()
+
+        def predictor(*args, **kwargs):
+            return [Result()]
+
+        prediction = YoloBackend("unused.pt", predictor=predictor).predict(Path("image.jpg"))
+        self.assertEqual(prediction.damage_type, "stain_or_spot")
+        self.assertEqual(prediction.confidence, 0.88)
+
+    def test_yolo_backend_routes_no_detection_to_review(self):
+        class EmptyBoxes:
+            def __len__(self):
+                return 0
+
+        class Result:
+            boxes = EmptyBoxes()
+
+        prediction = YoloBackend("unused.pt", predictor=lambda *args, **kwargs: [Result()]).predict(
+            Path("image.jpg")
+        )
+        self.assertEqual(prediction.damage_type, "uncertain")
+        self.assertEqual(prediction.confidence, 0.0)
+
+    def test_prepare_yolo_dataset_excludes_entire_augmentation_group(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            holes = root / "holes"
+            spots = root / "spots"
+            for dataset in (holes, spots):
+                for split in ("train", "valid"):
+                    (dataset / split / "images").mkdir(parents=True)
+                    (dataset / split / "labels").mkdir(parents=True)
+
+            excluded = "same_original.rf.aaa.jpg"
+            kept = "different_original.rf.bbb.jpg"
+            (holes / "train" / "images" / excluded).write_bytes(b"image")
+            (holes / "train" / "labels" / Path(excluded).with_suffix(".txt").name).write_text(
+                "0 0.5 0.5 0.2 0.2\n", encoding="utf-8"
+            )
+            (spots / "valid" / "images" / kept).write_bytes(b"image")
+            (spots / "valid" / "labels" / Path(kept).with_suffix(".txt").name).write_text(
+                "0 0.5 0.5 0.2 0.2\n", encoding="utf-8"
+            )
+
+            counts = prepare_dataset(
+                [SourceDataset(holes, 0), SourceDataset(spots, 1)],
+                root / "prepared",
+                {source_group(excluded)},
+            )
+            self.assertEqual(counts, {"train": 0, "val": 1, "excluded": 1})
+            label = next((root / "prepared" / "val" / "labels").glob("*.txt"))
+            self.assertTrue(label.read_text(encoding="utf-8").startswith("1 "))
 
 
 if __name__ == "__main__":

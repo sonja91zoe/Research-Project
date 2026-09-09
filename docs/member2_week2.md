@@ -57,6 +57,16 @@ claim consistency rather than replacing the visual model. The 70 current images
 should remain held out from detector training, and clean controls must be added
 before making any `no_damage` performance claim.
 
+The repository now includes a leakage-safe YOLO dataset builder, a YOLO backend
+that produces the shared `Member2Output`, and a manually triggered
+`Week 2 YOLO training` GitHub Actions workflow. It downloads the two public
+source datasets, excludes every augmentation group related to the 70 held-out
+images, remaps their separate class IDs to the shared two-class convention, and
+uploads the trained weights and metrics as a temporary workflow artifact.
+Training remains manual because it is substantially more expensive than unit
+testing. Until clean controls are added, a run with no detected box is routed to
+`uncertain` rather than asserted to be `no_damage`.
+
 The source datasets are Wargön Innovation's `Garment_condition_holes` and
 `Garment_condition_spots`, both published under CC BY 4.0. Attribution and
 links are recorded in `data/member2/week1/README.md`.
