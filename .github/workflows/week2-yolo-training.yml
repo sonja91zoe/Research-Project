@@ -11,6 +11,10 @@ on:
         description: Training image size
         required: true
         default: "416"
+  push:
+    branches: [student2-week5]
+    paths:
+      - ".github/workflows/week2-yolo-training.yml"
 
 jobs:
   train-member2-yolo:
@@ -39,8 +43,8 @@ jobs:
         run: >-
           python scripts/train_yolo.py
           --data "$RUNNER_TEMP/member2_yolo_data/data.yaml"
-          --epochs "${{ inputs.epochs }}"
-          --image-size "${{ inputs.image_size }}"
+          --epochs "${{ inputs.epochs || '10' }}"
+          --image-size "${{ inputs.image_size || '416' }}"
           --output artifacts/member2_yolo
       - name: Upload model and training metrics
         uses: actions/upload-artifact@v4
