@@ -1,0 +1,35 @@
+{
+  "case_input": {
+    "case_id": "M3_W6_001",
+    "order_id": "ORD001",
+    "claim_text": "The black jacket arrived with a tear on the left sleeve.",
+    "image_paths": ["data/images/refund_001.jpg"]
+  },
+  "member1": {
+    "case_id": "M3_W6_001",
+    "product": "Black Jacket",
+    "claimed_defect": "tear",
+    "claimed_location": "left_sleeve",
+    "image_quality": 0.90,
+    "blur_score": 0.10,
+    "lighting_score": 0.91,
+    "relevant_region_visible": true,
+    "image_usable": true
+  },
+  "member2": {
+    "case_id": "M3_W6_001",
+    "detected_product": "Black Jacket",
+    "damage_detected": true,
+    "damage_type": "tear",
+    "damage_location": "left_sleeve",
+    "damage_confidence": 0.92,
+    "claim_image_consistency": 0.94
+  },
+  "request_date": "2026-08-10",
+  "expected": {
+    "order_valid": true,
+    "image_order_consistency": 1.0,
+    "policy_eligible": true,
+    "refund_amount": 129.0
+  }
+}

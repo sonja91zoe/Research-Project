@@ -1,0 +1,72 @@
+[
+  {
+    "case_id": "REFUND_001",
+    "claim_text": "The black jacket arrived with a tear on the left sleeve.",
+    "product": "jacket",
+    "claimed_defect": "tear_hole",
+    "claimed_location": "left_sleeve"
+  },
+  {
+    "case_id": "REFUND_002",
+    "claim_text": "There is a stain on the front of my hoodie.",
+    "product": "hoodie",
+    "claimed_defect": "stain",
+    "claimed_location": "front"
+  },
+  {
+    "case_id": "REFUND_003",
+    "claim_text": "My T-shirt has a hole near the collar.",
+    "product": "t-shirt",
+    "claimed_defect": "tear_hole",
+    "claimed_location": "collar"
+  },
+  {
+    "case_id": "REFUND_004",
+    "claim_text": "The right sleeve of my jacket is ripped.",
+    "product": "jacket",
+    "claimed_defect": "tear_hole",
+    "claimed_location": "right_sleeve"
+  },
+  {
+    "case_id": "REFUND_005",
+    "claim_text": "There is a dirty mark on the front of the shirt.",
+    "product": "shirt",
+    "claimed_defect": "stain",
+    "claimed_location": "front"
+  },
+  {
+    "case_id": "REFUND_006",
+    "claim_text": "My hoodie is torn on the back.",
+    "product": "hoodie",
+    "claimed_defect": "tear_hole",
+    "claimed_location": "back"
+  },
+  {
+    "case_id": "REFUND_007",
+    "claim_text": "The pants have a stain near the pocket.",
+    "product": "pants",
+    "claimed_defect": "stain",
+    "claimed_location": "pocket"
+  },
+  {
+    "case_id": "REFUND_008",
+    "claim_text": "The shirt has no visible damage.",
+    "product": "shirt",
+    "claimed_defect": "no_visible_damage",
+    "claimed_location": null
+  },
+  {
+    "case_id": "REFUND_009",
+    "claim_text": "The jacket is damaged around the zipper.",
+    "product": "jacket",
+    "claimed_defect": null,
+    "claimed_location": "zipper"
+  },
+  {
+    "case_id": "REFUND_010",
+    "claim_text": "My trousers have a hole on the back.",
+    "product": "pants",
+    "claimed_defect": "tear_hole",
+    "claimed_location": "back"
+  }
+]

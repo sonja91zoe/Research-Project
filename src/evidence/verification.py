@@ -83,8 +83,12 @@ def _policy_eligibility(
         return False, "Refund request is outside the policy window."
     if policy.requires_image and not case.get("image_present", False):
         return False, "Required image evidence is missing."
+    if not case.get("image_usable", True):
+        return False, "Submitted image evidence is not usable."
     if not case.get("damage_detected", False):
         return False, "No visible damage was detected."
+    if case.get("claim_image_consistency", 1.0) < 0.5:
+        return False, "Image evidence does not sufficiently support the claim."
     if case.get("damage_type", "").lower() not in policy.eligible_damage_types:
         return False, "Damage type is not covered by the retrieved policy."
     if image_match < 0.8:
@@ -99,6 +103,8 @@ def _completeness(case: dict[str, Any], has_order: bool, has_policy: bool) -> fl
         bool(case.get("detected_product")),
         bool(case.get("damage_type")),
         bool(case.get("request_date")),
+        case.get("image_usable", True) is True,
+        case.get("claim_image_consistency", 1.0) >= 0.5,
         has_order,
         has_policy,
     )

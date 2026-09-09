@@ -1,0 +1,11 @@
+case_id,image_path,blur_label,lighting_label,cropping_label,occlusion_label,relevant_region_visible,image_usable
+IMAGE_001,data/member1/images/member1_shorts_001.jpg,clear,normal,complete,none,true,true
+IMAGE_002,data/member1/images/member1_tshirt_001.jpg,clear,normal,complete,none,true,true
+IMAGE_003,data/member1/images/member1_hoodie_001.jpg,clear,normal,complete,none,true,true
+IMAGE_004,data/member1/images/member1_jacket_001.jpg,clear,normal,complete,none,true,true
+IMAGE_005,data/member1/images/member1_tshirt_001_slight_blur.jpg,slightly_blurred,normal,complete,none,true,true
+IMAGE_006,data/member1/images/member1_tshirt_001_severe_blur.jpg,severely_blurred,normal,complete,none,true,false
+IMAGE_007,data/member1/images/member1_hoodie_001_dark.jpg,clear,dark,complete,none,true,false
+IMAGE_008,data/member1/images/member1_jacket_001_overexposed.jpg,clear,overexposed,complete,none,true,false
+IMAGE_009,data/member1/images/member1_shorts_001_cropped.jpg,clear,normal,partial,none,true,true
+IMAGE_010,data/member1/images/member1_jacket_001_occluded.jpg,clear,normal,complete,heavy,false,false
