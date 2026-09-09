@@ -7,7 +7,8 @@ import cv2
 
 def calculate_blur_score(image_path: str) -> float:
     """
-    Calculate image sharpness using the variance of the Laplacian.
+    Calculate image sharpness using histogram equalization
+    followed by the variance of the Laplacian.
 
     A higher score generally indicates a sharper image.
     A lower score generally indicates a blurrier image.
@@ -24,7 +25,14 @@ def calculate_blur_score(image_path: str) -> float:
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    blur_score = cv2.Laplacian(gray, cv2.CV_64F).var()
+    # Week 3 stabilisation:
+    # Reduce the influence of lighting conditions before blur assessment.
+    equalized = cv2.equalizeHist(gray)
+
+    blur_score = cv2.Laplacian(
+        equalized,
+        cv2.CV_64F,
+    ).var()
 
     return float(blur_score)
 
@@ -41,9 +49,11 @@ def assess_blur(image_path: str) -> dict:
     """
     blur_score = calculate_blur_score(image_path)
 
-    if blur_score < 2:
+    # Week 3 stabilised thresholds based on the controlled evaluation dataset.
+    # These remain provisional and can be refined with additional data.
+    if blur_score < 30:
         blur_label = "severely_blurred"
-    elif blur_score < 200:
+    elif blur_score < 150:
         blur_label = "slightly_blurred"
     else:
         blur_label = "clear"
@@ -52,6 +62,8 @@ def assess_blur(image_path: str) -> dict:
         "blur_score": round(blur_score, 2),
         "blur_label": blur_label,
     }
+
+
 def calculate_brightness_score(image_path: str) -> float:
     """
     Calculate the average grayscale brightness of an image.
@@ -75,6 +87,8 @@ def calculate_brightness_score(image_path: str) -> float:
     brightness_score = gray.mean()
 
     return float(brightness_score)
+
+
 def calculate_highlight_ratio(image_path: str) -> float:
     """
     Calculate the proportion of very bright pixels in an image.
@@ -99,6 +113,8 @@ def calculate_highlight_ratio(image_path: str) -> float:
     highlight_ratio = highlight_pixels / total_pixels
 
     return float(highlight_ratio)
+
+
 def assess_lighting(image_path: str) -> dict:
     """
     Assess image lighting quality using average brightness
@@ -116,7 +132,6 @@ def assess_lighting(image_path: str) -> dict:
 
     # V1 thresholds calibrated using the controlled Week 1 dataset.
     # These thresholds are provisional and can be refined with more data.
-
     if highlight_ratio > 0.05:
         lighting_label = "overexposed"
     elif brightness_score < 50:
@@ -129,6 +144,8 @@ def assess_lighting(image_path: str) -> dict:
         "highlight_ratio": round(highlight_ratio, 4),
         "lighting_label": lighting_label,
     }
+
+
 def preprocess_image(image_path: str, max_dimension: int = 1024):
     """
     Load and resize an image while preserving its aspect ratio.
@@ -163,6 +180,8 @@ def preprocess_image(image_path: str, max_dimension: int = 1024):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     return image, gray
+
+
 def assess_image_usability(
     image_path: str,
     relevant_region_visible: bool = True,
@@ -212,6 +231,8 @@ def assess_image_usability(
         "image_usable": True,
         "reason": "usable",
     }
+
+
 def assess_image_quality(
     image_path: str,
     relevant_region_visible: bool = True,
