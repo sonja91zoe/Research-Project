@@ -1,0 +1,15 @@
+{
+  "cases": 100,
+  "source_images": 70,
+  "seed": 32933,
+  "sample_source_images": 20,
+  "verdict_counts": {
+    "positive": 40,
+    "negative": 30,
+    "ambiguous": 30
+  },
+  "sample_cases": 29,
+  "benchmark_eligible_cases": 0,
+  "note": "Review batches only; not an independent train/test split. Source labels remain provisional.",
+  "source_sha256": "34c2d5dba51b7f37ae7a24ddecd90ab7bb3149c110c5287c92a3b4b73d289111"
+}

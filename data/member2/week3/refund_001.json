@@ -1,0 +1,8 @@
+{
+  "fixture_kind": "synthetic_contract_test_not_model_evaluation",
+  "case": {"case_id": "refund_001", "order_id": "order_001", "claim_text": "The garment has a hole.", "image_paths": ["fixture.jpg"]},
+  "member1": {"case_id": "refund_001", "claimed_defect": "hole", "image_quality": 0.9, "blur_score": 0.9, "lighting_score": 0.9, "relevant_region_visible": true, "image_usable": true},
+  "member2": {"case_id": "refund_001", "damage_detected": true, "damage_type": "hole_or_tear", "damage_confidence": 0.9},
+  "context": {"case_id": "refund_001", "risk_score": 0.1, "order_valid": true, "policy_eligible": true, "evidence_complete": true, "image_order_verified": true},
+  "expected_decision": "Auto Refund"
+}
