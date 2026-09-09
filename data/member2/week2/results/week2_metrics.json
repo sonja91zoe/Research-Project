@@ -1,0 +1,36 @@
+{
+  "evaluation_name": "CLIP full-image plus YOLO-crop baseline",
+  "model_name": "openai/clip-vit-base-patch32",
+  "total_images": 70,
+  "evaluated_images": 63,
+  "reviewed_images": 7,
+  "coverage": 0.9,
+  "accuracy_on_automatic_predictions": 0.4444444444444444,
+  "end_to_end_accuracy": 0.4,
+  "macro_f1": 0.3446740858505565,
+  "per_class": {
+    "hole_or_tear": {
+      "precision": 0.5,
+      "recall": 0.02857142857142857,
+      "f1": 0.05405405405405405,
+      "support": 35
+    },
+    "stain_or_spot": {
+      "precision": 0.54,
+      "recall": 0.7714285714285715,
+      "f1": 0.6352941176470589,
+      "support": 35
+    }
+  },
+  "expected_counts": {
+    "hole_or_tear": 35,
+    "stain_or_spot": 35
+  },
+  "predicted_counts": {
+    "hole_or_tear": 2,
+    "stain_or_spot": 50,
+    "uncertain": 7,
+    "no_damage": 11
+  },
+  "warning": "This positive-defect test set does not evaluate no_damage. The CLIP baseline is not suitable as the final detector because hole_or_tear recall is 2.9%."
+}

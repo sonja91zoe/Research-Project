@@ -1,7 +1,7 @@
 """Structured records exchanged by the Member 3 evidence modules."""
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Any, Optional
 
 
 @dataclass(frozen=True)
@@ -38,3 +38,16 @@ class VerifiedEvidence:
     refund_amount: float
     policy_source: Optional[str] = None
     reason: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class EvidenceChain:
+    """Traceable inputs, retrieval results, and Member 3 output for one case."""
+
+    case_id: str
+    claim: dict[str, Any]
+    image_evidence: dict[str, Any]
+    order_evidence: Optional[OrderRecord]
+    policy_evidence: Optional[RetrievedPolicy]
+    verified_evidence: VerifiedEvidence
+    member3_output: dict[str, Any]
