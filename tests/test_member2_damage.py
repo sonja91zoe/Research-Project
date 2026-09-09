@@ -12,6 +12,7 @@ from src.damage_detection.damage import (
     FixedBackend,
 )
 from src.damage_detection.evaluate import calculate_metrics, create_yolo_crop
+from src.damage_detection.evaluate_yolo import calculate_review_metrics
 from src.damage_detection.yolo import YoloBackend
 from scripts.prepare_yolo_dataset import (
     SourceDataset,
@@ -212,6 +213,30 @@ class Member2DamageTests(unittest.TestCase):
         self.assertEqual(fields[0], "1")
         self.assertEqual(len(fields), 5)
         self.assertEqual([float(value) for value in fields[1:]], [0.4, 0.5, 0.4, 0.4])
+
+    def test_review_metrics_separate_detection_from_automation(self):
+        rows = [
+            {
+                "expected_label": "hole_or_tear",
+                "predicted_label": "hole_or_tear",
+                "confidence": 0.10,
+            },
+            {
+                "expected_label": "stain_or_spot",
+                "predicted_label": "stain_or_spot",
+                "confidence": 0.80,
+            },
+            {
+                "expected_label": "stain_or_spot",
+                "predicted_label": "uncertain",
+                "confidence": 0.0,
+            },
+        ]
+        metrics = calculate_review_metrics(rows, review_threshold=0.70)
+        self.assertEqual(metrics["review_free_images"], 1)
+        self.assertEqual(metrics["human_review_images"], 2)
+        self.assertAlmostEqual(metrics["automation_coverage"], 1 / 3)
+        self.assertEqual(metrics["accuracy_on_review_free_predictions"], 1.0)
 
 
 if __name__ == "__main__":

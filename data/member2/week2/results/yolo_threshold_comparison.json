@@ -1,0 +1,63 @@
+{
+  "model": "second YOLO run, 20 epochs, 512px",
+  "weights_sha256": "501836746E7A0B51DF9C016073DDF45BA1DE02BB5EE140FC88B055903E081E77",
+  "held_out_test_set": {
+    "total_images": 70,
+    "hole_or_tear": 35,
+    "stain_or_spot": 35,
+    "no_damage": 0
+  },
+  "thresholds": [
+    {
+      "confidence_threshold": 0.25,
+      "classification_coverage": 0.1142857143,
+      "classification_accuracy": 0.875,
+      "end_to_end_accuracy": 0.1,
+      "macro_f1": 0.1760052736,
+      "hole_or_tear_recall": 0.0571428571,
+      "stain_or_spot_recall": 0.1428571429
+    },
+    {
+      "confidence_threshold": 0.1,
+      "classification_coverage": 0.2142857143,
+      "classification_accuracy": 0.8666666667,
+      "end_to_end_accuracy": 0.1857142857,
+      "macro_f1": 0.3,
+      "hole_or_tear_recall": 0.1142857143,
+      "stain_or_spot_recall": 0.2571428571
+    },
+    {
+      "confidence_threshold": 0.05,
+      "classification_coverage": 0.4428571429,
+      "classification_accuracy": 0.8387096774,
+      "end_to_end_accuracy": 0.3714285714,
+      "macro_f1": 0.5129513344,
+      "hole_or_tear_recall": 0.3142857143,
+      "stain_or_spot_recall": 0.4285714286
+    },
+    {
+      "confidence_threshold": 0.02,
+      "classification_coverage": 0.7142857143,
+      "classification_accuracy": 0.84,
+      "end_to_end_accuracy": 0.6,
+      "macro_f1": 0.7001944985,
+      "hole_or_tear_recall": 0.6,
+      "stain_or_spot_recall": 0.6
+    },
+    {
+      "confidence_threshold": 0.01,
+      "classification_coverage": 0.8571428571,
+      "classification_accuracy": 0.7833333333,
+      "end_to_end_accuracy": 0.6714285714,
+      "macro_f1": 0.7232883203,
+      "hole_or_tear_recall": 0.6857142857,
+      "stain_or_spot_recall": 0.6571428571
+    }
+  ],
+  "recommendation": {
+    "candidate_detection_threshold": 0.01,
+    "human_review_threshold": 0.7,
+    "reason": "0.01 maximized held-out macro F1 and end-to-end accuracy among tested thresholds. Low-confidence detections remain review-only evidence.",
+    "limitation": "The held-out set contains no clean controls, so false-positive behaviour on no_damage is not measured."
+  }
+}

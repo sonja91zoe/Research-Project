@@ -29,3 +29,17 @@ Retain this run as the Week 2 baseline. Train a small pretrained object detector
 using the recovered YOLO annotations, keep the current 70 images as a held-out
 evaluation set, and add independently sourced clean controls before evaluating
 `no_damage`. Week 3 claim-image consistency is intentionally out of scope.
+
+## YOLO threshold calibration
+
+The second YOLO run was evaluated on the same 70 held-out images at confidence
+thresholds 0.25, 0.10, 0.05, 0.02, and 0.01. A threshold of 0.01 produced the
+best balanced result: 85.7% classification coverage, 78.3% classification
+accuracy, 67.1% end-to-end accuracy, and 72.3% macro F1. Recall was 68.6% for
+`hole_or_tear` and 65.7% for `stain_or_spot`.
+
+This low threshold is used to surface candidate evidence, not to authorize an
+automatic refund decision. With the existing 0.70 human-review threshold, only
+one of the 70 predictions was review-free. The remaining cases require review.
+Clean controls are still required before measuring false positives or enabling
+`no_damage`. Full calibration values are in `yolo_threshold_comparison.json`.

@@ -17,7 +17,7 @@ class YoloBackend:
         self,
         weights: str | Path,
         *,
-        confidence_threshold: float = 0.25,
+        confidence_threshold: float = 0.01,
         predictor: Callable[..., Any] | None = None,
     ):
         if not 0.0 <= confidence_threshold <= 1.0:

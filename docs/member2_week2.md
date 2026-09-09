@@ -74,6 +74,14 @@ a pipeline baseline. The dataset builder now converts every polygon to a
 normalized bounding box before training. The next workflow run uses 20 epochs
 at 512 pixels and automatically evaluates `best.pt` on the 70 held-out images.
 
+The corrected 20-epoch model was subsequently calibrated at five inference
+thresholds. A candidate threshold of 0.01 gave the best held-out balance:
+68.6% `hole_or_tear` recall, 65.7% `stain_or_spot` recall, 72.3% macro F1, and
+67.1% end-to-end accuracy. This threshold only surfaces possible damage. It
+does not override the 0.70 human-review threshold, and it has not been validated
+on `no_damage` controls. The complete comparison is recorded in
+`data/member2/week2/results/yolo_threshold_comparison.json`.
+
 The source datasets are Wargön Innovation's `Garment_condition_holes` and
 `Garment_condition_spots`, both published under CC BY 4.0. Attribution and
 links are recorded in `data/member2/week1/README.md`.
