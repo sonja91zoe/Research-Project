@@ -27,3 +27,11 @@ upgrade without introducing Week 3 claim verification.
 The optional `Week 2 YOLO training` workflow is manual so model training does
 not consume GitHub Actions time on every code push.
 
+## Member 2 — Week 5 visual-evidence experiments
+
+The leakage-safe Week 5 runner is `scripts/member2_week5_evaluate.py`; its
+protocol and current asset limitations are documented in
+`docs/member2_week5_experiment_summary.md`. It preserves `source_image_id` in
+every result and explicitly excludes recipe-only ambiguous variants from model
+metrics until the corresponding images are materialized.
+
