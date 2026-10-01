@@ -1,0 +1,38 @@
+[
+  {
+    "case_id": "W8_T01",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Strong consistent evidence and a low refund amount.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_T02",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Sufficient evidence under the initial 0.80 confidence rubric.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_T03",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "Moderate evidence is insufficient for an automatic refund.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_T04",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "The damage module reports poor-quality evidence.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_T05",
+    "expected_decision": "HUMAN_REVIEW",
+    "label_reason": "Refund-policy eligibility is not confirmed.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_T06",
+    "expected_decision": "HUMAN_REVIEW",
+    "label_reason": "The damage module explicitly requests human review.",
+    "label_source": "manual_scenario_specification"
+  }
+]

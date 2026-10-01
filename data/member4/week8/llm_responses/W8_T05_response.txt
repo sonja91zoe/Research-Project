@@ -1,0 +1,1 @@
+{"case_id": "W8_T05", "decision": "HUMAN_REVIEW", "reason": "The image and damage evidence are strong and usable, but policy eligibility is not confirmed because policy_eligible is false. Under the ordered checks, unconfirmed policy eligibility requires human review."}

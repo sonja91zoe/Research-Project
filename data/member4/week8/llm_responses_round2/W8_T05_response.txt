@@ -1,0 +1,5 @@
+{
+  "case_id": "W8_T05",
+  "decision": "HUMAN_REVIEW",
+  "reason": "The image and damage evidence are strong and consistent, and the order is valid, but policy_eligible is false, so the case requires human review."
+}

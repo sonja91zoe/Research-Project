@@ -1,0 +1,27 @@
+{\
+"case\_id": "W8\_T01",\
+"decision": "AUTO\_REFUND",\
+"reason": "The image is usable and the relevant region is visible; damage is detected with good evidence, high confidence and claim-image consistency; the order is valid and policy eligible; and the refund amount of 42 is within the 0–50 automatic-refund range with strong, consistent evidence."\
+}
+
+{\
+"case\_id": "W8\_T02",\
+"decision": "AUTO\_REFUND",\
+"reason": "Image evidence is usable and good quality, damage is detected and consistent with the claim at 0.82, no human-review flag is present, the order and policy eligibility are confirmed, and the refund amount is $20 within the automatic-refund range."\
+}
+
+{\
+"case\_id": "W8\_T03",\
+"decision": "REQUEST\_MORE\_EVIDENCE",\
+"reason": "The image is usable, the order and policy checks pass, and damage is detected consistently, but the evidence values around 0.65 indicate moderate rather than strong support. For a refund amount of 35.0, moderate evidence requires more evidence."\
+}
+
+{"case\_id":"W8\_T04","decision":"REQUEST\_MORE\_EVIDENCE","reason":"The image is usable and the order/policy checks pass, but the damage evidence quality is explicitly rated poor. Under the ordered guidance, poor damage evidence requires more evidence before considering the later human-review flag."}
+
+{"case\_id":"W8\_T05","decision":"HUMAN\_REVIEW","reason":"The image and damage evidence are strong and consistent, and the order is valid, but policy\_eligible is false, so the case requires human review."}
+
+{\
+"case\_id": "W8\_T06",\
+"decision": "HUMAN\_REVIEW",\
+"reason": "The image evidence is usable and strong, but the damage module explicitly sets needs\_human\_review to true, which requires human review before considering the otherwise strong consistency and $35 refund amount."\
+}

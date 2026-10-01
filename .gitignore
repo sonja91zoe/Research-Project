@@ -8,3 +8,6 @@ __pycache__/
 Ultralytics/
 data/member2/week2/recovered/
 data/member2/week2/recovered_v2/
+
+# Local uploaded images and demo application records
+.local_refund/

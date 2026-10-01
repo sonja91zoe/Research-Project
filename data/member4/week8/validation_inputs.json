@@ -1,0 +1,362 @@
+[
+  {
+    "case_id": "W8_V01",
+    "member1": {
+      "case_id": "W8_V01",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.95,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V01",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.95,
+      "claim_image_consistency": 0.95,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V01",
+      "order_valid": true,
+      "image_order_consistency": 0.95,
+      "policy_eligible": true,
+      "policy_match_score": 0.95,
+      "evidence_completeness": 0.95,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V02",
+    "member1": {
+      "case_id": "W8_V02",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.9,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V02",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.9,
+      "claim_image_consistency": 0.9,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V02",
+      "order_valid": true,
+      "image_order_consistency": 0.9,
+      "policy_eligible": true,
+      "policy_match_score": 0.9,
+      "evidence_completeness": 0.9,
+      "refund_amount": 50.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V03",
+    "member1": {
+      "case_id": "W8_V03",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.0,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": false
+    },
+    "member2": {
+      "case_id": "W8_V03",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.95,
+      "claim_image_consistency": 0.95,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V03",
+      "order_valid": true,
+      "image_order_consistency": 0.95,
+      "policy_eligible": false,
+      "policy_match_score": 0.95,
+      "evidence_completeness": 0.95,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V04",
+    "member1": {
+      "case_id": "W8_V04",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.95,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": false,
+      "image_usable": false
+    },
+    "member2": {
+      "case_id": "W8_V04",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.95,
+      "claim_image_consistency": 0.95,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V04",
+      "order_valid": true,
+      "image_order_consistency": 0.95,
+      "policy_eligible": false,
+      "policy_match_score": 0.95,
+      "evidence_completeness": 0.95,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V05",
+    "member1": {
+      "case_id": "W8_V05",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.95,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V05",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.95,
+      "claim_image_consistency": 0.95,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V05",
+      "order_valid": false,
+      "image_order_consistency": 0.95,
+      "policy_eligible": false,
+      "policy_match_score": 0.95,
+      "evidence_completeness": 0.95,
+      "refund_amount": 0.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V06",
+    "member1": {
+      "case_id": "W8_V06",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.95,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V06",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.95,
+      "claim_image_consistency": 0.95,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V06",
+      "order_valid": true,
+      "image_order_consistency": 0.95,
+      "policy_eligible": true,
+      "policy_match_score": 0.95,
+      "evidence_completeness": 0.95,
+      "refund_amount": 250.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V07",
+    "member1": {
+      "case_id": "W8_V07",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.7,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V07",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.7,
+      "claim_image_consistency": 0.7,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V07",
+      "order_valid": true,
+      "image_order_consistency": 0.7,
+      "policy_eligible": true,
+      "policy_match_score": 0.7,
+      "evidence_completeness": 0.7,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V08",
+    "member1": {
+      "case_id": "W8_V08",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.79,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V08",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.79,
+      "claim_image_consistency": 0.79,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V08",
+      "order_valid": true,
+      "image_order_consistency": 0.79,
+      "policy_eligible": true,
+      "policy_match_score": 0.79,
+      "evidence_completeness": 0.79,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V09",
+    "member1": {
+      "case_id": "W8_V09",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.8,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V09",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.8,
+      "claim_image_consistency": 0.8,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V09",
+      "order_valid": true,
+      "image_order_consistency": 0.8,
+      "policy_eligible": true,
+      "policy_match_score": 0.8,
+      "evidence_completeness": 0.8,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  },
+  {
+    "case_id": "W8_V10",
+    "member1": {
+      "case_id": "W8_V10",
+      "product": "t-shirt",
+      "claimed_defect": "tear_hole",
+      "claimed_location": "front",
+      "image_quality": 0.85,
+      "blur_score": 200.0,
+      "lighting_score": 1.0,
+      "relevant_region_visible": true,
+      "image_usable": true
+    },
+    "member2": {
+      "case_id": "W8_V10",
+      "detected_product": "t-shirt",
+      "damage_detected": true,
+      "damage_type": "hole_or_tear",
+      "damage_location": "front",
+      "damage_confidence": 0.85,
+      "claim_image_consistency": 0.85,
+      "evidence_quality": "good",
+      "needs_human_review": false,
+      "model_version": "synthetic-week8-pilot"
+    },
+    "member3": {
+      "case_id": "W8_V10",
+      "order_valid": true,
+      "image_order_consistency": 0.85,
+      "policy_eligible": true,
+      "policy_match_score": 0.85,
+      "evidence_completeness": 0.85,
+      "refund_amount": 35.0,
+      "policy_source": "Synthetic pilot policy"
+    }
+  }
+]

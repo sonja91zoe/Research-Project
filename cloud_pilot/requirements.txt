@@ -1,0 +1,10 @@
+# Isolated cloud pilot dependencies; does not load the saved Week 6 sklearn model.
+--extra-index-url https://download.pytorch.org/whl/cpu
+streamlit>=1.40,<2
+numpy>=1.26,<3
+Pillow>=10,<13
+pydantic>=2.8,<3
+opencv-python-headless>=4.10,<5
+torch==2.6.0+cpu; sys_platform == "linux"
+torch>=2.6,<3; sys_platform != "linux"
+transformers>=4.46,<6

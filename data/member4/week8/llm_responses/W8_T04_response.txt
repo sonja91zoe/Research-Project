@@ -1,0 +1,1 @@
+{"case_id": "W8_T04", "decision": "REQUEST_MORE_EVIDENCE", "reason": "The image is usable and the relevant region is visible, but the damage evidence is explicitly rated as poor. Under the ordered checks, poor damage evidence requires additional evidence before the later human-review flag is considered."}

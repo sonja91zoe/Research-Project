@@ -1,0 +1,158 @@
+{
+  "dataset_type": "synthetic_pilot",
+  "split": "test",
+  "config": {
+    "dataset_type": "synthetic_pilot",
+    "selection_split": "validation",
+    "evaluation_split": "test",
+    "medium_threshold": 0.5,
+    "high_thresholds": {
+      "rule": 0.8,
+      "ml": 0.9
+    },
+    "selection_note": "Selected using the 10 validation cases. Rule 0.80 had the highest label agreement and zero incorrect auto-refunds. ML 0.90 and 0.95 tied; the lower candidate was chosen. This tie-break was documented after examining validation results and before test evaluation.",
+    "limitations": "Small rule-derived synthetic scenario set. These are pilot candidate thresholds, not established real-world optimal thresholds."
+  },
+  "config_sha256": "16a23a74c8c449bae9ce8c51e61c231f36fb27e6e505e0e569f56a90bbad3738",
+  "input_sha256": "e5e819cc8c7277b1f0cab80a4df6ff57dcec04a24b67b7a7ef6e6508082824d2",
+  "label_sha256": "b73ac008885a739d5fbfc56f149d47b734b0c38d33eeb23863c8056364bbbefe",
+  "model_sha256": "152abc7dc398cf165c961430059681ea5f04ed42a5c3c3ec37b99f7819349283",
+  "methods": {
+    "rule": {
+      "high_threshold": 0.8,
+      "total_cases": 6,
+      "correct_cases": 6,
+      "agreement_with_synthetic_labels": 1.0,
+      "incorrect_auto_refund_count": 0,
+      "predicted_counts": {
+        "AUTO_REFUND": 2,
+        "HUMAN_REVIEW": 2,
+        "REQUEST_MORE_EVIDENCE": 2
+      },
+      "cases": [
+        {
+          "case_id": "W8_T01",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "evidence_confidence": 0.88,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T02",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "evidence_confidence": 0.82,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T03",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "evidence_confidence": 0.65,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T04",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "evidence_confidence": 0.95,
+          "refund_risk": "LOW",
+          "reason": "The damage module reports insufficient image evidence."
+        },
+        {
+          "case_id": "W8_T05",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "evidence_confidence": 0.95,
+          "refund_risk": "LOW",
+          "reason": "Refund-policy eligibility is not confirmed."
+        },
+        {
+          "case_id": "W8_T06",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "evidence_confidence": 0.95,
+          "refund_risk": "LOW",
+          "reason": "The damage module requires human review."
+        }
+      ]
+    },
+    "ml": {
+      "high_threshold": 0.9,
+      "total_cases": 6,
+      "correct_cases": 6,
+      "agreement_with_synthetic_labels": 1.0,
+      "incorrect_auto_refund_count": 0,
+      "predicted_counts": {
+        "AUTO_REFUND": 2,
+        "HUMAN_REVIEW": 2,
+        "REQUEST_MORE_EVIDENCE": 2
+      },
+      "cases": [
+        {
+          "case_id": "W8_T01",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "evidence_confidence": 1.0,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T02",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "evidence_confidence": 0.99,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T03",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "evidence_confidence": 0.63,
+          "refund_risk": "LOW",
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_T04",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "evidence_confidence": 0.67,
+          "refund_risk": "LOW",
+          "reason": "The damage module reports insufficient image evidence."
+        },
+        {
+          "case_id": "W8_T05",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "evidence_confidence": 0.83,
+          "refund_risk": "LOW",
+          "reason": "Refund-policy eligibility is not confirmed."
+        },
+        {
+          "case_id": "W8_T06",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "evidence_confidence": 0.89,
+          "refund_risk": "LOW",
+          "reason": "The damage module requires human review."
+        }
+      ]
+    }
+  }
+}

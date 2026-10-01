@@ -1,0 +1,12 @@
+{
+  "dataset_type": "synthetic_pilot",
+  "selection_split": "validation",
+  "evaluation_split": "test",
+  "medium_threshold": 0.5,
+  "high_thresholds": {
+    "rule": 0.8,
+    "ml": 0.9
+  },
+  "selection_note": "Selected using the 10 validation cases. Rule 0.80 had the highest label agreement and zero incorrect auto-refunds. ML 0.90 and 0.95 tied; the lower candidate was chosen. This tie-break was documented after examining validation results and before test evaluation.",
+  "limitations": "Small rule-derived synthetic scenario set. These are pilot candidate thresholds, not established real-world optimal thresholds."
+}

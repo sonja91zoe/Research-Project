@@ -1,0 +1,923 @@
+{
+  "dataset_type": "synthetic_pilot",
+  "split": "validation",
+  "input_sha256": "8551a1939d10023a0f221ed3881066b23407ec2bbaa1b3eb16497eaab214318f",
+  "label_sha256": "d50ff67fad9953f7f5960bb970ae91d113d29573818507db77d13c96d4941caf",
+  "model_sha256": "152abc7dc398cf165c961430059681ea5f04ed42a5c3c3ec37b99f7819349283",
+  "score_precision": "Existing Agent scores rounded to two decimal places.",
+  "limitations": "Sensitivity analysis against a rule-derived rubric. Does not identify a real-world optimal threshold.",
+  "experiments": [
+    {
+      "method": "rule",
+      "high_threshold": 0.7,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 8,
+      "agreement_with_synthetic_labels": 0.8,
+      "auto_refund_count": 6,
+      "incorrect_auto_refund_count": 2,
+      "human_review_count": 2,
+      "request_more_evidence_count": 2,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 0.9,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.81,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.7,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.79,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.8,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.85,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "rule",
+      "high_threshold": 0.8,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 10,
+      "agreement_with_synthetic_labels": 1.0,
+      "auto_refund_count": 4,
+      "incorrect_auto_refund_count": 0,
+      "human_review_count": 2,
+      "request_more_evidence_count": 4,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 0.9,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.81,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.7,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.79,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.8,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.85,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "rule",
+      "high_threshold": 0.9,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 8,
+      "agreement_with_synthetic_labels": 0.8,
+      "auto_refund_count": 2,
+      "incorrect_auto_refund_count": 0,
+      "human_review_count": 2,
+      "request_more_evidence_count": 6,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 0.9,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.81,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.7,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.79,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.8,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.85,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "rule",
+      "high_threshold": 0.95,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 7,
+      "agreement_with_synthetic_labels": 0.7,
+      "auto_refund_count": 1,
+      "incorrect_auto_refund_count": 0,
+      "human_review_count": 2,
+      "request_more_evidence_count": 7,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 0.9,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.81,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 0.95,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.7,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.79,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.8,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.85,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "ml",
+      "high_threshold": 0.7,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 8,
+      "agreement_with_synthetic_labels": 0.8,
+      "auto_refund_count": 6,
+      "incorrect_auto_refund_count": 2,
+      "human_review_count": 2,
+      "request_more_evidence_count": 2,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.02,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.83,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.97,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.98,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.99,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "ml",
+      "high_threshold": 0.8,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 8,
+      "agreement_with_synthetic_labels": 0.8,
+      "auto_refund_count": 6,
+      "incorrect_auto_refund_count": 2,
+      "human_review_count": 2,
+      "request_more_evidence_count": 2,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.02,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.83,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.97,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.98,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.99,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "ml",
+      "high_threshold": 0.9,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 9,
+      "agreement_with_synthetic_labels": 0.9,
+      "auto_refund_count": 5,
+      "incorrect_auto_refund_count": 1,
+      "human_review_count": 2,
+      "request_more_evidence_count": 3,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.02,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.83,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.97,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.98,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.99,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    },
+    {
+      "method": "ml",
+      "high_threshold": 0.95,
+      "medium_threshold": 0.5,
+      "total_cases": 10,
+      "correct_cases": 9,
+      "agreement_with_synthetic_labels": 0.9,
+      "auto_refund_count": 5,
+      "incorrect_auto_refund_count": 1,
+      "human_review_count": 2,
+      "request_more_evidence_count": 3,
+      "cases": [
+        {
+          "case_id": "W8_V01",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V02",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V03",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V04",
+          "evidence_confidence": 0.0,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "The uploaded image is not usable."
+        },
+        {
+          "case_id": "W8_V05",
+          "evidence_confidence": 0.02,
+          "confidence_label": "LOW",
+          "refund_risk": "LOW",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "The order could not be validated."
+        },
+        {
+          "case_id": "W8_V06",
+          "evidence_confidence": 1.0,
+          "confidence_label": "HIGH",
+          "refund_risk": "HIGH",
+          "expected_decision": "HUMAN_REVIEW",
+          "predicted_decision": "HUMAN_REVIEW",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=HIGH."
+        },
+        {
+          "case_id": "W8_V07",
+          "evidence_confidence": 0.83,
+          "confidence_label": "MEDIUM",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "REQUEST_MORE_EVIDENCE",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=MEDIUM, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V08",
+          "evidence_confidence": 0.97,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "REQUEST_MORE_EVIDENCE",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": false,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V09",
+          "evidence_confidence": 0.98,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        },
+        {
+          "case_id": "W8_V10",
+          "evidence_confidence": 0.99,
+          "confidence_label": "HIGH",
+          "refund_risk": "LOW",
+          "expected_decision": "AUTO_REFUND",
+          "predicted_decision": "AUTO_REFUND",
+          "correct": true,
+          "reason": "Decision matrix result: confidence=HIGH, refund risk=LOW."
+        }
+      ]
+    }
+  ]
+}

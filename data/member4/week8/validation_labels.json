@@ -1,0 +1,62 @@
+[
+  {
+    "case_id": "W8_V01",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Strong consistent evidence and a low refund amount.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V02",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Strong evidence at the inclusive low-risk amount boundary.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V03",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "The uploaded image is unusable.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V04",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "The relevant region is not visible.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V05",
+    "expected_decision": "HUMAN_REVIEW",
+    "label_reason": "The order cannot be validated.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V06",
+    "expected_decision": "HUMAN_REVIEW",
+    "label_reason": "A high refund amount requires review despite strong evidence.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V07",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "Evidence score 0.70 is below the initial 0.80 rubric.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V08",
+    "expected_decision": "REQUEST_MORE_EVIDENCE",
+    "label_reason": "Evidence score 0.79 is just below the initial 0.80 rubric.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V09",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Evidence score 0.80 meets the inclusive initial threshold.",
+    "label_source": "manual_scenario_specification"
+  },
+  {
+    "case_id": "W8_V10",
+    "expected_decision": "AUTO_REFUND",
+    "label_reason": "Evidence score 0.85 exceeds the initial 0.80 rubric.",
+    "label_source": "manual_scenario_specification"
+  }
+]

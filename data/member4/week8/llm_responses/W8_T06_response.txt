@@ -1,0 +1,1 @@
+{"case_id": "W8_T06", "decision": "HUMAN_REVIEW", "reason": "The image evidence is usable and strong, but the damage module explicitly sets needs_human_review to true. Under the ordered checks, that requires human review."}

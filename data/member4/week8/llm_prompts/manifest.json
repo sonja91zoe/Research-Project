@@ -1,0 +1,28 @@
+{
+  "experiment": "manual_direct_llm_structured_evidence_pilot",
+  "split": "test",
+  "input_sha256": "e5e819cc8c7277b1f0cab80a4df6ff57dcec04a24b67b7a7ef6e6508082824d2",
+  "case_ids": [
+    "W8_T01",
+    "W8_T02",
+    "W8_T03",
+    "W8_T04",
+    "W8_T05",
+    "W8_T06"
+  ],
+  "prompt_sha256": {
+    "W8_T01": "3013eed2cb0fcfe7451aadbf1d92a858dad05b88ebf3ade6b56400dd55bc4171",
+    "W8_T02": "c2a3d0aa297fd9eb9a20ec6a7f80bc2aa1cb8336334c16f9ca8f63aa5621b076",
+    "W8_T03": "bf704c83fbdf6aaf93759a850e73f13d75dd2e06cb36775827fe51402a61380b",
+    "W8_T04": "2fc39f4b652e6019ae76a82bc4aa59d7e9fde76cc7e6f8d638976d27470b7b43",
+    "W8_T05": "7b1f3ea5a86d00254245fba700e8e977139c5cf01e23de13ea5f79f6eac37895",
+    "W8_T06": "66ed3e1017500eb618809005c31b1c58358fef034a06ee031033f865cacf700b"
+  },
+  "protocol": {
+    "fresh_conversation_per_case": true,
+    "same_model_and_settings": true,
+    "first_completed_response_only": true,
+    "expected_labels_provided": false,
+    "rule_or_ml_predictions_provided": false
+  }
+}

@@ -1,0 +1,1 @@
+{"case_id": "W8_T03", "decision": "REQUEST_MORE_EVIDENCE", "reason": "The image is usable and the claim-image consistency is acceptable at 0.65, but the overall evidence strength is only moderate. For an amount of 35.0, moderate evidence requires additional evidence before an automatic refund."}

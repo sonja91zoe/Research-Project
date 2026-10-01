@@ -1,0 +1,1 @@
+{"case_id":"W8_T01","decision":"AUTO_REFUND","reason":"Image evidence is usable, damage is detected with strong claim-image consistency (0.88), order and policy eligibility are confirmed, no human-review flag is present, and the refund amount is 42.0, which is within the automatic-refund range."}

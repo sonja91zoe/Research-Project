@@ -1,0 +1,80 @@
+{
+  "dataset_type": "synthetic_pilot",
+  "split": "test",
+  "round": 2,
+  "source": "New responses supplied by user after request for a fresh-conversation rerun; browser not accessed",
+  "platform": "ChatGPT web (context from user)",
+  "model": "Not recorded",
+  "protocol_status": "User confirmed: one fresh conversation per case, High thinking intensity, unchanged prompts and first completed response. Browser execution not independently observed.",
+  "normalization": "Raw submission preserved; removed only escaped underscores and backslashes immediately preceding line breaks for JSON parsing",
+  "input_sha256": "e5e819cc8c7277b1f0cab80a4df6ff57dcec04a24b67b7a7ef6e6508082824d2",
+  "label_sha256": "b73ac008885a739d5fbfc56f149d47b734b0c38d33eeb23863c8056364bbbefe",
+  "prompt_manifest_sha256": "181a74cdcfd513737cda21b6dd7fe25eceb3db292490aa68cb88cc5e4934fa96",
+  "response_sha256": {
+    "W8_T01": "441a7ba46056a6e4e339c86dea24759a82685d860e0a94a4dd36b51432f7908e",
+    "W8_T02": "c87124a7d1cb7324e8e0464c2e9d6cfe8e2c0f0b03d6196b2ca50a667672c959",
+    "W8_T03": "04376577822786baea80efab3f4237e6acdfd3c28ec71bb98cfcfb6006804140",
+    "W8_T04": "a762caf8b3d45a2d20ff42d66b49a13f6eeb758b42d6ea7694cb49f1f66cc208",
+    "W8_T05": "f27e442bfe6ca749ba23a75a57297c57e0436d318c483c4ca18ecc0667577188",
+    "W8_T06": "90bba5d8e604767cf1f5866a3338a6d15f835a719b245fa2322fc18d89150c3b"
+  },
+  "raw_submission_sha256": "f85c4c6d662b866f383cddaaa51c034c2178e11bceca92ed1a7a440000b78edd",
+  "round1_report_sha256": "2cddd8f5731338951d066c4e492660af906c314d32b705ef44e9f5de1bf856d1",
+  "summary": {
+    "total_cases": 6,
+    "correct_cases": 6,
+    "agreement_with_synthetic_labels": 1.0,
+    "incorrect_auto_refund_count": 0,
+    "decisions_matching_round1": 6
+  },
+  "cases": [
+    {
+      "case_id": "W8_T01",
+      "decision": "AUTO_REFUND",
+      "reason": "The image is usable and the relevant region is visible; damage is detected with good evidence, high confidence and claim-image consistency; the order is valid and policy eligible; and the refund amount of 42 is within the 0–50 automatic-refund range with strong, consistent evidence.",
+      "expected_decision": "AUTO_REFUND",
+      "correct": true,
+      "matches_round1": true
+    },
+    {
+      "case_id": "W8_T02",
+      "decision": "AUTO_REFUND",
+      "reason": "Image evidence is usable and good quality, damage is detected and consistent with the claim at 0.82, no human-review flag is present, the order and policy eligibility are confirmed, and the refund amount is $20 within the automatic-refund range.",
+      "expected_decision": "AUTO_REFUND",
+      "correct": true,
+      "matches_round1": true
+    },
+    {
+      "case_id": "W8_T03",
+      "decision": "REQUEST_MORE_EVIDENCE",
+      "reason": "The image is usable, the order and policy checks pass, and damage is detected consistently, but the evidence values around 0.65 indicate moderate rather than strong support. For a refund amount of 35.0, moderate evidence requires more evidence.",
+      "expected_decision": "REQUEST_MORE_EVIDENCE",
+      "correct": true,
+      "matches_round1": true
+    },
+    {
+      "case_id": "W8_T04",
+      "decision": "REQUEST_MORE_EVIDENCE",
+      "reason": "The image is usable and the order/policy checks pass, but the damage evidence quality is explicitly rated poor. Under the ordered guidance, poor damage evidence requires more evidence before considering the later human-review flag.",
+      "expected_decision": "REQUEST_MORE_EVIDENCE",
+      "correct": true,
+      "matches_round1": true
+    },
+    {
+      "case_id": "W8_T05",
+      "decision": "HUMAN_REVIEW",
+      "reason": "The image and damage evidence are strong and consistent, and the order is valid, but policy_eligible is false, so the case requires human review.",
+      "expected_decision": "HUMAN_REVIEW",
+      "correct": true,
+      "matches_round1": true
+    },
+    {
+      "case_id": "W8_T06",
+      "decision": "HUMAN_REVIEW",
+      "reason": "The image evidence is usable and strong, but the damage module explicitly sets needs_human_review to true, which requires human review before considering the otherwise strong consistency and $35 refund amount.",
+      "expected_decision": "HUMAN_REVIEW",
+      "correct": true,
+      "matches_round1": true
+    }
+  ]
+}
