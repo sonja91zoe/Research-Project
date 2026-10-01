@@ -124,7 +124,7 @@ def test_pipeline_decision_branches(
         assert result["decision"]["refund_risk"] == "LOW"
 
 
-def test_pipeline_preserves_missing_consistency(image_path):
+def test_pipeline_calculates_missing_consistency(image_path):
     result = run_pipeline(
         make_case(image_path),
         request_date="2026-08-15",
@@ -133,10 +133,10 @@ def test_pipeline_preserves_missing_consistency(image_path):
         detector=ControlledDetector(consistency=None),
     )
 
-    assert result["member2"]["claim_image_consistency"] is None
-    assert "claim_image_consistency" in result["missing_evidence"]
-    assert result["member3"]["policy_eligible"] is False
-    assert result["decision"]["decision"] == "HUMAN_REVIEW"
+    assert result["member2"]["claim_image_consistency"] == 1.0
+    assert "claim_image_consistency" not in result["missing_evidence"]
+    assert result["member2_verification"]["verdict"] == "positive"
+    assert result["member3"]["policy_eligible"] is True
 
 
 def test_pipeline_rejects_multiple_images(image_path):

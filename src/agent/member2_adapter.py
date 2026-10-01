@@ -11,6 +11,10 @@ from src.damage_detection.damage import (
     ClipBackend,
     DamageDetector,
 )
+from src.damage_detection.verification import (
+    VerificationResult,
+    verify_claim,
+)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -22,7 +26,22 @@ def run_member2(
     *,
     detector: DamageDetector | None = None,
 ) -> Member2Output:
-    """Run damage detection using Member 1 image-usability results."""
+    """Return Agent-compatible visual evidence with claim verification."""
+
+    return run_member2_verification(
+        case,
+        member1,
+        detector=detector,
+    ).member2
+
+
+def run_member2_verification(
+    case: CaseInput,
+    member1: Member1Output,
+    *,
+    detector: DamageDetector | None = None,
+) -> VerificationResult:
+    """Run real damage detection, then compare it with Member 1's claim."""
 
     if case.case_id != member1.case_id:
         raise ValueError(
@@ -53,8 +72,10 @@ def run_member2(
             backend=ClipBackend(),
         )
 
-    return detector.detect(
+    visual = detector.detect(
         case_id=case.case_id,
         image_path=image_path,
         evidence_quality=evidence_quality,
     )
+
+    return verify_claim(case, member1, visual)

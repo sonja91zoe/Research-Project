@@ -4,7 +4,7 @@ from datetime import date
 
 from src.agent.agent import run_agent
 from src.agent.member1_adapter import run_member1
-from src.agent.member2_adapter import run_member2
+from src.agent.member2_adapter import run_member2_verification
 from src.common.schemas import CaseInput, Member3Output
 from src.evidence.pipeline import (
     build_evidence_chain,
@@ -40,11 +40,12 @@ def run_pipeline(
         relevant_region_visible=relevant_region_visible,
     )
 
-    member2 = run_member2(
+    member2_verification = run_member2_verification(
         case,
         member1,
         detector=detector,
     )
+    member2 = member2_verification.member2
 
     chain = build_evidence_chain(
         case_input=case,
@@ -86,6 +87,9 @@ def run_pipeline(
         "member1": member1.model_dump(),
         "raw_image_quality": raw_quality,
         "member2": member2.model_dump(),
+        "member2_verification": member2_verification.model_dump(
+            exclude={"member2"}
+        ),
         "member3": member3.model_dump(),
         "missing_evidence": missing_evidence,
         "evidence_chain": evidence_chain_to_dict(chain),
