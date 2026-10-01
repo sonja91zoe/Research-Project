@@ -1,0 +1,80 @@
+{
+  "dataset_cases": 100,
+  "source_image_groups": 70,
+  "execution_status_counts": {
+    "executed": 70,
+    "not_materialized_variant": 30
+  },
+  "leakage_policy": "All split/evaluation grouping is by source_image_id; variants never form independent observations.",
+  "damage_detection": {
+    "status": "available",
+    "n": 70,
+    "accuracy": 0.34285714285714286,
+    "macro_labels": [
+      "hole_or_tear",
+      "stain_or_spot",
+      "no_damage"
+    ],
+    "macro_precision": 0.25193107546048726,
+    "macro_recall": 0.3333333333333333,
+    "macro_f1": 0.2614601018675721,
+    "per_class": {
+      "hole_or_tear": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 25
+      },
+      "stain_or_spot": {
+        "precision": 0.39215686274509803,
+        "recall": 0.8,
+        "f1": 0.5263157894736842,
+        "support": 25
+      },
+      "no_damage": {
+        "precision": 0.36363636363636365,
+        "recall": 0.2,
+        "f1": 0.25806451612903225,
+        "support": 20
+      },
+      "uncertain": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      }
+    }
+  },
+  "claim_image_verification": {
+    "status": "available",
+    "n": 70,
+    "accuracy": 0.22857142857142856,
+    "macro_labels": [
+      "positive",
+      "negative"
+    ],
+    "macro_precision": 0.5446428571428572,
+    "macro_recall": 0.225,
+    "macro_f1": 0.31561996779388085,
+    "per_class": {
+      "positive": {
+        "precision": 0.7142857142857143,
+        "recall": 0.25,
+        "f1": 0.37037037037037035,
+        "support": 40
+      },
+      "negative": {
+        "precision": 0.375,
+        "recall": 0.2,
+        "f1": 0.26086956521739135,
+        "support": 30
+      },
+      "ambiguous": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      }
+    }
+  }
+}
