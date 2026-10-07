@@ -120,10 +120,7 @@ class RefundAppHandler(SimpleHTTPRequestHandler):
 
 def run_evidence_case(payload):
     case_id = payload.get("case_id", "UI-DEMO-001")
-    order_record = load_orders().get(str(payload.get("order_id", "")).upper())
-    detected_product = payload.get("detected_product") or (
-        order_record.product_category if order_record else "unknown"
-    )
+    detected_product = payload.get("detected_product") or None
     damage_type = payload.get("damage_type") or "hole_or_tear"
     image_usable = bool(payload.get("image_usable", True))
 

@@ -21,26 +21,28 @@ def _normalize_product(value: str) -> str:
 def _image_order_match(
     detected_product: str,
     order: OrderRecord,
-) -> float:
+) -> tuple[float, str]:
     detected = _normalize_product(detected_product or "")
 
     if not detected:
-        return 0.0
+        # Missing upstream product classification is not evidence of a
+        # mismatch.  Use a neutral score while exposing an explicit status.
+        return 0.5, "NOT_AVAILABLE"
 
     product = _normalize_product(order.product_name)
     category = _normalize_product(order.product_category)
 
     if detected == product:
-        return 1.0
+        return 1.0, "MATCH"
 
     if (
         detected == category
         or category in detected
         or detected in product
     ):
-        return 0.8
+        return 0.8, "MATCH"
 
-    return 0.0
+    return 0.0, "MISMATCH"
 
 
 def _days_since_delivery(order: OrderRecord, request_date: str) -> int:
@@ -67,6 +69,7 @@ def verify_case(case: dict[str, Any]) -> VerifiedEvidence:
             case_id=case["case_id"],
             order_valid=False,
             image_order_match=0.0,
+            image_order_match_status="NOT_AVAILABLE",
             policy_eligible=False,
             policy_match=0.0,
             evidence_completeness=round(_completeness(case, False, False), 2),
@@ -82,13 +85,18 @@ def verify_case(case: dict[str, Any]) -> VerifiedEvidence:
         ]
     )
     policy = retrieve_best_policy(policy_query, retailer=order.retailer)
-    image_match = _image_order_match(case.get("detected_product", ""), order)
-    eligible, reason = _policy_eligibility(case, order, policy, image_match)
+    image_match, image_match_status = _image_order_match(
+        case.get("detected_product", ""), order
+    )
+    eligible, reason = _policy_eligibility(
+        case, order, policy, image_match_status
+    )
 
     return VerifiedEvidence(
         case_id=case["case_id"],
         order_valid=True,
         image_order_match=image_match,
+        image_order_match_status=image_match_status,
         policy_eligible=eligible,
         policy_match=policy.policy_match,
         evidence_completeness=round(_completeness(case, True, True), 2),
@@ -102,7 +110,7 @@ def _policy_eligibility(
     case: dict[str, Any],
     order: OrderRecord,
     policy: RetrievedPolicy,
-    image_match: float,
+    image_match_status: str,
 ) -> tuple[bool, str]:
     if order.status.lower() != "delivered":
         return False, "Order is not in delivered status."
@@ -131,8 +139,13 @@ def _policy_eligibility(
         return False, "Image evidence does not sufficiently support the claim."
     if not _damage_type_is_covered(case.get("damage_type", ""), policy):
         return False, "Damage type is not covered by the retrieved policy."
-    if image_match < 0.8:
+    if image_match_status == "MISMATCH":
         return False, "The detected product does not match the order."
+    if image_match_status == "NOT_AVAILABLE":
+        return True, (
+            "Order and policy evidence are consistent; product type was not "
+            "independently identified from the image."
+        )
     return True, "Order, image, and policy evidence are consistent."
 
 

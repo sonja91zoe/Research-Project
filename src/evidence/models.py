@@ -43,6 +43,7 @@ class VerifiedEvidence:
     case_id: str
     order_valid: bool
     image_order_match: float
+    image_order_match_status: str
     policy_eligible: bool
     policy_match: float
     evidence_completeness: float

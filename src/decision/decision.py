@@ -42,6 +42,12 @@ def make_decision(
             "The order could not be validated.",
         )
 
+    if member3.image_order_match_status == "MISMATCH":
+        return (
+            "HUMAN_REVIEW",
+            "The detected product does not match the selected order.",
+        )
+
     if not member3.policy_eligible:
         return (
             "HUMAN_REVIEW",
@@ -97,5 +103,11 @@ def make_decision(
         f"confidence={confidence_label}, "
         f"refund risk={refund_risk}."
     )
+
+    if member3.image_order_match_status == "NOT_AVAILABLE":
+        reason += (
+            " Product type was not independently identified; the neutral "
+            "image-order score was included in evidence confidence."
+        )
 
     return decision, reason

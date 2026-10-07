@@ -50,6 +50,7 @@ def build_evidence_chain(
         case_id=case_input.case_id,
         order_valid=verified.order_valid,
         image_order_consistency=verified.image_order_match,
+        image_order_match_status=verified.image_order_match_status,
         policy_eligible=verified.policy_eligible,
         policy_match_score=verified.policy_match,
         evidence_completeness=verified.evidence_completeness,

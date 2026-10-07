@@ -42,6 +42,21 @@ def test_week7_missing_image_returns_explainable_feedback():
     assert result["reason"] == "Required image evidence is missing."
 
 
+def test_week7_missing_product_prediction_is_not_self_filled_from_order():
+    result = run_evidence_case(
+        {
+            "order_id": "ORD001",
+            "claim_text": "The black jacket arrived with a tear.",
+            "damage_type": "hole_or_tear",
+            "image_present": True,
+        }
+    )
+
+    assert result["evidence"]["image_order_match_status"] == "NOT_AVAILABLE"
+    assert result["evidence"]["image_order_consistency"] == 0.5
+    assert result["evidence"]["policy_eligible"] is True
+
+
 def test_week8_dataset_has_sixty_balanced_labelled_cases():
     cases = build_cases()
     counts = {}
