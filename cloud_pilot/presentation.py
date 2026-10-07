@@ -19,6 +19,7 @@ REASONS = {
 
 def evidence_summary(result):
     visual = result.get('member2', {})
+    order_evidence = result.get('member3', {})
     verification = result.get('member2_verification', {})
     verdict = verification.get('verdict')
     return {
@@ -26,6 +27,9 @@ def evidence_summary(result):
                     'ambiguous': 'Cannot confirm'}.get(verdict, 'Not assessed'),
         'reason': REASONS.get(verification.get('reason_code'), 'See the full analysis for verification details.'),
         'damage': str(visual.get('damage_type') or 'Not identified').replace('_', ' '),
+        'product': str(visual.get('detected_product') or 'Not identified').replace('_', ' '),
+        'product_confidence': visual.get('product_confidence'),
+        'order_match': str(order_evidence.get('image_order_match_status') or 'NOT_AVAILABLE').replace('_', ' ').title(),
         'location': str(visual.get('damage_location') or 'Not identified').replace('_', ' '),
         'missing': [MISSING_LABELS.get(key, key.replace('_', ' ')) for key in result.get('missing_evidence', [])],
     }

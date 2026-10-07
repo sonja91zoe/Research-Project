@@ -13,6 +13,10 @@ from src.common.schemas import CaseInput
 from src.common.schemas import Member2Output
 from src.damage_detection.damage import ClipBackend, DamageDetector
 from src.damage_detection.product import ProductTypeClassifier
+from src.damage_detection.runtime import (
+    build_yolo_detector,
+    has_available_yolo_weights,
+)
 
 MAX_BYTES = 8 * 1024 * 1024
 
@@ -35,7 +39,11 @@ class Runtime:
     def __init__(self, detector=None, product_classifier=None):
         if detector is None:
             backend = CpuClipBackend()
-            detector = DamageDetector(backend=backend)
+            detector = (
+                build_yolo_detector()
+                if has_available_yolo_weights()
+                else DamageDetector(backend=backend)
+            )
             product_classifier = product_classifier or ProductTypeClassifier(
                 classifier=lambda *args, **kwargs: backend._get_classifier()(
                     *args, **kwargs

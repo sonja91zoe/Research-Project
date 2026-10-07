@@ -12,6 +12,7 @@ from src.damage_detection.damage import (
     DamageDetector,
 )
 from src.damage_detection.product import ProductTypeClassifier
+from src.damage_detection.runtime import build_yolo_detector, has_configured_yolo_weights
 from src.damage_detection.verification import (
     VerificationResult,
     verify_claim,
@@ -27,6 +28,7 @@ def run_member2(
     *,
     detector: DamageDetector | None = None,
     product_classifier: ProductTypeClassifier | None = None,
+    yolo_weights: str | Path | None = None,
 ) -> Member2Output:
     """Return Agent-compatible visual evidence with claim verification."""
 
@@ -35,6 +37,7 @@ def run_member2(
         member1,
         detector=detector,
         product_classifier=product_classifier,
+        yolo_weights=yolo_weights,
     ).member2
 
 
@@ -44,6 +47,7 @@ def run_member2_verification(
     *,
     detector: DamageDetector | None = None,
     product_classifier: ProductTypeClassifier | None = None,
+    yolo_weights: str | Path | None = None,
 ) -> VerificationResult:
     """Run real damage detection, then compare it with Member 1's claim."""
 
@@ -72,8 +76,13 @@ def run_member2_verification(
     )
 
     if detector is None:
-        detector = DamageDetector(
-            backend=ClipBackend(),
+        # A configured local YOLO weight takes precedence.  Retaining the
+        # CLIP fallback keeps existing callers reproducible when no weight has
+        # been downloaded yet.
+        detector = (
+            build_yolo_detector(yolo_weights)
+            if yolo_weights is not None or has_configured_yolo_weights()
+            else DamageDetector(backend=ClipBackend())
         )
 
     visual = detector.detect(

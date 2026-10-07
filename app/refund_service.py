@@ -88,9 +88,17 @@ class RefundService:
             if self.pipeline is run_pipeline:
                 from src.damage_detection.damage import DamageDetector, ClipBackend
                 from src.damage_detection.product import ProductTypeClassifier
+                from src.damage_detection.runtime import (
+                    build_yolo_detector,
+                    has_available_yolo_weights,
+                )
                 if self.detector is None:
                     backend = ClipBackend()
-                    self.detector = DamageDetector(backend=backend)
+                    self.detector = (
+                        build_yolo_detector()
+                        if has_available_yolo_weights()
+                        else DamageDetector(backend=backend)
+                    )
                     self.product_classifier = ProductTypeClassifier(
                         classifier=lambda *args, **kwargs: backend._get_classifier()(
                             *args, **kwargs

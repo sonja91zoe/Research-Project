@@ -1,3 +1,4 @@
--r requirements.txt
 ultralytics>=8.3,<9
 huggingface_hub>=0.30,<2
+pydantic>=2,<3
+Pillow>=10,<13
