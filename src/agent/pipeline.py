@@ -19,6 +19,7 @@ def run_pipeline(
     relevant_region_visible: bool,
     confidence_method: str = "ml",
     detector=None,
+    product_classifier=None,
     model=None,
 ) -> dict:
     """Run Members 1-3, confidence scoring, risk and decision.
@@ -44,6 +45,7 @@ def run_pipeline(
         case,
         member1,
         detector=detector,
+        product_classifier=product_classifier,
     )
     member2 = member2_verification.member2
 

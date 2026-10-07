@@ -20,6 +20,7 @@ class DamagePrediction:
     confidence: float
     rationale: str
     detected_product: str | None = None
+    product_confidence: float | None = None
     damage_location: str | None = None
 
 
@@ -63,6 +64,7 @@ class DamageDetector:
         return Member2Output(
             case_id=case_id,
             detected_product=prediction.detected_product,
+            product_confidence=prediction.product_confidence,
             damage_detected=prediction.damage_type in {"hole_or_tear", "stain_or_spot"},
             damage_type=prediction.damage_type,
             damage_location=prediction.damage_location,
@@ -186,4 +188,3 @@ class ClipBackend:
 
     def predict(self, image_path: Path) -> DamagePrediction:
         return self.predict_many([image_path])
-

@@ -10,7 +10,9 @@ import warnings
 from PIL import Image, UnidentifiedImageError
 from src.agent.member1_adapter import run_member1
 from src.common.schemas import CaseInput
+from src.common.schemas import Member2Output
 from src.damage_detection.damage import ClipBackend, DamageDetector
+from src.damage_detection.product import ProductTypeClassifier
 
 MAX_BYTES = 8 * 1024 * 1024
 
@@ -30,8 +32,17 @@ class CpuClipBackend(ClipBackend):
 
 
 class Runtime:
-    def __init__(self, detector=None):
-        self.detector = detector or DamageDetector(backend=CpuClipBackend())
+    def __init__(self, detector=None, product_classifier=None):
+        if detector is None:
+            backend = CpuClipBackend()
+            detector = DamageDetector(backend=backend)
+            product_classifier = product_classifier or ProductTypeClassifier(
+                classifier=lambda *args, **kwargs: backend._get_classifier()(
+                    *args, **kwargs
+                )
+            )
+        self.detector = detector
+        self.product_classifier = product_classifier
         self.lock = threading.Lock()
 
 
@@ -70,6 +81,14 @@ def analyze(data, claim, visible, runtime):
             usable = member1.image_usable and member1.relevant_region_visible
             member2 = runtime.detector.detect(case_id=case.case_id, image_path=path,
                                              evidence_quality='good' if usable else 'unusable')
+            if usable and runtime.product_classifier is not None:
+                product = runtime.product_classifier.predict(path)
+                member2 = Member2Output.model_validate({
+                    **member2.model_dump(),
+                    'detected_product': product.product_type,
+                    'product_confidence': product.confidence,
+                    'rationale': f'{member2.rationale} {product.rationale}',
+                })
             return {
                 'scope': 'Image-quality and CLIP feasibility pilot; no refund decision or payment.',
                 'case_id': case.case_id,

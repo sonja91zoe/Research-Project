@@ -28,6 +28,7 @@ class RefundService:
         self.pipeline = pipeline or run_pipeline
         self.lock = threading.RLock()
         self.detector = None
+        self.product_classifier = None
         self.model = None
 
     def _path(self, case_id):
@@ -86,9 +87,17 @@ class RefundService:
             kwargs = {}
             if self.pipeline is run_pipeline:
                 from src.damage_detection.damage import DamageDetector, ClipBackend
+                from src.damage_detection.product import ProductTypeClassifier
                 if self.detector is None:
-                    self.detector = DamageDetector(backend=ClipBackend())
+                    backend = ClipBackend()
+                    self.detector = DamageDetector(backend=backend)
+                    self.product_classifier = ProductTypeClassifier(
+                        classifier=lambda *args, **kwargs: backend._get_classifier()(
+                            *args, **kwargs
+                        )
+                    )
                 kwargs['detector'] = self.detector
+                kwargs['product_classifier'] = self.product_classifier
                 if record['confidence_method'] == 'ml':
                     import joblib
                     if self.model is None:

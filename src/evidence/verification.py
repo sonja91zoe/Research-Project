@@ -6,6 +6,7 @@ from typing import Any
 from src.evidence.models import OrderRecord, RetrievedPolicy, VerifiedEvidence
 from src.evidence.order import retrieve_order
 from src.evidence.rag import retrieve_best_policy
+from src.damage_detection.product import ProductTypeClassifier
 
 
 DAMAGE_TYPE_POLICY_ALIASES = {
@@ -13,14 +14,28 @@ DAMAGE_TYPE_POLICY_ALIASES = {
     "stain_or_spot": {"stain_or_spot", "stain", "spot"},
 }
 
+MIN_PRODUCT_CONFIDENCE = ProductTypeClassifier.DEFAULT_MIN_CONFIDENCE
+
+PRODUCT_ALIASES = {
+    "coat": "jacket",
+    "pants": "trousers",
+    "tee": "tshirt",
+    "jumper": "sweater",
+    "pullover": "sweater",
+}
+
 
 def _normalize_product(value: str) -> str:
-    return "".join(character for character in value.lower() if character.isalnum())
+    normalized = "".join(
+        character for character in value.lower() if character.isalnum()
+    )
+    return PRODUCT_ALIASES.get(normalized, normalized)
 
 
 def _image_order_match(
     detected_product: str,
     order: OrderRecord,
+    product_confidence: float | None = None,
 ) -> tuple[float, str]:
     detected = _normalize_product(detected_product or "")
 
@@ -29,18 +44,25 @@ def _image_order_match(
         # mismatch.  Use a neutral score while exposing an explicit status.
         return 0.5, "NOT_AVAILABLE"
 
+    if (
+        product_confidence is not None
+        and product_confidence < MIN_PRODUCT_CONFIDENCE
+    ):
+        return 0.5, "NOT_AVAILABLE"
+
     product = _normalize_product(order.product_name)
     category = _normalize_product(order.product_category)
 
     if detected == product:
-        return 1.0, "MATCH"
+        return product_confidence if product_confidence is not None else 1.0, "MATCH"
 
     if (
         detected == category
         or category in detected
         or detected in product
     ):
-        return 0.8, "MATCH"
+        score = product_confidence if product_confidence is not None else 0.8
+        return min(0.8, score), "MATCH"
 
     return 0.0, "MISMATCH"
 
@@ -86,7 +108,9 @@ def verify_case(case: dict[str, Any]) -> VerifiedEvidence:
     )
     policy = retrieve_best_policy(policy_query, retailer=order.retailer)
     image_match, image_match_status = _image_order_match(
-        case.get("detected_product", ""), order
+        case.get("detected_product", ""),
+        order,
+        case.get("product_confidence"),
     )
     eligible, reason = _policy_eligibility(
         case, order, policy, image_match_status

@@ -119,6 +119,8 @@ class RefundAppHandler(SimpleHTTPRequestHandler):
 
 
 def run_evidence_case(payload):
+    from src.image_quality.claim_parser import parse_claim
+
     case_id = payload.get("case_id", "UI-DEMO-001")
     detected_product = payload.get("detected_product") or None
     damage_type = payload.get("damage_type") or "hole_or_tear"
@@ -130,11 +132,12 @@ def run_evidence_case(payload):
         claim_text=payload["claim_text"],
         image_paths=["browser-upload.jpg"] if payload.get("image_present", True) else [],
     )
+    parsed_claim = parse_claim(payload["claim_text"])
     member1 = Member1Output(
         case_id=case_id,
-        product=detected_product,
-        claimed_defect=damage_type,
-        claimed_location=payload.get("damage_location", "left sleeve"),
+        product=parsed_claim["product"],
+        claimed_defect=parsed_claim["claimed_defect"],
+        claimed_location=parsed_claim["claimed_location"],
         image_quality=float(payload.get("image_quality", 0.90)),
         blur_score=0.10,
         lighting_score=0.91,
@@ -144,6 +147,11 @@ def run_evidence_case(payload):
     member2 = Member2Output(
         case_id=case_id,
         detected_product=detected_product,
+        product_confidence=(
+            float(payload["product_confidence"])
+            if payload.get("product_confidence") is not None
+            else None
+        ),
         damage_detected=bool(payload.get("damage_detected", True)),
         damage_type=damage_type,
         damage_location=payload.get("damage_location", "left sleeve"),

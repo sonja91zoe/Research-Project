@@ -11,6 +11,7 @@ from src.damage_detection.damage import (
     ClipBackend,
     DamageDetector,
 )
+from src.damage_detection.product import ProductTypeClassifier
 from src.damage_detection.verification import (
     VerificationResult,
     verify_claim,
@@ -25,6 +26,7 @@ def run_member2(
     member1: Member1Output,
     *,
     detector: DamageDetector | None = None,
+    product_classifier: ProductTypeClassifier | None = None,
 ) -> Member2Output:
     """Return Agent-compatible visual evidence with claim verification."""
 
@@ -32,6 +34,7 @@ def run_member2(
         case,
         member1,
         detector=detector,
+        product_classifier=product_classifier,
     ).member2
 
 
@@ -40,6 +43,7 @@ def run_member2_verification(
     member1: Member1Output,
     *,
     detector: DamageDetector | None = None,
+    product_classifier: ProductTypeClassifier | None = None,
 ) -> VerificationResult:
     """Run real damage detection, then compare it with Member 1's claim."""
 
@@ -77,5 +81,16 @@ def run_member2_verification(
         image_path=image_path,
         evidence_quality=evidence_quality,
     )
+
+    if product_classifier is not None and evidence_quality == "good":
+        product = product_classifier.predict(image_path)
+        visual = Member2Output.model_validate(
+            {
+                **visual.model_dump(),
+                "detected_product": product.product_type,
+                "product_confidence": product.confidence,
+                "rationale": f"{visual.rationale} {product.rationale}",
+            }
+        )
 
     return verify_claim(case, member1, visual)

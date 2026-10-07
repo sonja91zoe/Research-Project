@@ -25,6 +25,7 @@ class Member2Output(BaseModel):
     case_id: str
 
     detected_product: str | None = None
+    product_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
 
     damage_detected: bool
     damage_type: Literal[
