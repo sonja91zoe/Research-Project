@@ -52,6 +52,15 @@ def load_unique_images(manifest: Path, image_directory: Path) -> list[dict[str, 
     if missing:
         raise FileNotFoundError(f"Missing {len(missing)} manifest images: {missing[:5]}")
     for row in rows:
+        # Accept both the dedicated image manifest vocabulary and the
+        # traceable Week 4 dataset vocabulary.
+        row["image_id"] = row.get("image_id") or row.get("source_image_id") or row.get("case_id", "")
+        row["expected_label"] = row.get("expected_label") or row.get("damage_type", "")
+        if not row["image_id"] or not row["expected_label"]:
+            raise ValueError(
+                "Manifest requires image_id/source_image_id and "
+                "expected_label/damage_type columns."
+            )
         row["image_path"] = str(paths[row["file_name"]])
         crop_value = row.get("crop_path", "")
         if crop_value:

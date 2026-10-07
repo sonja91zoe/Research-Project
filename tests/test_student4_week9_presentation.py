@@ -13,3 +13,18 @@ def test_negative_and_missing_are_distinct():
 def test_unknown_is_not_presented_as_support():
     assert evidence_summary({})['verdict'] == 'Not assessed'
     assert evidence_summary({'member2_verification': {'verdict': 'ambiguous'}})['verdict'] == 'Cannot confirm'
+
+def test_product_prediction_and_order_match_are_visible():
+    summary = evidence_summary({
+        'member2': {
+            'detected_product': 't-shirt',
+            'product_confidence': 0.81,
+            'damage_type': 'hole_or_tear',
+        },
+        'member3': {'image_order_match_status': 'MATCH'},
+        'member2_verification': {},
+        'missing_evidence': [],
+    })
+    assert summary['product'] == 't-shirt'
+    assert summary['product_confidence'] == 0.81
+    assert summary['order_match'] == 'Match'

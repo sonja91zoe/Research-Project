@@ -11,3 +11,8 @@ data/member2/week2/recovered_v2/
 
 # Local uploaded images and demo application records
 .local_refund/
+
+# Ignore additional local YOLO experiments. The already tracked deployable
+# models/member2/best.pt remains versioned for the demonstration app.
+models/member2/*.pt
+models/member2/*.onnx

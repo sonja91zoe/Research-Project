@@ -58,4 +58,4 @@ jobs:
         with:
           name: member2-week2-yolo-model
           path: artifacts/member2_yolo
-          retention-days: 14
+          retention-days: 90

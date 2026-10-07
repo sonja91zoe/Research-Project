@@ -8,3 +8,4 @@ opencv-python-headless>=4.10,<5
 torch==2.6.0+cpu; sys_platform == "linux"
 torch>=2.6,<3; sys_platform != "linux"
 transformers>=4.46,<6
+ultralytics>=8.3,<9

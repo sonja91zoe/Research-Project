@@ -99,6 +99,10 @@ else:
     st.write('Automated assessment for this photo:', result['decision']['reason'])
     summary = evidence_summary(result)
     st.subheader('Evidence summary')
+    st.write('Model product prediction:', summary['product'])
+    if summary['product_confidence'] is not None:
+        st.write('Product prediction score:', f"{summary['product_confidence']:.3f}")
+    st.write('Photo compared with ordered product:', summary['order_match'])
     st.write('Model damage prediction:', summary['damage'])
     st.write('Detected damage location:', summary['location'])
     st.write('Description compared with the photo:', summary['verdict'])

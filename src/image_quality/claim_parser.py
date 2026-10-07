@@ -30,6 +30,12 @@ def parse_claim(claim_text: str) -> dict:
         "shirt": "shirt",
         "pants": "pants",
         "trousers": "pants",
+        "dress": "dress",
+        "skirt": "skirt",
+        "sweater": "sweater",
+        "jumper": "sweater",
+        "pullover": "sweater",
+        "coat": "jacket",
     }
 
     for keyword, standard_name in product_keywords.items():

@@ -61,6 +61,7 @@ def test_verified_case_is_traceable():
     result = verify_case(load_cases()[0])
     assert result.order_valid is True
     assert result.image_order_match == 1.0
+    assert result.image_order_match_status == "MATCH"
     assert result.policy_eligible is True
     assert result.refund_amount == 129.0
     assert result.policy_source == (

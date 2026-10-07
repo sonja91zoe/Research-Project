@@ -134,6 +134,34 @@ def test_ineligible_policy_requires_human_review():
     assert "policy" in result.reason.lower()
 
 
+def test_confirmed_product_mismatch_requires_human_review():
+    member1, member2, member3 = load_case()
+    member3.image_order_match_status = "MISMATCH"
+    member3.image_order_consistency = 0.0
+
+    result = run_agent(member1, member2, member3)
+
+    assert result.decision == "HUMAN_REVIEW"
+    assert "does not match" in result.reason.lower()
+
+
+def test_unavailable_product_prediction_is_not_a_hard_review_override():
+    member1, member2, member3 = load_case()
+    member3.image_order_match_status = "NOT_AVAILABLE"
+    member3.image_order_consistency = 0.5
+
+    result = run_agent(member1, member2, member3)
+
+    assert result.decision != "HUMAN_REVIEW"
+    assert "not independently identified" in result.reason.lower()
+
+
+def test_legacy_member3_score_infers_match_status():
+    _, _, member3 = load_case()
+
+    assert member3.image_order_match_status == "MATCH"
+
+
 def test_no_detected_damage_requests_more_evidence():
     member1, member2, member3 = load_case()
 

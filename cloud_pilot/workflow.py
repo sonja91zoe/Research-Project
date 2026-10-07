@@ -53,7 +53,8 @@ class SessionRefundService(RefundService):
                     CaseInput(case_id=record['case_id'], order_id=record['order_id'],
                               claim_text=record['claim_text'], image_paths=[str(path)]),
                     request_date=record['request_date'], relevant_region_visible=visible,
-                    confidence_method='rule', detector=self.runtime.detector)
+                    confidence_method='rule', detector=self.runtime.detector,
+                    product_classifier=self.runtime.product_classifier)
                 status = STATES[result['decision']['decision']]
         finally:
             self.runtime.lock.release()

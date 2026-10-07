@@ -25,6 +25,7 @@ class Member2Output(BaseModel):
     case_id: str
 
     detected_product: str | None = None
+    product_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
 
     damage_detected: bool
     damage_type: Literal[
@@ -70,6 +71,9 @@ class Member3Output(BaseModel):
     order_valid: bool
 
     image_order_consistency: float
+    image_order_match_status: Literal[
+        "MATCH", "MISMATCH", "NOT_AVAILABLE"
+    ] = "NOT_AVAILABLE"
 
     policy_eligible: bool
     policy_match_score: float
@@ -79,6 +83,23 @@ class Member3Output(BaseModel):
     refund_amount: float
 
     policy_source: str | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def infer_legacy_image_order_status(cls, values):
+        """Keep older saved cases compatible with the explicit tri-state field."""
+
+        if not isinstance(values, dict) or "image_order_match_status" in values:
+            return values
+        normalized = dict(values)
+        score = normalized.get("image_order_consistency")
+        if score is not None and score >= 0.8:
+            normalized["image_order_match_status"] = "MATCH"
+        elif score == 0.0:
+            normalized["image_order_match_status"] = "MISMATCH"
+        else:
+            normalized["image_order_match_status"] = "NOT_AVAILABLE"
+        return normalized
 class Member4Output(BaseModel):
     case_id: str
 

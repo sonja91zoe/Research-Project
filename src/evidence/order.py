@@ -1,6 +1,7 @@
 """Local JSON order retrieval for the Member 3 Week 5 prototype."""
 
 import json
+import os
 from pathlib import Path
 
 from src.evidence.models import OrderRecord
@@ -12,6 +13,13 @@ DEFAULT_ORDER_DB = Path("data/orders/orders.json")
 def load_orders(filename: str | Path = DEFAULT_ORDER_DB) -> dict[str, OrderRecord]:
     """Load order records indexed by normalized order ID."""
 
+    database = os.getenv('REFUND_ORDER_DB')
+    if database and Path(filename) == DEFAULT_ORDER_DB:
+        from src.evidence.database import connect
+        with connect(database) as db:
+            records = [json.loads(row['record_json']) for row in
+                       db.execute('SELECT record_json FROM orders ORDER BY order_id')]
+        return {r['order_id'].upper(): OrderRecord(**r) for r in records}
     with Path(filename).open(encoding="utf-8") as order_file:
         records = json.load(order_file)
 
