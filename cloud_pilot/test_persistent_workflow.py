@@ -5,6 +5,24 @@ from cloud_pilot.test_workflow import payload
 from src.evidence.database import connect
 
 
+def test_catalog_switch_keeps_historical_orders(tmp_path):
+    import json
+    from src.evidence.order import load_orders
+    database = tmp_path / 'cases.db'
+    old = dict(order_id='ZEN001', product_name='Historical sample',
+               product_category='Shirt', price=49.0,
+               purchase_date='2026-09-01', delivery_date='2026-09-05',
+               status='delivered')
+    source = tmp_path / 'old.json'
+    source.write_text(json.dumps([old]))
+    LocalSqliteRefundService(Runtime(detector=object()), database, order_source=source)
+    service = LocalSqliteRefundService(Runtime(detector=object()), database)
+    orders = load_orders(service.order_source)
+    assert 'ZEN001' in orders
+    assert 'ORD001' in orders
+    assert orders['ZEN001'].product_name == 'Historical sample'
+
+
 def test_restart_corrections_review_and_refund(tmp_path):
     path = tmp_path/'cases.db'
     def service():

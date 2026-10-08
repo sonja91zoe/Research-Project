@@ -2,6 +2,8 @@
 import base64
 from dataclasses import asdict
 from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import json
 from pathlib import Path
 import sys
@@ -26,21 +28,24 @@ st.set_page_config(page_title='Refund Studio', page_icon='◇', layout='centered
 def runtime():
     return Runtime()
 
-TRACEABLE_ROOT = ROOT / 'artifacts/traceable_orders'
-ORDER_SOURCE = (
-    TRACEABLE_ROOT / 'orders.db'
-    if (TRACEABLE_ROOT / 'orders.db').is_file()
-    else ROOT / 'data/orders/orders.json'
-)
+# The shared Member 2 demo catalog is stable. Zenodo artifacts are a
+# separate evaluation set and must never silently replace the demo orders.
+ORDER_SOURCE = ROOT / 'data/orders/orders.json'
 
 local_database = os.getenv('REFUND_LOCAL_CASE_DB')
-if 'refund_workflow' not in st.session_state:
+catalog_key = (str(ORDER_SOURCE), local_database)
+if ('refund_workflow' not in st.session_state
+        or st.session_state.get('refund_catalog_key') != catalog_key):
     if local_database:
         from cloud_pilot.persistent_workflow import LocalSqliteRefundService
         st.session_state.refund_workflow = LocalSqliteRefundService(
             runtime(), local_database, order_source=ORDER_SOURCE)
+    elif 'refund_workflow' in st.session_state:
+        # Keep in-session cases when the source changes after a hot reload.
+        st.session_state.refund_workflow.order_source = ORDER_SOURCE
     else:
         st.session_state.refund_workflow = SessionRefundService(runtime(), order_source=ORDER_SOURCE)
+    st.session_state.refund_catalog_key = catalog_key
 service = st.session_state.refund_workflow
 LABELS = {'READY_TO_REFUND': 'Ready to confirm simulated refund',
           'NEEDS_EVIDENCE': 'More evidence needed', 'PENDING_REVIEW': 'Awaiting human review',
@@ -73,6 +78,7 @@ else:
     st.caption('Uses real image analysis and rule-based Agent scoring. Missing visual evidence remains missing. Records belong to this browser session; refreshing or restarting may lose them. Download records to keep them.')
 
 orders = [asdict(order) for order in load_orders(ORDER_SOURCE).values()]
+st.caption('Demo catalog: Member 2 photos · ORD001–ORD070. Zenodo evaluation orders are separate; historical applications retain their original IDs.')
 by_id = {o['order_id']: o for o in orders}
 rows = service.list()
 choices = ['New application'] + [r['case_id'] for r in rows]
@@ -84,10 +90,13 @@ selected = st.selectbox('Your session applications', choices,
 
 if selected == 'New application':
     st.subheader('Start a refund application')
-    order_id = st.selectbox('Demo order', list(by_id),
-                            format_func=lambda x: f"{x} · {by_id[x]['product_name']}")
+    order_id = st.selectbox('Demo order', list(by_id))
     order = by_id[order_id]
     st.caption(f"Amount: {order['price']} · Purchased: {order['purchase_date']}")
+    st.info(f"模擬訂單日期／Demo dates — {order_id}\n\n"
+            f"購買日期 Purchase date：{order['purchase_date']}\n\n"
+            f"收貨日期 Delivery date：{order.get('delivery_date') or '未提供／Unknown'}\n\n"
+            '購買日期已自動填入，收貨日期由訂單讀取，不需自行猜測。這些日期是模擬資料，不是真實交易證明。')
     evidence = order.get('image_evidence') or {}
     reference_path = evidence.get('image_path')
     if reference_path:
@@ -109,7 +118,7 @@ if selected == 'New application':
         )
     with st.form('create_refund'):
         st.write('Request date')
-        today = date.today()
+        today = datetime.now(ZoneInfo('Australia/Sydney')).date()
         months = ('January', 'February', 'March', 'April', 'May', 'June',
                   'July', 'August', 'September', 'October', 'November', 'December')
         year_col, month_col, day_col = st.columns(3)
@@ -121,7 +130,11 @@ if selected == 'New application':
         requested_day = day_col.selectbox('Day', list(range(1, 32)), index=today.day - 1)
         st.caption('Use a valid calendar date, for example 15 August 2026.')
         st.caption('For historical demonstrations, select the actual demonstration date. Policy checks use this date.')
-        purchase_date = st.text_input('Purchase date to verify (YYYY-MM-DD)', help='Compare your entered date with the simulated order record.')
+        st.info(f'申請日期 Request date：測試「今天申請」請用 {today.isoformat()}（雪梨時間）。'
+                f"若只測試收貨當天的歷史情境，可明確選用 {order.get('delivery_date') or '已確認的收貨日期'}。"
+                '日期不同可能影響政策結果，不保證自動退款；不要為了通過而假填日期。')
+        purchase_date = st.text_input('Purchase date to verify (YYYY-MM-DD)', value=order['purchase_date'],
+            key='purchase_date_' + order_id, help='Pre-filled from the synthetic order; editable to test mismatches.')
         claim = st.text_area('Describe the product, damage and location in English', max_chars=3000)
         uploaded = st.file_uploader('Product photo (JPEG / PNG, maximum 8 MB)', type=['jpg', 'jpeg', 'png'])
         visible = st.selectbox('Is the claimed area visible?', ['Please select', 'Yes', 'No'])
@@ -148,6 +161,9 @@ else:
     if record['status'] not in {'SIMULATED_REFUNDED', 'REJECTED'}:
         with st.expander('Correct order, description or dates and reassess'):
             st.caption('Upload the intended photo again. Previous inputs and assessments are retained; any previous approval is reassessed.')
+            with st.expander('訂單日期對照／Order date reference'):
+                st.table([{'Order': o['order_id'], 'Purchase date': o['purchase_date'],
+                           'Delivery date': o.get('delivery_date') or 'Unknown'} for o in orders])
             with st.form('correct_' + selected):
                 corrected_order = st.selectbox('Corrected order', list(by_id), index=list(by_id).index(record['order_id']) if record['order_id'] in by_id else 0)
                 corrected_claim = st.text_area('Corrected description', value=record['claim_text'], max_chars=3000)

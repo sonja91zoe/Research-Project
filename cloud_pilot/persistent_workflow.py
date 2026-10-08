@@ -14,6 +14,9 @@ class LocalSqliteRefundService(SessionRefundService):
         super().__init__(runtime, **kwargs)
         self.database = Path(database)
         initialize(self.database, [asdict(o) for o in load_orders(self.order_source or DEFAULT_ORDER_DB).values()])
+        # Keep historical orders available after changing the new-case catalog.
+        # initialize adds records without replacing existing order identities.
+        self.order_source = self.database
         with connect(self.database) as db:
             db.execute('CREATE TABLE IF NOT EXISTS workflow_records (case_id TEXT PRIMARY KEY REFERENCES refund_cases(case_id), updated_at TEXT NOT NULL, record_json TEXT NOT NULL)')
             db.execute('CREATE TABLE IF NOT EXISTS evidence_images (sha256 TEXT PRIMARY KEY, content BLOB NOT NULL)')
