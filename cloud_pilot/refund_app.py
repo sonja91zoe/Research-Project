@@ -1,5 +1,6 @@
 """Streamlit entrypoint for the session-isolated refund demonstration."""
 import base64
+from dataclasses import asdict
 from datetime import date
 import json
 from pathlib import Path
@@ -16,6 +17,7 @@ import streamlit as st
 from cloud_pilot.core import Runtime
 from cloud_pilot.workflow import SessionRefundService
 from cloud_pilot.presentation import evidence_summary
+from src.evidence.order import load_orders
 
 st.set_page_config(page_title='Refund Studio', page_icon='◇', layout='centered')
 
@@ -23,8 +25,17 @@ st.set_page_config(page_title='Refund Studio', page_icon='◇', layout='centered
 def runtime():
     return Runtime()
 
+TRACEABLE_ROOT = ROOT / 'artifacts/traceable_orders'
+ORDER_SOURCE = (
+    TRACEABLE_ROOT / 'orders.db'
+    if (TRACEABLE_ROOT / 'orders.db').is_file()
+    else ROOT / 'data/orders/orders.json'
+)
+
 if 'refund_workflow' not in st.session_state:
-    st.session_state.refund_workflow = SessionRefundService(runtime())
+    st.session_state.refund_workflow = SessionRefundService(
+        runtime(), order_source=ORDER_SOURCE
+    )
 service = st.session_state.refund_workflow
 LABELS = {'READY_TO_REFUND': 'Ready to confirm simulated refund',
           'NEEDS_EVIDENCE': 'More evidence needed', 'PENDING_REVIEW': 'Awaiting human review',
@@ -53,7 +64,7 @@ st.write('Submit an application → Analyze evidence → Decision and follow-up'
 st.info('Research demonstration only. No payments. Review actions below are role-play, without reviewer authentication.')
 st.caption('Uses real image analysis and rule-based Agent scoring. Missing visual evidence remains missing. Records belong to this browser session; refreshing or restarting may lose them. Download records to keep them.')
 
-orders = json.loads((ROOT / 'data/orders/orders.json').read_text())
+orders = [asdict(order) for order in load_orders(ORDER_SOURCE).values()]
 by_id = {o['order_id']: o for o in orders}
 rows = service.list()
 choices = ['New application'] + [r['case_id'] for r in rows]
@@ -69,6 +80,25 @@ if selected == 'New application':
                             format_func=lambda x: f"{x} · {by_id[x]['product_name']}")
     order = by_id[order_id]
     st.caption(f"Amount: {order['price']} · Purchased: {order['purchase_date']}")
+    evidence = order.get('image_evidence') or {}
+    reference_path = evidence.get('image_path')
+    if reference_path:
+        reference_image = Path(reference_path)
+        if not reference_image.is_absolute():
+            reference_image = ROOT / reference_image
+        if reference_image.is_file():
+            st.image(str(reference_image), caption='Order reference photo')
+    if evidence:
+        st.caption(
+            'Reference source: '
+            f"{evidence.get('source_dataset', 'Unknown')} · "
+            f"ID {evidence.get('source_image_id', 'Unknown')} · "
+            f"License {evidence.get('license', 'Unknown')}"
+        )
+        st.caption(
+            'The photo and garment annotation are source evidence. Price, '
+            'dates, delivery status and retailer are simulated.'
+        )
     with st.form('create_refund'):
         st.write('Request date')
         today = date.today()

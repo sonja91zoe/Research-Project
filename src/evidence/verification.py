@@ -82,10 +82,14 @@ def _damage_type_is_covered(damage_type: str, policy: RetrievedPolicy) -> bool:
     return bool(accepted_labels.intersection(policy.eligible_damage_types))
 
 
-def verify_case(case: dict[str, Any]) -> VerifiedEvidence:
+def verify_case(case: dict[str, Any], order_source=None) -> VerifiedEvidence:
     """Retrieve order/policy evidence and verify a single refund case."""
 
-    order = retrieve_order(case["order_id"])
+    order = (
+        retrieve_order(case["order_id"], order_source)
+        if order_source is not None
+        else retrieve_order(case["order_id"])
+    )
     if order is None:
         return VerifiedEvidence(
             case_id=case["case_id"],

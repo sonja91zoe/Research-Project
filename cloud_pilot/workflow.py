@@ -10,9 +10,10 @@ from src.common.schemas import CaseInput
 
 
 class SessionRefundService(RefundService):
-    def __init__(self, runtime, pipeline=run_pipeline):
+    def __init__(self, runtime, pipeline=run_pipeline, order_source=None):
         super().__init__(pipeline=pipeline)
         self.runtime = runtime
+        self.order_source = order_source
         self.records = {}
 
     def get(self, case_id):
@@ -54,7 +55,8 @@ class SessionRefundService(RefundService):
                               claim_text=record['claim_text'], image_paths=[str(path)]),
                     request_date=record['request_date'], relevant_region_visible=visible,
                     confidence_method='rule', detector=self.runtime.detector,
-                    product_classifier=self.runtime.product_classifier)
+                    product_classifier=self.runtime.product_classifier,
+                    order_source=self.order_source)
                 status = STATES[result['decision']['decision']]
         finally:
             self.runtime.lock.release()

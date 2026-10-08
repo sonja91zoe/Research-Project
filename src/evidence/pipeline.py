@@ -14,6 +14,7 @@ def build_evidence_chain(
     member1: Member1Output,
     member2: Member2Output,
     request_date: str,
+    order_source=None,
 ) -> EvidenceChain:
     """Build a traceable evidence chain and Member 3 output for one case."""
 
@@ -21,7 +22,11 @@ def build_evidence_chain(
     if len(case_ids) != 1:
         raise ValueError("CaseInput and member outputs have different case_id values.")
 
-    order = retrieve_order(case_input.order_id)
+    order = (
+        retrieve_order(case_input.order_id, order_source)
+        if order_source is not None
+        else retrieve_order(case_input.order_id)
+    )
     detected_product = member2.detected_product or ""
     verification_input = {
         "case_id": case_input.case_id,
@@ -36,7 +41,7 @@ def build_evidence_chain(
         "claim_image_consistency": member2.claim_image_consistency,
         "request_date": request_date,
     }
-    verified = verify_case(verification_input)
+    verified = verify_case(verification_input, order_source=order_source)
 
     policy = None
     if order is not None:
