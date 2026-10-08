@@ -1,0 +1,2102 @@
+[
+  {
+    "order_id": "ORD001",
+    "product_name": "Simulated Trousers — H001",
+    "product_category": "Trousers",
+    "price": 129.0,
+    "purchase_date": "2026-08-01",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-05",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H001",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_001.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "7e705a393bab518d55b6ce1a0a943cb2a15cd747980b58b6b8a8a6c6485410b0",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD002",
+    "product_name": "Simulated Trousers — H002",
+    "product_category": "Trousers",
+    "price": 79.0,
+    "purchase_date": "2026-08-02",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-06",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H002",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_002.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "4f1d3bee88e330b925546bca0e985ca66c316960c96ac1a36c6bf80c7a473e98",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD003",
+    "product_name": "Simulated Shirt — H003",
+    "product_category": "Shirt",
+    "price": 35.0,
+    "purchase_date": "2026-08-03",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-07",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H003",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_003.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "e315edf1e1d9867cb27652643fca45794400e4f0b750876d84f18bfdc92833c1",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD004",
+    "product_name": "Simulated Trousers — H004",
+    "product_category": "Trousers",
+    "price": 220.0,
+    "purchase_date": "2026-06-01",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-05",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H004",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_004.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "30ae0d09d0afaa684f948419068aa9b1771003859ed49d9e27cd349bd4e3b008",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD005",
+    "product_name": "Simulated Trousers — H005",
+    "product_category": "Trousers",
+    "price": 95.0,
+    "purchase_date": "2026-08-05",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-09",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H005",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_005.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "0b5e07c0359dc2f0628da6730cb7ee32d3fb6d335c0d64b96367ea601248dcb9",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD006",
+    "product_name": "Simulated Jacket — H006",
+    "product_category": "Jacket",
+    "price": 149.0,
+    "purchase_date": "2026-08-06",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-10",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H006",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_006.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "5d1cb6ed6751ee896a9285f80c49ce2ea9fbaeee1594058c0694b484c1569bb2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD007",
+    "product_name": "Simulated Shorts — H007",
+    "product_category": "Shorts",
+    "price": 89.0,
+    "purchase_date": "2026-08-07",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-11",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H007",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_007.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "ca6fa0ca7752f7523d1af24fa205587a806fa51e1d1f6d45ef1eb55849a62a82",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD008",
+    "product_name": "Simulated Jacket — H008",
+    "product_category": "Jacket",
+    "price": 42.0,
+    "purchase_date": "2026-08-08",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-12",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H008",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_008.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "318528155d13eee3e1d4f8ac5fc1df1746ac9d7843fea00509b9b0c715133d50",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD009",
+    "product_name": "Simulated Jacket — H009",
+    "product_category": "Jacket",
+    "price": 189.0,
+    "purchase_date": "2026-08-09",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-13",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H009",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_009.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "a42fdf125ecc77ffd97532473bb6700a36b2a26c28de7e3be756266ab8a665e6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD010",
+    "product_name": "Simulated Trousers — H010",
+    "product_category": "Trousers",
+    "price": 110.0,
+    "purchase_date": "2026-08-10",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-14",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H010",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_010.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "f2e3261fc2b2904161e563c8a441aeaacdcd6e97d620f2773904019710e2a9ca",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD011",
+    "product_name": "Simulated Trousers — H011",
+    "product_category": "Trousers",
+    "price": 39.0,
+    "purchase_date": "2026-08-11",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-15",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H011",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_011.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "079aeae25bd721c375cfab0c6ac28f15b35f5fd1505d75afbc16e24f3417c6ab",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD012",
+    "product_name": "Simulated Trousers — H012",
+    "product_category": "Trousers",
+    "price": 499.0,
+    "purchase_date": "2026-08-12",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-16",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H012",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_012.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "17bc349b4c1da53c3bd440ac6b4fbfc111793058c3f2c60e90cf51dd6cfed5d9",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD013",
+    "product_name": "Simulated T-Shirt — H013",
+    "product_category": "T-Shirt",
+    "price": 141.0,
+    "purchase_date": "2026-07-24",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-28",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H013",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_013.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "caa97e22405c52bf52a07d334cb9aac3f4f2a880b5833225ec4edee648bef3d2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD014",
+    "product_name": "Simulated T-Shirt — H014",
+    "product_category": "T-Shirt",
+    "price": 95.0,
+    "purchase_date": "2026-07-27",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-31",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H014",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_014.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "bbce9c7b949a6e393e4415e448552456a9545f776ad1578cc3f6038f55943c12",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD015",
+    "product_name": "Simulated T-Shirt — H015",
+    "product_category": "T-Shirt",
+    "price": 35.0,
+    "purchase_date": "2026-07-30",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-03",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H015",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_015.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "202f3219e3476ebe20c1782d9e92f30f131784a1cb8f3117344fed01ef059787",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD016",
+    "product_name": "Simulated T-Shirt — H016",
+    "product_category": "T-Shirt",
+    "price": 224.0,
+    "purchase_date": "2026-08-02",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-06",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H016",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_016.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "f1f5cc478ef448a2a353cd92b5f2fdd39f325d70b34e137b74293d0d23d53695",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD017",
+    "product_name": "Simulated Jacket — H017",
+    "product_category": "Jacket",
+    "price": 103.0,
+    "purchase_date": "2026-08-05",
+    "status": "cancelled",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-09",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H017",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_017.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "f0f558571f075086a87a83c7da391d196e43684b70ccfec0d59e497943050a34",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD018",
+    "product_name": "Simulated T-Shirt — H018",
+    "product_category": "T-Shirt",
+    "price": 161.0,
+    "purchase_date": "2026-08-08",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-12",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H018",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_018.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "aead32154243ef62e93cb5c86bc02cd143ce0329a1be8dcfd6986036ac2567d6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD019",
+    "product_name": "Simulated Jacket — H019",
+    "product_category": "Jacket",
+    "price": 105.0,
+    "purchase_date": "2026-08-11",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-15",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H019",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_019.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "d7db23ddb6c22b4e06a5f2ec8bdf9952f13cd0074ec95f5b3ac5b2af6986a3ac",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD020",
+    "product_name": "Simulated Trousers — H020",
+    "product_category": "Trousers",
+    "price": 42.0,
+    "purchase_date": "2026-08-14",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-18",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H020",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_020.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "844e084417e714f14fe7204eec4e88ad0e8eb92f0595e7452d00ed1df0e1550d",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD021",
+    "product_name": "Simulated T-Shirt — H021",
+    "product_category": "T-Shirt",
+    "price": 193.0,
+    "purchase_date": "2026-08-17",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-21",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H021",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_021.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "98f0f23147674f6b68819340caa5fc9be14c605ab0bbb3fc9dedbcaeec7e7942",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD022",
+    "product_name": "Simulated Trousers — H022",
+    "product_category": "Trousers",
+    "price": 118.0,
+    "purchase_date": "2026-08-20",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-24",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H022",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_022.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "80de64415c4228d201a841718dee7787e4ba28cbed94fccdd7e3ecf382c63265",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD023",
+    "product_name": "Simulated T-Shirt — H023",
+    "product_category": "T-Shirt",
+    "price": 51.0,
+    "purchase_date": "2026-08-23",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-27",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H023",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_023.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "93c2f78806f697a5e17c950766066ed3efd2a408cb8f461b037e164bc5af863f",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD024",
+    "product_name": "Simulated T-Shirt — H024",
+    "product_category": "T-Shirt",
+    "price": 515.0,
+    "purchase_date": "2026-08-26",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-30",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H024",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_024.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "2eaf6d71f403c940b4e30f848d268227433052ab9204617830e1efa1bc9bb4cd",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD025",
+    "product_name": "Simulated Jacket — H025",
+    "product_category": "Jacket",
+    "price": 129.0,
+    "purchase_date": "2026-06-15",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-19",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H025",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_025.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "efd3d041f28de8fa32ce6bfc99fb65d722f71d194891026a05ec2c4c2be5c697",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD026",
+    "product_name": "Simulated Trousers — H026",
+    "product_category": "Trousers",
+    "price": 83.0,
+    "purchase_date": "2026-06-18",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-22",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H026",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_026.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "fc4b0204843854e43ddebcab43b079b78e6c9bc217eea78899fbe458becf4db6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD027",
+    "product_name": "Simulated Trousers — H027",
+    "product_category": "Trousers",
+    "price": 43.0,
+    "purchase_date": "2026-06-21",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-25",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H027",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_027.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "3e48230a66f3a767528af16efab35bff710bcb5377fdc724bbc7b0a502b134b2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD028",
+    "product_name": "Simulated T-Shirt — H028",
+    "product_category": "T-Shirt",
+    "price": 232.0,
+    "purchase_date": "2026-06-24",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-28",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H028",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_028.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "020b5a17830079747db38fbca632502170a9e77070538dea9a0a5b36548c1e4a",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD029",
+    "product_name": "Simulated T-Shirt — H029",
+    "product_category": "T-Shirt",
+    "price": 111.0,
+    "purchase_date": "2026-06-27",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-01",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H029",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_029.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "edccbbceaed33707a098ed8906edb3c93e7ecdb05bc923653efa94c980e1485c",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD030",
+    "product_name": "Simulated Trousers — H030",
+    "product_category": "Trousers",
+    "price": 149.0,
+    "purchase_date": "2026-06-30",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-04",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H030",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_030.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "5583b2add5ee50b2ce7234eaad869d2ea9e77676e71355f3482863a3c2a9bd8f",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD031",
+    "product_name": "Simulated T-Shirt — H031",
+    "product_category": "T-Shirt",
+    "price": 93.0,
+    "purchase_date": "2026-07-03",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-07",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H031",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_031.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "286cb659122e9f834ef3634c53c9eb6b967bd2be68957acd61432107594c8945",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD032",
+    "product_name": "Simulated Trousers — H032",
+    "product_category": "Trousers",
+    "price": 50.0,
+    "purchase_date": "2026-07-06",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-10",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H032",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_032.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "d4e5543c7ea6b1db3bd92c2653113d1f9df7dd89d49b4deb2c1ef46c78633aaa",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD033",
+    "product_name": "Simulated T-Shirt — H033",
+    "product_category": "T-Shirt",
+    "price": 201.0,
+    "purchase_date": "2026-07-09",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-13",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H033",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_033.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "c286962191dcf78f068d599922e4e099d7ee38f80d857c08fdab06297304f4ab",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD034",
+    "product_name": "Simulated T-Shirt — H034",
+    "product_category": "T-Shirt",
+    "price": 126.0,
+    "purchase_date": "2026-07-12",
+    "status": "cancelled",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-16",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H034",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_034.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "56cb41e36213fd237307e7f44ad643e398593398778c57bb43a0412a8aa28277",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD035",
+    "product_name": "Simulated T-Shirt — H035",
+    "product_category": "T-Shirt",
+    "price": 39.0,
+    "purchase_date": "2026-07-15",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-19",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_holes",
+      "source_image_id": "H035",
+      "image_path": "data/Week4_damage_dataset_v1/images/holes_35/hole_035.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "cbe453809e6359c36f211b4456ad97f75f4b19f5be81e39fde05a598f13a059e",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD036",
+    "product_name": "Simulated T-Shirt — S001",
+    "product_category": "T-Shirt",
+    "price": 503.0,
+    "purchase_date": "2026-07-18",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-22",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S001",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_001.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "63942c15e31279506e36501bc99b8fa1db7f5c0029b00a098bc3118f4a969a02",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD037",
+    "product_name": "Simulated T-Shirt — S002",
+    "product_category": "T-Shirt",
+    "price": 137.0,
+    "purchase_date": "2026-07-21",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-25",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S002",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_002.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "237a5676f8b11a64d2bcaea802ceee43e947c0fe907242bc37bc96d531b031aa",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD038",
+    "product_name": "Simulated T-Shirt — S003",
+    "product_category": "T-Shirt",
+    "price": 91.0,
+    "purchase_date": "2026-07-24",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-28",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S003",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_003.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "7a6d18eba71fe80aad06ca3b25f8d26c8ec3c27f0099546e2bf3be36e508d8c4",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD039",
+    "product_name": "Simulated Dress — S004",
+    "product_category": "Dress",
+    "price": 51.0,
+    "purchase_date": "2026-07-27",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-31",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S004",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_004.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "5ba97b804cb5a1872a6589243e060b090fa2b9f4137a92d5af32937faeca74f3",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD040",
+    "product_name": "Simulated T-Shirt — S005",
+    "product_category": "T-Shirt",
+    "price": 220.0,
+    "purchase_date": "2026-07-30",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-03",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S005",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_005.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "3bd6efacc7f531af870f8918121ede7e693f05feedbaf11aed536b0a0891bce3",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD041",
+    "product_name": "Simulated Jacket — S006",
+    "product_category": "Jacket",
+    "price": 99.0,
+    "purchase_date": "2026-08-02",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-06",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S006",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_006.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "0739a67edef7efa539d037c197c6576442d80fff1ad2cd5361cbd5bf0a8ae336",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD042",
+    "product_name": "Simulated Jacket — S007",
+    "product_category": "Jacket",
+    "price": 157.0,
+    "purchase_date": "2026-08-05",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-09",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S007",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_007.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "c59456f258cda6c69225194ec7d4818d5684aaffa448253509669a4b07b3e735",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD043",
+    "product_name": "Simulated T-Shirt — S008",
+    "product_category": "T-Shirt",
+    "price": 101.0,
+    "purchase_date": "2026-08-08",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-12",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S008",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_008.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "369a6126911b45cc775613280fbb5f766bdb7631df87891f3a6f3506510d119a",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD044",
+    "product_name": "Simulated T-Shirt — S009",
+    "product_category": "T-Shirt",
+    "price": 58.0,
+    "purchase_date": "2026-08-11",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-15",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S009",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_009.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "197a0a8b123100a1d54eb6c0afa4523dfd810119be75f2d7f40c695782d6dff7",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD045",
+    "product_name": "Simulated Trousers — S010",
+    "product_category": "Trousers",
+    "price": 189.0,
+    "purchase_date": "2026-08-14",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-18",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S010",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_010.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "d997e0a612370254fb95deeaa11b14daf01efa1dd156f4111273b360e1e65b6a",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD046",
+    "product_name": "Simulated T-Shirt — S011",
+    "product_category": "T-Shirt",
+    "price": 114.0,
+    "purchase_date": "2026-08-17",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-21",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S011",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_011.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "27bf64611d1473baeeae555c5ba441fff5f83b75df52bb1fa3368022302447d3",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD047",
+    "product_name": "Simulated T-Shirt — S012",
+    "product_category": "T-Shirt",
+    "price": 47.0,
+    "purchase_date": "2026-08-20",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-24",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S012",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_012.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "9ba28b28f9a294b6e90a385b9ef96b15a091822b4f7817d578bbd02ef446980f",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD048",
+    "product_name": "Simulated T-Shirt — S013",
+    "product_category": "T-Shirt",
+    "price": 511.0,
+    "purchase_date": "2026-08-23",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-27",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S013",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_013.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "1b2b65a514720e1c87a57214559aeeb5d5ae379cf22f4e09f7f117d8d92e7dd2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD049",
+    "product_name": "Simulated T-Shirt — S014",
+    "product_category": "T-Shirt",
+    "price": 145.0,
+    "purchase_date": "2026-08-26",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-30",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S014",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_014.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "dcc5046e5645b35ff043eebb80932e5c920988954bb8e0c1d436bc69e2a4900d",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD050",
+    "product_name": "Simulated Trousers — S015",
+    "product_category": "Trousers",
+    "price": 79.0,
+    "purchase_date": "2026-06-15",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-19",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S015",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_015.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "fe7759259845107b53b46ded1d7f6c4572642ea92a0ccf56253a78a03eff7c57",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD051",
+    "product_name": "Simulated T-Shirt — S016",
+    "product_category": "T-Shirt",
+    "price": 39.0,
+    "purchase_date": "2026-06-18",
+    "status": "cancelled",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-22",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S016",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_016.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "4f2973236a6ccbc50cd701e1f008c3b327e42addce109725b262bc8384a89943",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD052",
+    "product_name": "Simulated T-Shirt — S017",
+    "product_category": "T-Shirt",
+    "price": 228.0,
+    "purchase_date": "2026-06-21",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-25",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S017",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_017.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "4ce363297dd7c816c52cc49f86296905c099bc334d49aaab78c6c5bf88f645a0",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD053",
+    "product_name": "Simulated Trousers — S018",
+    "product_category": "Trousers",
+    "price": 107.0,
+    "purchase_date": "2026-06-24",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-06-28",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S018",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_018.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "49c1664e2e7e117ce9a841dca91b852b6c5880ff97d194e112e89ddcf4e6646e",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD054",
+    "product_name": "Simulated Trousers — S019",
+    "product_category": "Trousers",
+    "price": 165.0,
+    "purchase_date": "2026-06-27",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-01",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S019",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_019.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "fc2f6c930b1a26828c15697ac7b2345f73c511a92ed205b6de1c7625e61990c5",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD055",
+    "product_name": "Simulated T-Shirt — S020",
+    "product_category": "T-Shirt",
+    "price": 89.0,
+    "purchase_date": "2026-06-30",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-04",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S020",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_020.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "97b390ad93be3797abbe7c3e6317e1718744973cb1ccfa82fc0d6e922ba3350c",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD056",
+    "product_name": "Simulated T-Shirt — S021",
+    "product_category": "T-Shirt",
+    "price": 46.0,
+    "purchase_date": "2026-07-03",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-07",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S021",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_021.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "18b2c5b2b94fbe7809b0dd4708f1e89426acee28335bdb2192057a0d39dd8f23",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD057",
+    "product_name": "Simulated Unknown — S022",
+    "product_category": "Unknown",
+    "price": 197.0,
+    "purchase_date": "2026-07-06",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-10",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S022",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_022.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "uncertain",
+      "original_category": "Jacket",
+      "image_sha256": "6239d5c204eec6f312505eeec3623c2041a84be5de53c3f25834efde938e1d6d",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD058",
+    "product_name": "Simulated T-Shirt — S023",
+    "product_category": "T-Shirt",
+    "price": 122.0,
+    "purchase_date": "2026-07-09",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-13",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S023",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_023.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "f1d3d6f8bad5be564a092b22b72086d634d87fc4e2281f77638a243be0e0e65e",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD059",
+    "product_name": "Simulated Trousers — S024",
+    "product_category": "Trousers",
+    "price": 55.0,
+    "purchase_date": "2026-07-12",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-16",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S024",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_024.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "b5204cdcca8582ea1edcc9626267f8e5f0ce4457693ed5b935bd5e4038c4573c",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD060",
+    "product_name": "Simulated T-Shirt — S025",
+    "product_category": "T-Shirt",
+    "price": 499.0,
+    "purchase_date": "2026-07-15",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-19",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S025",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_025.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "9cc2ff6410a2ca58d5885c7066e466247c9adcf24f890e0bc3a0108ef7490fc0",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD061",
+    "product_name": "Simulated T-Shirt — S026",
+    "product_category": "T-Shirt",
+    "price": 133.0,
+    "purchase_date": "2026-07-18",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-22",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S026",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_026.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "266976c1ad178d0feedd7f1a2c231554615f34156838b418bd57231b54dba4f5",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD062",
+    "product_name": "Simulated Unknown — S027",
+    "product_category": "Unknown",
+    "price": 87.0,
+    "purchase_date": "2026-07-21",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-25",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S027",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_027.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "uncertain",
+      "original_category": "Hoodie",
+      "image_sha256": "f4ce439915fe7d8550c78ae99a7f265eda2c3a4b442d0f3b1c044bebc60aafac",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD063",
+    "product_name": "Simulated T-Shirt — S028",
+    "product_category": "T-Shirt",
+    "price": 47.0,
+    "purchase_date": "2026-07-24",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-28",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S028",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_028.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "518500fd6fcdd711821a447ccd9c25c28bedc0016329fbefde4d810284496af2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD064",
+    "product_name": "Simulated T-Shirt — S029",
+    "product_category": "T-Shirt",
+    "price": 236.0,
+    "purchase_date": "2026-07-27",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-07-31",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S029",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_029.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "469bba5e72dc362e4e7e4aef18569ae0a28904ad2a60f6a1bd58a0765c45b2f6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD065",
+    "product_name": "Simulated T-Shirt — S030",
+    "product_category": "T-Shirt",
+    "price": 95.0,
+    "purchase_date": "2026-07-30",
+    "status": "processing",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-03",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S030",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_030.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "2a8acb81b024434f9ec64d5a3c544bcfeff6aebcc37ba403901ab0728bb63775",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD066",
+    "product_name": "Simulated T-Shirt — S031",
+    "product_category": "T-Shirt",
+    "price": 153.0,
+    "purchase_date": "2026-08-02",
+    "status": "delivered",
+    "final_sale": true,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-06",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S031",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_031.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "2b1cb1bf2fd3859239b8b00dfa2caa3157fa52d22260dbdf2ca8f157191a11d6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD067",
+    "product_name": "Simulated Trousers — S032",
+    "product_category": "Trousers",
+    "price": 97.0,
+    "purchase_date": "2026-08-05",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-09",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S032",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_032.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "e7e3f72ec6f6189f5a8d27916557a7baaebc61f184f5df8846ca8bedeb089ff6",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD068",
+    "product_name": "Simulated T-Shirt — S033",
+    "product_category": "T-Shirt",
+    "price": 54.0,
+    "purchase_date": "2026-08-08",
+    "status": "cancelled",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-12",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S033",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_033.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "T-Shirt",
+      "image_sha256": "abd088d89b910374ce57fe2ec7ecaadd2e4c16118409d77b2ee7238bc5ff9fd2",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD069",
+    "product_name": "Simulated Jacket — S034",
+    "product_category": "Jacket",
+    "price": 205.0,
+    "purchase_date": "2026-08-11",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-15",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S034",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_034.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Jacket",
+      "image_sha256": "4103a26f9468e81fd59474778f139111de2e4b8f98fc885fcc43b003cdb1cf33",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  },
+  {
+    "order_id": "ORD070",
+    "product_name": "Simulated Sweater — S035",
+    "product_category": "Sweater",
+    "price": 110.0,
+    "purchase_date": "2026-08-14",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_order",
+    "retailer": "H&M Australia",
+    "delivery_date": "2026-08-18",
+    "image_evidence": {
+      "source_dataset": "Garment_condition_spots",
+      "source_image_id": "S035",
+      "image_path": "data/Week4_damage_dataset_v1/images/spots_35/spot_035.jpg",
+      "license": "CC BY 4.0",
+      "attribution": "CISUTAC project - Wargon Innovation",
+      "is_model_ground_truth": false
+    },
+    "catalog_version": "photo_matched_v1",
+    "photo_pairing": {
+      "method": "assistant_visual_review_of_full_photo",
+      "human_verified": false,
+      "category_status": "provisional_visual_review",
+      "original_category": "Hoodie",
+      "image_sha256": "f696bf77e96adae356ce354101e42e189a800cc99c7d95ca0f139b0262beb826",
+      "identity_verified": false,
+      "note": "Category-level synthetic pairing only; not proof of purchase or exact item identity. No model predictions used to assign categories. Original simulated price, dates, delivery status and final-sale flags retained."
+    }
+  }
+]

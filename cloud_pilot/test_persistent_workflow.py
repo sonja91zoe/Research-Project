@@ -57,3 +57,21 @@ def test_stale_write_rejected(tmp_path):
     with pytest.raises(ValueError, match='another session'):
         a._save(r)
     assert a.get(r['case_id'])['status'] == 'REJECTED'
+
+
+@pytest.mark.parametrize('action', ['REQUEST_MORE_EVIDENCE', 'APPROVE', 'REJECT'])
+def test_review_feedback_survives_restart_and_export(tmp_path, action):
+    import json
+    def service():
+        return LocalSqliteRefundService(Runtime(detector=object()), tmp_path/'feedback.db',
+            pipeline=lambda *a, **k: {'decision': {'decision': 'HUMAN_REVIEW'}})
+    a = service()
+    record = a.create(payload())
+    with pytest.raises(ValueError):
+        a.review(record['case_id'], dict(action=action, reviewer='Tester', note='   '))
+    note = '請補上近照。\nSimulation feedback, not model output.'
+    a.review(record['case_id'], dict(action=action, reviewer='Tester', note=note))
+    restored = json.loads(json.dumps(service().get(record['case_id'])))
+    assert restored['events'][-1]['note'] == note
+    assert restored['events'][-1]['action'] == 'HUMAN_' + action
+    assert restored['assessments'] == record['assessments']

@@ -32,6 +32,9 @@ def _normalize_product(value: str) -> str:
     return PRODUCT_ALIASES.get(normalized, normalized)
 
 
+UNKNOWN_PRODUCTS = {'', 'unknown', 'notavailable', '未知', '不明'}
+
+
 def _image_order_match(
     detected_product: str,
     order: OrderRecord,
@@ -39,7 +42,7 @@ def _image_order_match(
 ) -> tuple[float, str]:
     detected = _normalize_product(detected_product or "")
 
-    if not detected:
+    if detected in UNKNOWN_PRODUCTS:
         # Missing upstream product classification is not evidence of a
         # mismatch.  Use a neutral score while exposing an explicit status.
         return 0.5, "NOT_AVAILABLE"
@@ -52,6 +55,9 @@ def _image_order_match(
 
     product = _normalize_product(order.product_name)
     category = _normalize_product(order.product_category)
+
+    if category in UNKNOWN_PRODUCTS:
+        return 0.5, "NOT_AVAILABLE"
 
     if detected == product:
         return product_confidence if product_confidence is not None else 1.0, "MATCH"
@@ -154,6 +160,8 @@ def _policy_eligibility(
         return False, "Refund request date precedes delivery date."
     if _days_since_delivery(order, case["request_date"]) > policy.refund_window_days:
         return False, "Refund request is outside the policy window."
+    if _normalize_product(order.product_category) in UNKNOWN_PRODUCTS:
+        return False, "Order product category is unverified; review is required before automatic refund."
     if policy.requires_image and not case.get("image_present", False):
         return False, "Required image evidence is missing."
     if not case.get("image_usable", True):

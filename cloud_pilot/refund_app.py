@@ -184,7 +184,19 @@ else:
     quality, policy = result.get('member1', {}), result.get('member3', {})
     st.write('Photo usable:', 'Yes' if quality.get('image_usable') else 'No')
     st.write('Order validated:', 'Yes' if policy.get('order_valid') else 'No')
-    st.write('Policy eligibility confirmed:', 'Yes' if policy.get('policy_eligible') else 'No')
+    st.write('綜合退款資格／Overall eligibility:', '已確認／Confirmed' if policy.get('policy_eligible') else '尚未確認／Not confirmed')
+    chain = result.get('evidence_chain', {})
+    stored_order = chain.get('order_evidence') or {}
+    retrieved_policy = chain.get('policy_evidence') or {}
+    st.write('訂單配送狀態／Delivery status:', stored_order.get('status', 'Unknown'))
+    start_date = stored_order.get('delivery_date') or stored_order.get('purchase_date')
+    if start_date and result.get('request_date') and retrieved_policy.get('refund_window_days') is not None:
+        elapsed = (date.fromisoformat(result['request_date']) - date.fromisoformat(start_date)).days
+        window = retrieved_policy['refund_window_days']
+        st.write('政策日期檢查／Date window:', f'{elapsed} days / {window} days — ' + ('期限內' if 0 <= elapsed <= window else '不在期限內'))
+        st.caption('目前政策從收貨日計算；缺少收貨日時才使用購買日。期限內不代表所有退款條件均符合。')
+    st.write('資格檢查詳細原因／Eligibility reason:', (chain.get('verified_evidence') or {}).get('reason') or 'Not available')
+    st.caption('圖片證據不足不等於日期超期；模型預測、訂單條件與最終資格分開呈現。')
     st.write('Missing evidence:', ', '.join(summary['missing']) or 'None reported')
     if summary['missing']:
         st.info('A clearer photo may help with visual evidence, but does not guarantee that this model can identify the product or location. Demo review approval preserves these unresolved gaps.')
@@ -202,7 +214,10 @@ else:
             reviewer = st.text_input('Demo reviewer name', max_chars=2000)
             action = st.selectbox('Review decision', ['REQUEST_MORE_EVIDENCE', 'APPROVE', 'REJECT'],
                                   format_func=lambda action: {'REQUEST_MORE_EVIDENCE': 'Request more evidence', 'APPROVE': 'Approve for simulated refund', 'REJECT': 'Decline in demonstration'}[action])
-            note = st.text_area('Review note and reason', max_chars=2000)
+            note = st.text_area('人工審核回饋 / Reviewer feedback (required)', max_chars=2000,
+                height=150,
+                placeholder='例如：請補上破洞近照；或說明同意／拒絕模擬退款的原因。',
+                help='回饋會隨審核決定保存於案件紀錄及下載的 JSON；不會改寫模型預測。')
             submitted = st.form_submit_button('Save demo review')
         if submitted:
             act(lambda: service.review(selected, {'reviewer': reviewer, 'action': action, 'note': note}))
@@ -212,6 +227,15 @@ else:
             act(lambda: service.confirm(selected))
     elif record['status'] == 'SIMULATED_REFUNDED':
         st.success('Workflow complete. No money was transferred.')
+    review_events = [event for event in record['events']
+                     if event['action'].startswith('HUMAN_')]
+    st.subheader('人工審核回饋 / Reviewer feedback')
+    if not review_events:
+        st.caption('尚無人工審核回饋 / No reviewer feedback yet.')
+    for event in reversed(review_events):
+        with st.container(border=True):
+            st.caption(f"{event['at']} · {event.get('reviewer', '')} · {event['action']}")
+            st.text(event.get('note', ''))
     with st.expander('Full evidence and original Agent assessment'):
         st.json(result)
     st.subheader('Application history')

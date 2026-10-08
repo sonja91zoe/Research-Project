@@ -17,6 +17,8 @@ class OrderRecord:
     data_type: str = "synthetic_order"
     image_evidence: Optional[dict[str, Any]] = None
     retailer: str = "H&M Australia"
+    catalog_version: Optional[str] = None
+    photo_pairing: Optional[dict[str, Any]] = None
 
 
 @dataclass(frozen=True)
