@@ -7,6 +7,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from src.common.schemas import CaseInput, Member1Output, Member2Output
+from src.damage_detection.damage import DEFAULT_REVIEW_THRESHOLD
 
 
 class VerificationResult(BaseModel):
@@ -105,7 +106,7 @@ def verify_claim(
     case: CaseInput,
     member1: Member1Output,
     visual: Member2Output,
-    review_threshold: float = 0.70,
+    review_threshold: float = DEFAULT_REVIEW_THRESHOLD,
 ) -> VerificationResult:
     """Compare Member 1's parsed claim with Member 2's visual evidence.
 

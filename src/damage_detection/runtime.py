@@ -5,7 +5,10 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from src.damage_detection.damage import DamageDetector
+from src.damage_detection.damage import (
+    DEFAULT_REVIEW_THRESHOLD,
+    DamageDetector,
+)
 from src.damage_detection.yolo import YoloBackend
 
 
@@ -50,7 +53,7 @@ def resolve_yolo_weights(weights: str | Path | None = None) -> Path:
 def build_yolo_detector(
     weights: str | Path | None = None,
     *,
-    review_threshold: float = 0.70,
+    review_threshold: float = DEFAULT_REVIEW_THRESHOLD,
     confidence_threshold: float = 0.01,
 ) -> DamageDetector:
     """Build the safety-gated detector used by the Member 2 Agent adapter."""

@@ -13,6 +13,11 @@ DamageType = Literal["hole_or_tear", "stain_or_spot", "no_damage", "uncertain"]
 EvidenceQuality = Literal["good", "poor", "unusable"]
 SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 
+# Provisional prototype gates.  These are workflow thresholds, not calibrated
+# probabilities.  Keep them explicit so validation can replace them later.
+MIN_USABLE_DAMAGE_CONFIDENCE = 0.10
+DEFAULT_REVIEW_THRESHOLD = 0.15
+
 
 @dataclass(frozen=True)
 class DamagePrediction:
@@ -33,7 +38,11 @@ class VisionBackend(Protocol):
 class DamageDetector:
     """Validate an image, apply the safety gate, and return Member2Output."""
 
-    def __init__(self, backend: VisionBackend, review_threshold: float = 0.70):
+    def __init__(
+        self,
+        backend: VisionBackend,
+        review_threshold: float = DEFAULT_REVIEW_THRESHOLD,
+    ):
         if not 0.0 <= review_threshold <= 1.0:
             raise ValueError("review_threshold must be between 0 and 1")
         self.backend = backend
