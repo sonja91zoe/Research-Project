@@ -1,5 +1,6 @@
 """Build a separate, source-labelled 70-order demo and SQLite database."""
 import argparse
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -13,12 +14,17 @@ TYPES = {'T-shirt': 't-shirt', 'Shirt': 'shirt', 'Dress': 'dress',
 def build(source, output, count=70):
     output.mkdir(parents=True, exist_ok=True)
     records = []
+    seen_images = set()
     for label in sorted(source.rglob('labels_*.json')):
         raw = json.loads(label.read_text())
         category = TYPES.get(raw.get('type'))
         image = label.with_name(label.name.replace('labels_', 'front_')).with_suffix('.jpg')
         if not category or not image.is_file():
             continue
+        digest = hashlib.sha256(image.read_bytes()).hexdigest()
+        if digest in seen_images:
+            continue
+        seen_images.add(digest)
         sample = label.stem.removeprefix('labels_')
         target = output / 'images' / image.name
         target.parent.mkdir(exist_ok=True)
@@ -34,6 +40,7 @@ def build(source, output, count=70):
                 'source_url': 'https://zenodo.org/records/8386668',
                 'category_source': 'dataset expert annotation',
                 'source_annotation': str(label.relative_to(source)),
+                'image_sha256': digest,
                 'original_annotation': raw, 'is_model_ground_truth': False},
         ))
         if len(records) == count:

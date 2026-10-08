@@ -21,6 +21,7 @@ def run_pipeline(
     detector=None,
     product_classifier=None,
     model=None,
+    order_source=None,
 ) -> dict:
     """Run Members 1-3, confidence scoring, risk and decision.
 
@@ -54,6 +55,7 @@ def run_pipeline(
         member1=member1,
         member2=member2,
         request_date=request_date,
+        order_source=order_source,
     )
 
     member3 = Member3Output(

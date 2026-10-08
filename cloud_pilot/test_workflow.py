@@ -76,3 +76,18 @@ def test_real_chain_keeps_missing_visual_evidence():
     assert "damage_location" in result["missing_evidence"]
     assert result["member3"]["policy_eligible"] is False
     assert record["status"] == "PENDING_REVIEW"
+
+
+def test_order_source_is_forwarded_to_the_pipeline(tmp_path):
+    received = []
+
+    def pipeline(case, **kwargs):
+        received.append(kwargs['order_source'])
+        return {'decision': {'decision': 'HUMAN_REVIEW'}}
+
+    source = tmp_path / 'orders.db'
+    service = SessionRefundService(
+        Runtime(detector=object()), pipeline, order_source=source
+    )
+    service.create(payload())
+    assert received == [source]
