@@ -145,6 +145,16 @@ def test_confirmed_product_mismatch_requires_human_review():
     assert "does not match" in result.reason.lower()
 
 
+def test_very_low_damage_confidence_requests_clearer_photo():
+    member1, member2, member3 = load_case()
+    member2.damage_confidence = 0.09
+
+    result = run_agent(member1, member2, member3)
+
+    assert result.decision == "REQUEST_MORE_EVIDENCE"
+    assert "clearer close-up" in result.reason.lower()
+
+
 def test_unavailable_product_prediction_is_not_a_hard_review_override():
     member1, member2, member3 = load_case()
     member3.image_order_match_status = "NOT_AVAILABLE"

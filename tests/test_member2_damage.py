@@ -51,10 +51,16 @@ class Member2DamageTests(unittest.TestCase):
 
     def test_low_confidence_routes_to_review(self):
         with TemporaryDirectory() as directory:
-            backend = FixedBackend(DamagePrediction("no_damage", 0.55, "No clear defect."))
+            backend = FixedBackend(DamagePrediction("no_damage", 0.14, "No clear defect."))
             result = DamageDetector(backend).detect("DDV1-041", self.make_image(directory))
             self.assertEqual(result.damage_type, "no_damage")
             self.assertTrue(result.needs_human_review)
+
+    def test_provisional_threshold_allows_processing_at_point_fifteen(self):
+        with TemporaryDirectory() as directory:
+            backend = FixedBackend(DamagePrediction("hole_or_tear", 0.15, "Visible hole."))
+            result = DamageDetector(backend).detect("DDV1-042", self.make_image(directory))
+            self.assertFalse(result.needs_human_review)
 
     def test_missing_image_is_rejected(self):
         backend = FixedBackend(DamagePrediction("no_damage", 0.9, "No defect."))

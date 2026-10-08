@@ -1,5 +1,7 @@
 """Rule-based refund decision engine for Student 4 Week 5."""
 
+from src.damage_detection.damage import MIN_USABLE_DAMAGE_CONFIDENCE
+
 MIN_CLAIM_IMAGE_CONSISTENCY = 0.50
 
 DECISION_MATRIX = {
@@ -46,6 +48,16 @@ def make_decision(
         return (
             "HUMAN_REVIEW",
             "The detected product does not match the selected order.",
+        )
+
+    if (
+        member2.damage_detected
+        and member2.damage_confidence < MIN_USABLE_DAMAGE_CONFIDENCE
+    ):
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "Damage confidence is below the minimum usable threshold; "
+            "submit a clearer close-up photo.",
         )
 
     if not member3.policy_eligible:

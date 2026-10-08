@@ -5,6 +5,7 @@ from datetime import date
 import json
 from pathlib import Path
 import sys
+import os
 
 ROOT = Path(__file__).resolve().parents[1]
 # Streamlit adds the entrypoint directory, which also contains app.py.
@@ -32,10 +33,14 @@ ORDER_SOURCE = (
     else ROOT / 'data/orders/orders.json'
 )
 
+local_database = os.getenv('REFUND_LOCAL_CASE_DB')
 if 'refund_workflow' not in st.session_state:
-    st.session_state.refund_workflow = SessionRefundService(
-        runtime(), order_source=ORDER_SOURCE
-    )
+    if local_database:
+        from cloud_pilot.persistent_workflow import LocalSqliteRefundService
+        st.session_state.refund_workflow = LocalSqliteRefundService(
+            runtime(), local_database, order_source=ORDER_SOURCE)
+    else:
+        st.session_state.refund_workflow = SessionRefundService(runtime(), order_source=ORDER_SOURCE)
 service = st.session_state.refund_workflow
 LABELS = {'READY_TO_REFUND': 'Ready to confirm simulated refund',
           'NEEDS_EVIDENCE': 'More evidence needed', 'PENDING_REVIEW': 'Awaiting human review',
@@ -62,7 +67,10 @@ def act(callback):
 st.title('Refund Studio')
 st.write('Submit an application → Analyze evidence → Decision and follow-up')
 st.info('Research demonstration only. No payments. Review actions below are role-play, without reviewer authentication.')
-st.caption('Uses real image analysis and rule-based Agent scoring. Missing visual evidence remains missing. Records belong to this browser session; refreshing or restarting may lose them. Download records to keep them.')
+if local_database:
+    st.warning('Local single-user database mode: new uploaded photos and application history persist across restarts. Older imported cases may lack photos. Do not enable this mode on a public server without authentication.')
+else:
+    st.caption('Uses real image analysis and rule-based Agent scoring. Missing visual evidence remains missing. Records belong to this browser session; refreshing or restarting may lose them. Download records to keep them.')
 
 orders = [asdict(order) for order in load_orders(ORDER_SOURCE).values()]
 by_id = {o['order_id']: o for o in orders}
@@ -113,12 +121,14 @@ if selected == 'New application':
         requested_day = day_col.selectbox('Day', list(range(1, 32)), index=today.day - 1)
         st.caption('Use a valid calendar date, for example 15 August 2026.')
         st.caption('For historical demonstrations, select the actual demonstration date. Policy checks use this date.')
+        purchase_date = st.text_input('Purchase date to verify (YYYY-MM-DD)', help='Compare your entered date with the simulated order record.')
         claim = st.text_area('Describe the product, damage and location in English', max_chars=3000)
         uploaded = st.file_uploader('Product photo (JPEG / PNG, maximum 8 MB)', type=['jpg', 'jpeg', 'png'])
         visible = st.selectbox('Is the claimed area visible?', ['Please select', 'Yes', 'No'])
         submitted = st.form_submit_button('Submit and analyze')
     if submitted:
         act(lambda: service.create({'order_id': order_id, 'request_date': date(int(requested_year), requested_month, requested_day).isoformat(),
+                                    'submitted_purchase_date': purchase_date,
                                     'claim_text': claim, **photo_payload(uploaded, visible)}))
 else:
     record = service.get(selected)
@@ -132,7 +142,24 @@ else:
     st.write('Model product prediction:', summary['product'])
     if summary['product_confidence'] is not None:
         st.write('Product prediction score:', f"{summary['product_confidence']:.3f}")
-    st.write('Photo compared with ordered product:', summary['order_match'])
+    st.write('Predicted product category compared with order category:', summary['order_match'])
+    st.caption('Category match is not proof that this is the exact purchased item. The product model can misclassify a photo.')
+    st.write('Purchase-date check:', record['assessments'][-1].get('date_check', {}).get('status', 'NOT_PROVIDED'))
+    if record['status'] not in {'SIMULATED_REFUNDED', 'REJECTED'}:
+        with st.expander('Correct order, description or dates and reassess'):
+            st.caption('Upload the intended photo again. Previous inputs and assessments are retained; any previous approval is reassessed.')
+            with st.form('correct_' + selected):
+                corrected_order = st.selectbox('Corrected order', list(by_id), index=list(by_id).index(record['order_id']) if record['order_id'] in by_id else 0)
+                corrected_claim = st.text_area('Corrected description', value=record['claim_text'], max_chars=3000)
+                corrected_request = st.text_input('Corrected request date (YYYY-MM-DD)', value=record['request_date'])
+                corrected_purchase = st.text_input('Purchase date to verify (YYYY-MM-DD)', value=record.get('submitted_purchase_date', ''))
+                corrected_photo = st.file_uploader('Photo for corrected application (maximum 8 MB)', type=['jpg', 'jpeg', 'png'])
+                corrected_visible = st.selectbox('Claimed area visible in corrected photo?', ['Please select', 'Yes', 'No'])
+                correct_submit = st.form_submit_button('Save corrections and reassess')
+            if correct_submit:
+                act(lambda: service.amend(selected, {'order_id': corrected_order, 'claim_text': corrected_claim,
+                    'request_date': corrected_request, 'submitted_purchase_date': corrected_purchase,
+                    **photo_payload(corrected_photo, corrected_visible)}))
     st.write('Model damage prediction:', summary['damage'])
     st.write('Detected damage location:', summary['location'])
     st.write('Description compared with the photo:', summary['verdict'])
@@ -172,6 +199,14 @@ else:
     with st.expander('Full evidence and original Agent assessment'):
         st.json(result)
     st.subheader('Application history')
+    if local_database:
+        with st.expander('Saved evidence photos by assessment'):
+            for revision, assessment in enumerate(record['assessments']):
+                if assessment.get('image_sha256'):
+                    data, _ = service.image(selected, revision)
+                    st.image(data, caption=f'Assessment {revision + 1}: uploaded photo')
+                else:
+                    st.caption(f'Assessment {revision + 1}: historical image not retained.')
     for event in record['events']:
         st.write(f"{event['at']} · {event['action'].replace('_', ' ').title()} · {LABELS[event['status']]}")
         if event.get('reviewer'):

@@ -55,11 +55,19 @@ def test_concrete_damage_mismatch_is_negative_not_review():
 
 def test_low_confidence_evidence_stays_ambiguous():
     case, claim = make_case_and_claim()
-    result = verify_claim(case, claim, make_visual("hole_or_tear", confidence=0.69))
+    result = verify_claim(case, claim, make_visual("hole_or_tear", confidence=0.14))
     assert result.verdict == "ambiguous"
     assert result.reason_code == "visual_review_required"
     assert result.member2.claim_image_consistency is None
     assert result.member2.needs_human_review is True
+
+
+def test_provisional_threshold_allows_claim_comparison_at_point_fifteen():
+    case, claim = make_case_and_claim()
+    result = verify_claim(case, claim, make_visual("hole_or_tear", confidence=0.15))
+    assert result.verdict == "positive"
+    assert result.consistency_score == 1.0
+    assert result.member2.needs_human_review is False
 
 
 def test_location_specific_claim_needs_location_evidence():
