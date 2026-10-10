@@ -62,12 +62,12 @@ def test_empty_detected_product_is_unknown_not_mismatch():
     assert "not independently identified" in result.reason
 
 
-def test_explicit_product_mismatch_still_blocks_eligibility():
+def test_unsupported_product_label_is_not_treated_as_mismatch():
     case = load_valid_mock_case()
     case["detected_product"] = "Shoes"
 
     result = verify_case(case)
 
-    assert result.image_order_match == 0.0
-    assert result.image_order_match_status == "MISMATCH"
-    assert result.policy_eligible is False
+    assert result.image_order_match == 0.5
+    assert result.image_order_match_status == "NOT_AVAILABLE"
+    assert result.policy_eligible is True

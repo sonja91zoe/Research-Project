@@ -24,6 +24,11 @@ class Member1Output(BaseModel):
 class Member2Output(BaseModel):
     case_id: str
 
+    # Absent on historical and hand-built outputs; populated by runtime assessments.
+    runtime_metadata: dict[str, str | bool | None] | None = Field(
+        default=None, exclude_if=lambda value: value is None
+    )
+
     detected_product: str | None = None
     product_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
 

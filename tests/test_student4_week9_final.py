@@ -10,7 +10,7 @@ def evidence(score):
     case = json.loads((ROOT / 'data/member4/week8/validation_inputs.json').read_text())[0]
     return (Member1Output(**{**case['member1'], 'image_quality': score}),
             Member2Output(**{**case['member2'], 'damage_confidence': score, 'claim_image_consistency': score}),
-            Member3Output(**{**case['member3'], 'image_order_consistency': score, 'policy_match_score': score, 'evidence_completeness': score}))
+            Member3Output(**{**case['member3'], 'image_order_match_status': 'MATCH', 'image_order_consistency': score, 'policy_match_score': score, 'evidence_completeness': score}))
 
 @pytest.mark.parametrize('ml_score,rule_score,expected', [(0.89,0.95,'REQUEST_MORE_EVIDENCE'), (0.97,0.79,'REQUEST_MORE_EVIDENCE'), (0.90,0.80,'AUTO_REFUND')])
 def test_ml_auto_requires_both_thresholds(monkeypatch, ml_score, rule_score, expected):

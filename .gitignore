@@ -12,6 +12,16 @@ data/member2/week2/recovered_v2/
 # Local uploaded images and demo application records
 .local_refund/
 
+# Generated YOLO experiments, base-weight downloads, and local caches.
+/runs/
+/yolo11n.pt
+*.cache
+/.cache/
+/hf_cache/
+/.hf_cache/
+*.tmp
+*.temp
+
 # Ignore additional local YOLO experiments. The already tracked deployable
 # models/member2/best.pt remains versioned for the demonstration app.
 models/member2/*.pt

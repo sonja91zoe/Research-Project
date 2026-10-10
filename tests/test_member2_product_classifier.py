@@ -1,4 +1,7 @@
+from dataclasses import replace
 from pathlib import Path
+
+import pytest
 
 from src.agent.member2_adapter import run_member2_verification
 from src.common.schemas import CaseInput, Member1Output
@@ -105,3 +108,39 @@ def test_member3_normalizes_common_product_synonyms():
     order = retrieve_order("ORD003")
     assert order is not None
     assert _image_order_match("tee", order, 0.80)[1] == "MATCH"
+
+
+@pytest.mark.parametrize(
+    ("detected", "order_category", "confidence", "expected"),
+    [
+        ("shirt", "T-Shirt", 0.709, "MISMATCH"),
+        ("t-shirt", "Shirt", 0.80, "MISMATCH"),
+        ("tee", "T-Shirt", 0.80, "MATCH"),
+        ("tshirt", "T-Shirt", 0.80, "MATCH"),
+        ("pants", "Trousers", 0.80, "MATCH"),
+        ("coat", "Jacket", 0.80, "MATCH"),
+        ("jumper", "Sweater", 0.80, "MATCH"),
+        ("shorts", "Skirt", 0.80, "MISMATCH"),
+        ("skirt", "Shorts", 0.80, "MISMATCH"),
+        ("skirt", "Jacket", 0.709, "MISMATCH"),
+        ("shoes", "Jacket", 0.80, "NOT_AVAILABLE"),
+        ("pullover", "Sweater", 0.80, "NOT_AVAILABLE"),
+        ("unknown", "Jacket", 0.80, "NOT_AVAILABLE"),
+        ("", "Jacket", None, "NOT_AVAILABLE"),
+        (None, "Jacket", None, "NOT_AVAILABLE"),
+        ("jacket", "Jacket", 0.10, "NOT_AVAILABLE"),
+        ("jacket", "Unknown", 0.80, "NOT_AVAILABLE"),
+        ("jacket", "Shoes", 0.80, "NOT_AVAILABLE"),
+        ("White T-Shirt", "T-Shirt", 0.80, "NOT_AVAILABLE"),
+        ("Black Jacket", "Jacket", 0.80, "NOT_AVAILABLE"),
+        ("jacket", "T-Shirt", 0.80, "MISMATCH"),
+    ],
+)
+def test_member3_matches_only_whole_supported_categories(
+    detected, order_category, confidence, expected
+):
+    order = retrieve_order("ORD001")
+    assert order is not None
+    order = replace(order, product_category=order_category)
+
+    assert _image_order_match(detected, order, confidence)[1] == expected

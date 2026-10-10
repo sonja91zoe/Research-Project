@@ -21,9 +21,45 @@ EVIDENCE_VALIDATION_DATASET = (
 )
 OUTPUT = PROJECT_ROOT / "data/results/member3_week9_final_results.json"
 
+# The frozen synthetic cases predate category-only Member 2 predictions. Their
+# detected_product field is a simulated image observation, not an order name.
+# Translate only the exact labels present in that legacy evaluation. Runtime
+# product matching remains strict and never parses free-form product names.
+LEGACY_DETECTED_PRODUCT_CATEGORIES = {
+    "black jacket": "jacket",
+    "blue jacket": "jacket",
+    "leather jacket": "jacket",
+    "red jacket": "jacket",
+    "black hoodie": "hoodie",
+    "cream hoodie": "hoodie",
+    "green hoodie": "hoodie",
+    "grey hoodie": "hoodie",
+    "navy t-shirt": "t-shirt",
+    "white t-shirt": "t-shirt",
+    "yellow t-shirt": "t-shirt",
+}
+
 
 def _load(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _adapt_legacy_visual_product(case: dict) -> dict:
+    """Adapt known synthetic visual labels without inferring from the order."""
+
+    if (
+        not case.get("image_present", False)
+        or not case.get("image_usable", True)
+        or case.get("product_confidence") is not None
+    ):
+        return case
+    detected = case.get("detected_product")
+    if not isinstance(detected, str):
+        return case
+    category = LEGACY_DETECTED_PRODUCT_CATEGORIES.get(
+        " ".join(detected.strip().casefold().split())
+    )
+    return {**case, "detected_product": category} if category else case
 
 
 def evaluate_evidence_regression(cases: list[dict]) -> dict[str, object]:
@@ -34,7 +70,7 @@ def evaluate_evidence_regression(cases: list[dict]) -> dict[str, object]:
     confusion = {"true_positive": 0, "true_negative": 0, "false_positive": 0, "false_negative": 0}
 
     for case in cases:
-        result = verify_case(case)
+        result = verify_case(_adapt_legacy_visual_product(case))
         reason_counts[result.reason] += 1
         scenario = case.get("scenario", "legacy_regression")
         scenario_totals[scenario] += 1

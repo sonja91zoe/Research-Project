@@ -70,6 +70,7 @@ class ProductTypeClassifier:
         self.min_confidence = min_confidence
         self.min_margin = min_margin
         self._classifier = classifier
+        self.model_provenance: dict[str, str] | None = None
 
     def _get_classifier(self):
         if self._classifier is None:

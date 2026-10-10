@@ -86,24 +86,11 @@ class RefundService:
         try:
             kwargs = {}
             if self.pipeline is run_pipeline:
-                from src.damage_detection.damage import DamageDetector, ClipBackend
-                from src.damage_detection.product import ProductTypeClassifier
-                from src.damage_detection.runtime import (
-                    build_yolo_detector,
-                    has_available_yolo_weights,
-                )
+                from src.damage_detection.runtime import build_member2_runtime
                 if self.detector is None:
-                    backend = ClipBackend()
-                    self.detector = (
-                        build_yolo_detector()
-                        if has_available_yolo_weights()
-                        else DamageDetector(backend=backend)
-                    )
-                    self.product_classifier = ProductTypeClassifier(
-                        classifier=lambda *args, **kwargs: backend._get_classifier()(
-                            *args, **kwargs
-                        )
-                    )
+                    configured = build_member2_runtime()
+                    self.detector = configured.detector
+                    self.product_classifier = configured.product_classifier
                 kwargs['detector'] = self.detector
                 kwargs['product_classifier'] = self.product_classifier
                 if record['confidence_method'] == 'ml':

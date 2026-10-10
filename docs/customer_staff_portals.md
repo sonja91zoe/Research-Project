@@ -3,8 +3,7 @@
 Run from the project folder:
 
 ```bash
-source .venv/bin/activate
-python -m app.server
+zsh scripts/run_member4_portals.sh
 ```
 
 Customer: http://127.0.0.1:8765/customer
@@ -21,8 +20,10 @@ Applications and images are saved in `.local_refund`. Customer requests require 
 
 ## Branch and model integration
 
-These changes are on `codex/customer-staff-portals`, based on the local main version. `member2-v2-evaluation` has not been merged. The website calls the shared analysis pipeline, so the later Member 2 update can be integrated without recreating the pages. Review overlapping changes in the decision engine and service integration when merging, preserving the confirmed-mismatch rejection and unidentified-product review rules.
+These changes are on `member4/codex/customer-staff-portals`. The latest fetched main (`44cd980`) includes the Member 2 v2 evaluation work and has been merged locally. The launcher explicitly selects `models/member2_v2/pilot_v1/best.pt` for damage detection; CLIP independently identifies product type. Running `python -m app.server` without this environment setting uses the repository's default older damage weight.
+
+The confirmed-mismatch rejection and unidentified-product human-review rules are preserved. The 15-image pilot training set and frozen external evaluation set are available separately; neither is the 70-order catalog.
 
 ## Validation
 
-58 relevant tests passed, covering routing, persistence, customer login and ownership, staff review permissions, evidence resubmission and the existing workflow. Workflow tests use an explicit controlled pipeline and do not establish real image-recognition accuracy. Customer and staff pages were inspected in the browser.
+230 tests and 5 subtests passed after integration, covering routing, persistence, customer login and ownership, staff review permissions, evidence resubmission and the existing workflow. Workflow tests use an explicit controlled pipeline and do not establish real image-recognition accuracy. Customer and staff pages were inspected in the browser.

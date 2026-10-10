@@ -48,10 +48,20 @@ def test_official_multi_retailer_policy_sources_are_selectable():
     assert uniqlo.source_url.startswith("https://faq-au.uniqlo.com/")
 
 
-def test_all_mock_cases_match_expected_eligibility():
+def test_all_mock_cases_reflect_current_eligibility():
     for case in load_cases():
         result = verify_case(case)
-        assert result.policy_eligible is case["expected_eligible"], case["case_id"]
+        # M3_009's legacy "Grey Hoodie" prediction is a full product name.
+        # It no longer establishes a supported category mismatch with Jacket.
+        if case["case_id"] == "M3_009":
+            assert result.image_order_match_status == "NOT_AVAILABLE"
+            assert result.policy_eligible is True
+            explicit_category_case = {**case, "detected_product": "hoodie"}
+            mismatch = verify_case(explicit_category_case)
+            assert mismatch.image_order_match_status == "MISMATCH"
+            assert mismatch.policy_eligible is False
+        else:
+            assert result.policy_eligible is case["expected_eligible"], case["case_id"]
         assert 0.0 <= result.image_order_match <= 1.0
         assert 0.0 <= result.policy_match <= 1.0
         assert 0.0 <= result.evidence_completeness <= 1.0
@@ -60,8 +70,9 @@ def test_all_mock_cases_match_expected_eligibility():
 def test_verified_case_is_traceable():
     result = verify_case(load_cases()[0])
     assert result.order_valid is True
-    assert result.image_order_match == 1.0
-    assert result.image_order_match_status == "MATCH"
+    # The legacy case supplies a product name, not a supported category label.
+    assert result.image_order_match == 0.5
+    assert result.image_order_match_status == "NOT_AVAILABLE"
     assert result.policy_eligible is True
     assert result.refund_amount == 129.0
     assert result.policy_source == (

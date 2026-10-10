@@ -5,6 +5,9 @@ from pathlib import Path
 import pytest
 from PIL import Image
 from app.refund_service import RefundService
+import src.damage_detection.runtime as runtime_config
+from src.damage_detection.product import ProductTypeClassifier
+from src.damage_detection.yolo import YoloBackend
 
 
 def payload():
@@ -17,6 +20,37 @@ def pipeline(decision):
         assert Path(case.image_paths[0]).read_bytes().startswith(b'\x89PNG')
         return {'decision': {'decision': decision, 'reason': 'Controlled test'},'missing_evidence':[]}
     return run
+
+
+def test_local_http_service_uses_canonical_runtime(tmp_path, monkeypatch):
+    from app import refund_service
+
+    monkeypatch.delenv(runtime_config.YOLO_WEIGHTS_ENV, raising=False)
+    monkeypatch.setattr(runtime_config, 'find_spec', lambda name: object())
+    received = {}
+
+    def fake_pipeline(case, **kwargs):
+        received.update(kwargs)
+        return {'decision': {'decision': 'REQUEST_MORE_EVIDENCE'}}
+
+    monkeypatch.setattr(refund_service, 'run_pipeline', fake_pipeline)
+    refund_service.RefundService(tmp_path).create(payload())
+
+    assert isinstance(received['detector'].backend, YoloBackend)
+    assert isinstance(received['product_classifier'], ProductTypeClassifier)
+
+
+def test_local_http_result_preserves_quality_gate_metadata(tmp_path):
+    request = payload()
+    request['relevant_region_visible'] = False
+
+    record = RefundService(tmp_path).create(request)
+
+    metadata = record['assessments'][0]['result']['member2']['runtime_metadata']
+    assert metadata['damage_backend'] == 'yolo'
+    assert metadata['product_classifier_backend'] == 'clip'
+    assert metadata['damage_inference_completed'] is False
+    assert metadata['product_classification_completed'] is False
 
 
 def test_upload_reassess_history_and_restart(tmp_path):

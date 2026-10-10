@@ -1,0 +1,20 @@
+[
+  {
+    "order_id": "SELF-ORD-SHT-01",
+    "product_name": "Synthetic Shirt (AI-generated evaluation order)",
+    "product_category": "Shirt",
+    "price": 40.0,
+    "purchase_date": "2026-10-01",
+    "delivery_date": "2026-10-05",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_evaluation_order",
+    "retailer": "H&M Australia",
+    "image_evidence": {
+      "source_dataset": "ai_generated_external_eval_v1",
+      "source_image_id": "SELF-SHT-01",
+      "image_path": "external_eval_v1/images/SELF-SHT-01.jpg",
+      "is_model_ground_truth": false
+    }
+  }
+]

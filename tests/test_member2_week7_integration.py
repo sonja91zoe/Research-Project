@@ -123,3 +123,19 @@ def test_unusable_member1_evidence_bypasses_automatic_verification(tmp_path):
     assert result.reason_code == "insufficient_image_quality"
     assert result.member2.damage_type == "uncertain"
     assert result.member2.needs_human_review is True
+    assert result.member2.runtime_metadata['damage_inference_completed'] is False
+    assert result.member2.runtime_metadata['product_classification_completed'] is False
+
+
+def test_quality_gate_never_calls_an_injected_detector(tmp_path):
+    case, member1 = make_inputs(tmp_path)
+    member1.image_usable = False
+
+    class NeverCalled:
+        def detect(self, **kwargs):
+            raise AssertionError('Damage detector should be skipped')
+
+    result = run_member2_verification(case, member1, detector=NeverCalled())
+
+    assert result.member2.runtime_metadata['damage_backend'] is None
+    assert result.member2.runtime_metadata['damage_inference_completed'] is False

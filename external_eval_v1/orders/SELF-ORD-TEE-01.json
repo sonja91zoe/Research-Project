@@ -1,0 +1,20 @@
+[
+  {
+    "order_id": "SELF-ORD-TEE-01",
+    "product_name": "Self-taken T-Shirt (synthetic evaluation order)",
+    "product_category": "T-Shirt",
+    "price": 35.0,
+    "purchase_date": "2026-10-01",
+    "delivery_date": "2026-10-05",
+    "status": "delivered",
+    "final_sale": false,
+    "data_type": "synthetic_evaluation_order",
+    "retailer": "H&M Australia",
+    "image_evidence": {
+      "source_dataset": "self_taken_external_eval_v1",
+      "source_image_id": "SELF-TEE-01",
+      "image_path": "external_eval_v1/images/SELF-TEE-01.jpg",
+      "is_model_ground_truth": false
+    }
+  }
+]
