@@ -1,4 +1,4 @@
-"""Session-owned records; only the locked CLIP runtime is shared."""
+"""Session-owned records; only the locked Member 2 runtime is shared."""
 from copy import deepcopy
 from pathlib import Path
 import tempfile

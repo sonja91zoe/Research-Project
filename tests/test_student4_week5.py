@@ -155,15 +155,42 @@ def test_very_low_damage_confidence_requests_clearer_photo():
     assert "clearer close-up" in result.reason.lower()
 
 
-def test_unavailable_product_prediction_is_not_a_hard_review_override():
+def test_unavailable_product_prediction_blocks_auto_refund():
     member1, member2, member3 = load_case()
     member3.image_order_match_status = "NOT_AVAILABLE"
     member3.image_order_consistency = 0.5
 
     result = run_agent(member1, member2, member3)
 
-    assert result.decision != "HUMAN_REVIEW"
-    assert "not independently identified" in result.reason.lower()
+    assert member3.policy_eligible is True
+    assert result.refund_risk == "LOW"
+    assert result.evidence_confidence >= 0.80
+    assert result.decision == "REQUEST_MORE_EVIDENCE"
+    assert "product type could not be verified" in result.reason.lower()
+
+
+def test_unavailable_product_preserves_independent_human_review():
+    member1, member2, member3 = load_case()
+    member3.image_order_match_status = "NOT_AVAILABLE"
+    member3.image_order_consistency = 0.5
+    member3.policy_eligible = False
+
+    result = run_agent(member1, member2, member3)
+
+    assert result.decision == "HUMAN_REVIEW"
+    assert "policy" in result.reason.lower()
+
+
+def test_unavailable_product_preserves_high_risk_review():
+    member1, member2, member3 = load_case()
+    member3.image_order_match_status = "NOT_AVAILABLE"
+    member3.image_order_consistency = 0.5
+    member3.refund_amount = 250.0
+
+    result = run_agent(member1, member2, member3)
+
+    assert result.refund_risk == "HIGH"
+    assert result.decision == "HUMAN_REVIEW"
 
 
 def test_legacy_member3_score_infers_match_status():

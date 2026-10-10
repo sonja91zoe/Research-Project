@@ -26,7 +26,10 @@ def test_single_case_builds_complete_traceable_evidence_chain():
     output = chain.member3_output
 
     assert output["order_valid"] is raw["expected"]["order_valid"]
-    assert output["image_order_consistency"] == raw["expected"]["image_order_consistency"]
+    # The saved Member 2 value is a full product name ("Black Jacket"),
+    # so its category is no longer inferred from the order's product name.
+    assert output["image_order_consistency"] == 0.5
+    assert output["image_order_match_status"] == "NOT_AVAILABLE"
     assert output["policy_eligible"] is raw["expected"]["policy_eligible"]
     assert output["refund_amount"] == raw["expected"]["refund_amount"]
     assert chain.order_evidence.order_id == "ORD001"

@@ -11,11 +11,11 @@ from PIL import Image, UnidentifiedImageError
 from src.agent.member1_adapter import run_member1
 from src.common.schemas import CaseInput
 from src.common.schemas import Member2Output
-from src.damage_detection.damage import ClipBackend, DamageDetector
-from src.damage_detection.product import ProductTypeClassifier
+from src.damage_detection.damage import ClipBackend, skipped_damage_output
 from src.damage_detection.runtime import (
-    build_yolo_detector,
-    has_available_yolo_weights,
+    DamageBackend,
+    build_member2_runtime,
+    member2_runtime_metadata,
 )
 
 MAX_BYTES = 8 * 1024 * 1024
@@ -36,19 +36,14 @@ class CpuClipBackend(ClipBackend):
 
 
 class Runtime:
-    def __init__(self, detector=None, product_classifier=None):
+    def __init__(self, detector=None, product_classifier=None, *, backend: DamageBackend = 'yolo'):
         if detector is None:
-            backend = CpuClipBackend()
-            detector = (
-                build_yolo_detector()
-                if has_available_yolo_weights()
-                else DamageDetector(backend=backend)
+            configured = build_member2_runtime(
+                backend=backend, clip_backend=CpuClipBackend()
             )
-            product_classifier = product_classifier or ProductTypeClassifier(
-                classifier=lambda *args, **kwargs: backend._get_classifier()(
-                    *args, **kwargs
-                )
-            )
+            detector = configured.detector
+            if product_classifier is None:
+                product_classifier = configured.product_classifier
         self.detector = detector
         self.product_classifier = product_classifier
         self.lock = threading.Lock()
@@ -87,24 +82,35 @@ def analyze(data, claim, visible, runtime):
                              claim_text=claim.strip(), image_paths=[str(path)])
             member1, quality = run_member1(case, relevant_region_visible=visible)
             usable = member1.image_usable and member1.relevant_region_visible
-            member2 = runtime.detector.detect(case_id=case.case_id, image_path=path,
-                                             evidence_quality='good' if usable else 'unusable')
+            if usable:
+                member2 = runtime.detector.detect(
+                    case_id=case.case_id, image_path=path, evidence_quality='good'
+                )
+            else:
+                member2 = skipped_damage_output(case.case_id, 'unusable')
+            product_classification_completed = False
             if usable and runtime.product_classifier is not None:
                 product = runtime.product_classifier.predict(path)
+                product_classification_completed = True
                 member2 = Member2Output.model_validate({
                     **member2.model_dump(),
                     'detected_product': product.product_type,
                     'product_confidence': product.confidence,
                     'rationale': f'{member2.rationale} {product.rationale}',
                 })
+            member2 = Member2Output.model_validate({
+                **member2.model_dump(),
+                'runtime_metadata': member2_runtime_metadata(
+                    runtime.detector, runtime.product_classifier,
+                    damage_inference_completed=usable,
+                    product_classification_completed=product_classification_completed,
+                ),
+            })
             return {
-                'scope': 'Image-quality and CLIP feasibility pilot; no refund decision or payment.',
+                'scope': 'Image-quality and Member 2 visual inference pilot; no refund decision or payment.',
                 'case_id': case.case_id,
                 'claim_text': claim.strip(),
                 'relevant_region_visible': visible,
-                'clip_inference_completed': bool(usable),
-                'model': ClipBackend.MODEL_NAME if usable else None,
-                'device': 'cpu',
                 'elapsed_seconds': round(time.perf_counter() - started, 2),
                 'member1': member1.model_dump(),
                 'raw_image_quality': quality,

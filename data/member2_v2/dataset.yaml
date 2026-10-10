@@ -1,0 +1,7 @@
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: hole_or_tear
+  1: stain_or_spot

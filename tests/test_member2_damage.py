@@ -62,6 +62,45 @@ class Member2DamageTests(unittest.TestCase):
             result = DamageDetector(backend).detect("DDV1-042", self.make_image(directory))
             self.assertFalse(result.needs_human_review)
 
+    def test_raw_damage_below_point_ten_is_not_formal_evidence(self):
+        with TemporaryDirectory() as directory:
+            image = self.make_image(directory)
+            for damage_type in ("hole_or_tear", "stain_or_spot"):
+                with self.subTest(damage_type=damage_type):
+                    prediction = DamagePrediction(
+                        damage_type, 0.099, "Raw candidate found.",
+                        damage_location="front",
+                    )
+                    result = DamageDetector(FixedBackend(prediction)).detect(
+                        "DDV1-LOW", image
+                    )
+                    self.assertFalse(result.damage_detected)
+                    self.assertEqual(result.damage_type, "uncertain")
+                    self.assertIsNone(result.damage_location)
+                    self.assertEqual(result.damage_confidence, 0.099)
+                    self.assertIn("Raw candidate found.", result.rationale)
+                    self.assertIn("suppressed", result.rationale)
+                    self.assertTrue(result.needs_human_review)
+
+    def test_damage_candidate_at_point_ten_is_preserved_but_reviewed(self):
+        with TemporaryDirectory() as directory:
+            image = self.make_image(directory)
+            for confidence, expected_review in ((0.10, True), (0.149, True), (0.15, False)):
+                with self.subTest(confidence=confidence):
+                    prediction = DamagePrediction(
+                        "hole_or_tear", confidence, "Candidate hole.",
+                        damage_location="front",
+                    )
+                    result = DamageDetector(FixedBackend(prediction)).detect(
+                        "DDV1-BOUNDARY", image
+                    )
+                    self.assertTrue(result.damage_detected)
+                    self.assertEqual(result.damage_type, "hole_or_tear")
+                    self.assertEqual(result.damage_location, "front")
+                    self.assertEqual(result.damage_confidence, confidence)
+                    self.assertEqual(result.rationale, "Candidate hole.")
+                    self.assertEqual(result.needs_human_review, expected_review)
+
     def test_missing_image_is_rejected(self):
         backend = FixedBackend(DamagePrediction("no_damage", 0.9, "No defect."))
         with self.assertRaises(FileNotFoundError):

@@ -110,6 +110,16 @@ def make_decision(
 
     decision = DECISION_MATRIX[matrix_key]
 
+    if (
+        member3.image_order_match_status == "NOT_AVAILABLE"
+        and decision == "AUTO_REFUND"
+    ):
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "Product type could not be verified against the selected order; "
+            "provide a clearer image of the item.",
+        )
+
     reason = (
         "Decision matrix result: "
         f"confidence={confidence_label}, "
