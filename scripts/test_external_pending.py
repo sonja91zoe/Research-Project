@@ -6,10 +6,11 @@ from pathlib import Path
 
 from src.damage_detection.runtime import resolve_yolo_weights
 from src.damage_detection.damage import DEFAULT_REVIEW_THRESHOLD
-from ultralytics import YOLO
 
 
 def main():
+    from ultralytics import YOLO
+
     root = Path(__file__).resolve().parents[1]
     weights = resolve_yolo_weights()
     output = root / 'artifacts' / ('external_image_test_' + time.strftime('%Y%m%d_%H%M%S'))

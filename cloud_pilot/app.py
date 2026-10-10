@@ -22,7 +22,7 @@ def runtime():
 
 st.caption('REFUND STUDIO · CLOUD FEASIBILITY PILOT')
 st.title('Test real image analysis')
-st.write('Check whether this server can run image-quality checks and the real CLIP model.')
+st.write('Check whether this server can run image-quality checks, YOLO damage detection and CLIP product classification.')
 st.info('This first cloud pilot does not approve refunds or offer human review. It tests the image pipeline only.')
 
 with st.form('image_test'):
@@ -44,7 +44,7 @@ if submitted:
             data = uploaded.getvalue()
         else:
             data = (ROOT / 'data/member1/images/member1_jacket_001.jpg').read_bytes()
-        with st.spinner('Checking the photo and running CLIP. The first run downloads and loads the model; please wait.'):
+        with st.spinner('Checking the photo and running the damage and product models. The first run may load model files; please wait.'):
             result = analyze(data, claim, visible == 'Yes', runtime())
         result['image_source'] = source
         result['package_versions'] = {name: version(name) for name in ('streamlit', 'torch', 'transformers', 'pydantic', 'Pillow', 'numpy')}
@@ -56,10 +56,14 @@ if submitted:
 result = st.session_state.get('pilot_result')
 if result:
     st.subheader('Last submitted image result')
-    if result['clip_inference_completed']:
-        st.success('Real CLIP inference completed on this server.')
+    model_metadata = result['member2']['runtime_metadata']
+    if (model_metadata['damage_inference_completed'] and
+            model_metadata['product_classification_completed']):
+        st.success('Damage detection and product classification completed on this server.')
+    elif model_metadata['damage_inference_completed']:
+        st.warning('Damage detection completed; product classification was skipped.')
     else:
-        st.warning('Image quality or visibility did not pass. CLIP was skipped, so cloud model feasibility has not yet been demonstrated.')
+        st.warning('Image quality or visibility did not pass. Damage detection and product classification were skipped.')
     st.write('**Claim:**', result['claim_text'])
     st.write('**Image source:**', result['image_source'])
     cols = st.columns(3)

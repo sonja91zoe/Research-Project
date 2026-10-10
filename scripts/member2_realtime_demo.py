@@ -14,15 +14,17 @@ from pathlib import Path
 
 from src.agent.member2_adapter import run_member2_verification
 from src.common.schemas import CaseInput, Member1Output
+from src.damage_detection.runtime import DamageBackend
 from src.image_quality.claim_parser import parse_claim
 
 
 def run_demo(
     image: Path,
     claim_text: str,
-    weights: Path | None,
+    weights: Path | None = None,
     *,
     case_id: str = "MEMBER2-REALTIME-001",
+    backend: DamageBackend = "yolo",
 ) -> dict[str, object]:
     """Return the Agent-compatible output for one real image."""
 
@@ -45,6 +47,7 @@ def run_demo(
         case,
         member1,
         yolo_weights=weights,
+        backend=backend,
     )
     return verification.model_dump()
 
@@ -54,11 +57,15 @@ def main() -> None:
     parser.add_argument("--image", type=Path, required=True)
     parser.add_argument("--claim-text", required=True)
     parser.add_argument("--weights", type=Path)
+    parser.add_argument("--backend", choices=("yolo", "clip"), default="yolo")
     parser.add_argument("--case-id", default="MEMBER2-REALTIME-001")
     args = parser.parse_args()
     print(
         json.dumps(
-            run_demo(args.image, args.claim_text, args.weights, case_id=args.case_id),
+            run_demo(
+                args.image, args.claim_text, args.weights,
+                case_id=args.case_id, backend=args.backend,
+            ),
             indent=2,
         )
     )

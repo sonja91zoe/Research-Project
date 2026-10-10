@@ -16,6 +16,8 @@ DAMAGE_TYPE_POLICY_ALIASES = {
 
 MIN_PRODUCT_CONFIDENCE = ProductTypeClassifier.DEFAULT_MIN_CONFIDENCE
 
+# These legacy aliases are used by policy exclusion checks, not by
+# product-to-order matching.
 PRODUCT_ALIASES = {
     "coat": "jacket",
     "pants": "trousers",
@@ -23,6 +25,32 @@ PRODUCT_ALIASES = {
     "jumper": "sweater",
     "pullover": "sweater",
 }
+
+# Product-to-order matching accepts only these complete category labels.
+# In particular, shirt and t-shirt (and shorts and skirt) remain distinct.
+CANONICAL_PRODUCT_CATEGORIES = {
+    "jacket": "JACKET",
+    "coat": "JACKET",
+    "t-shirt": "T_SHIRT",
+    "tshirt": "T_SHIRT",
+    "tee": "T_SHIRT",
+    "shirt": "SHIRT",
+    "hoodie": "HOODIE",
+    "trousers": "TROUSERS",
+    "pants": "TROUSERS",
+    "shorts": "SHORTS",
+    "skirt": "SKIRT",
+    "dress": "DRESS",
+    "sweater": "SWEATER",
+    "jumper": "SWEATER",
+}
+
+
+def _canonical_product_category(value: str | None) -> str | None:
+    if not isinstance(value, str):
+        return None
+    label = " ".join(value.strip().casefold().split())
+    return CANONICAL_PRODUCT_CATEGORIES.get(label)
 
 
 def _normalize_product(value: str) -> str:
@@ -36,13 +64,13 @@ UNKNOWN_PRODUCTS = {'', 'unknown', 'notavailable', '未知', '不明'}
 
 
 def _image_order_match(
-    detected_product: str,
+    detected_product: str | None,
     order: OrderRecord,
     product_confidence: float | None = None,
 ) -> tuple[float, str]:
-    detected = _normalize_product(detected_product or "")
+    detected = _canonical_product_category(detected_product)
 
-    if detected in UNKNOWN_PRODUCTS:
+    if detected is None:
         # Missing upstream product classification is not evidence of a
         # mismatch.  Use a neutral score while exposing an explicit status.
         return 0.5, "NOT_AVAILABLE"
@@ -53,20 +81,12 @@ def _image_order_match(
     ):
         return 0.5, "NOT_AVAILABLE"
 
-    product = _normalize_product(order.product_name)
-    category = _normalize_product(order.product_category)
+    category = _canonical_product_category(order.product_category)
 
-    if category in UNKNOWN_PRODUCTS:
+    if category is None:
         return 0.5, "NOT_AVAILABLE"
 
-    if detected == product:
-        return product_confidence if product_confidence is not None else 1.0, "MATCH"
-
-    if (
-        detected == category
-        or category in detected
-        or detected in product
-    ):
+    if detected == category:
         score = product_confidence if product_confidence is not None else 0.8
         return min(0.8, score), "MATCH"
 

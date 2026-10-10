@@ -50,6 +50,14 @@ def make_decision(
             "The detected product does not match the selected order.",
         )
 
+    # No usable damage evidence should request more evidence
+    # before policy eligibility routes the case to human review.
+    if not member2.damage_detected:
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "The submitted image does not show detectable damage.",
+        )
+
     if (
         member2.damage_detected
         and member2.damage_confidence < MIN_USABLE_DAMAGE_CONFIDENCE
@@ -84,12 +92,6 @@ def make_decision(
             "Claim-image consistency evidence is missing.",
         )
 
-    if not member2.damage_detected:
-        return (
-            "REQUEST_MORE_EVIDENCE",
-            "The submitted image does not show detectable damage.",
-        )
-
     if (
         member2.claim_image_consistency
         < MIN_CLAIM_IMAGE_CONSISTENCY
@@ -109,6 +111,16 @@ def make_decision(
         )
 
     decision = DECISION_MATRIX[matrix_key]
+
+    if (
+        member3.image_order_match_status == "NOT_AVAILABLE"
+        and decision == "AUTO_REFUND"
+    ):
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "Product type could not be verified against the selected order; "
+            "provide a clearer image of the item.",
+        )
 
     reason = (
         "Decision matrix result: "
