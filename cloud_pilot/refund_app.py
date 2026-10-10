@@ -92,30 +92,10 @@ if selected == 'New application':
     st.subheader('Start a refund application')
     order_id = st.selectbox('Demo order', list(by_id))
     order = by_id[order_id]
-    st.caption(f"Amount: {order['price']} · Purchased: {order['purchase_date']}")
-    st.info(f"模擬訂單日期／Demo dates — {order_id}\n\n"
-            f"購買日期 Purchase date：{order['purchase_date']}\n\n"
-            f"收貨日期 Delivery date：{order.get('delivery_date') or '未提供／Unknown'}\n\n"
-            '購買日期已自動填入，收貨日期由訂單讀取，不需自行猜測。這些日期是模擬資料，不是真實交易證明。')
-    evidence = order.get('image_evidence') or {}
-    reference_path = evidence.get('image_path')
-    if reference_path:
-        reference_image = Path(reference_path)
-        if not reference_image.is_absolute():
-            reference_image = ROOT / reference_image
-        if reference_image.is_file():
-            st.image(str(reference_image), caption='Order reference photo')
-    if evidence:
-        st.caption(
-            'Reference source: '
-            f"{evidence.get('source_dataset', 'Unknown')} · "
-            f"ID {evidence.get('source_image_id', 'Unknown')} · "
-            f"License {evidence.get('license', 'Unknown')}"
-        )
-        st.caption(
-            'The photo and garment annotation are source evidence. Price, '
-            'dates, delivery status and retailer are simulated.'
-        )
+    st.caption(
+        f"Amount: {order['price']} · Purchased: {order['purchase_date']} · "
+        f"Delivered: {order.get('delivery_date') or 'Unknown'}"
+    )
     with st.form('create_refund'):
         st.write('Request date')
         today = datetime.now(ZoneInfo('Australia/Sydney')).date()
@@ -128,11 +108,7 @@ if selected == 'New application':
                                               index=today.month - 1,
                                               format_func=lambda m: months[m - 1])
         requested_day = day_col.selectbox('Day', list(range(1, 32)), index=today.day - 1)
-        st.caption('Use a valid calendar date, for example 15 August 2026.')
-        st.caption('For historical demonstrations, select the actual demonstration date. Policy checks use this date.')
-        st.info(f'申請日期 Request date：測試「今天申請」請用 {today.isoformat()}（雪梨時間）。'
-                f"若只測試收貨當天的歷史情境，可明確選用 {order.get('delivery_date') or '已確認的收貨日期'}。"
-                '日期不同可能影響政策結果，不保證自動退款；不要為了通過而假填日期。')
+        st.caption('Refund requirements:  \nThe request date must be on or after the delivery date and no more than 30 days after delivery.')
         purchase_date = st.text_input('Purchase date to verify (YYYY-MM-DD)', value=order['purchase_date'],
             key='purchase_date_' + order_id, help='Pre-filled from the synthetic order; editable to test mismatches.')
         claim = st.text_area('Describe the product, damage and location in English', max_chars=3000)

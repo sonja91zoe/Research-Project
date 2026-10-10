@@ -78,22 +78,27 @@ def test_http_serves_only_ui_and_validated_api(tmp_path,monkeypatch):
     from http.client import HTTPConnection
     import threading,json
     from app import server
-    monkeypatch.setattr(server,'SERVICE',RefundService(tmp_path,pipeline('AUTO_REFUND')))
+    from app.portal_service import PortalService
+    monkeypatch.setattr(server,'SERVICE',PortalService(tmp_path,pipeline('AUTO_REFUND')))
     http=ThreadingHTTPServer(('127.0.0.1',0),server.RefundAppHandler)
     thread=threading.Thread(target=http.serve_forever,daemon=True);thread.start()
     def request(method,path,body=None,headers=None):
         conn=HTTPConnection('127.0.0.1',http.server_port)
         conn.request(method,path,json.dumps(body) if body is not None else None,headers or {})
-        r=conn.getresponse();data=r.read();conn.close();return r.status,data
+        r=conn.getresponse();data=r.read();conn.close();return r.status,data,r.getheader('Set-Cookie')
     try:
         assert request('GET','/')[0]==200
         assert request('GET','/.git/config')[0]==404
         assert request('GET','/data/orders/orders.json')[0]==404
         assert request('POST','/api/cases',payload(),{'Content-Type':'application/json','Origin':'http://evil.example'})[0]==403
-        status,body=request('POST','/api/cases',payload(),{'Content-Type':'application/json'})
+        status,body,cookie=request('POST','/api/login',{'account':'customer001','password':'Refund123!'},{'Content-Type':'application/json'})
+        assert status==200
+        auth={'Content-Type':'application/json','Cookie':cookie.split(';')[0]}
+        status,body,_=request('POST','/api/cases',payload(),auth)
         assert status==200
         record=json.loads(body)
-        assert request('GET',f"/api/cases/{record['case_id']}/images/0")[0]==200
-        assert request('POST',f"/api/cases/{record['case_id']}/confirm",{}, {'Content-Type':'application/json'})[0]==200
+        assert record['status']=='SIMULATED_REFUNDED'
+        assert request('GET',f"/api/cases/{record['case_id']}/images/0",headers=auth)[0]==200
+        assert request('POST',f"/api/cases/{record['case_id']}/confirm",{}, auth)[0]==404
     finally:
         http.shutdown();http.server_close();thread.join()

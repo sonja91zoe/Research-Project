@@ -134,14 +134,14 @@ def test_ineligible_policy_requires_human_review():
     assert "policy" in result.reason.lower()
 
 
-def test_confirmed_product_mismatch_requires_human_review():
+def test_confirmed_product_mismatch_declines_refund():
     member1, member2, member3 = load_case()
     member3.image_order_match_status = "MISMATCH"
     member3.image_order_consistency = 0.0
 
     result = run_agent(member1, member2, member3)
 
-    assert result.decision == "HUMAN_REVIEW"
+    assert result.decision == "REJECT_REFUND"
     assert "does not match" in result.reason.lower()
 
 
@@ -155,15 +155,15 @@ def test_very_low_damage_confidence_requests_clearer_photo():
     assert "clearer close-up" in result.reason.lower()
 
 
-def test_unavailable_product_prediction_is_not_a_hard_review_override():
+def test_unavailable_product_prediction_requires_human_review():
     member1, member2, member3 = load_case()
     member3.image_order_match_status = "NOT_AVAILABLE"
     member3.image_order_consistency = 0.5
 
     result = run_agent(member1, member2, member3)
 
-    assert result.decision != "HUMAN_REVIEW"
-    assert "not independently identified" in result.reason.lower()
+    assert result.decision == "HUMAN_REVIEW"
+    assert "could not be identified" in result.reason.lower()
 
 
 def test_legacy_member3_score_infers_match_status():
