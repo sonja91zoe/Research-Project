@@ -2,12 +2,16 @@ import json
 
 from scripts.member3_week8_generate_dataset import build_cases
 from scripts.member3_week8_evaluate_rag import evaluate
-from scripts.member3_week9_final_evaluation import build_final_results
+from scripts.member3_week9_final_evaluation import (
+    _adapt_legacy_visual_product,
+    build_final_results,
+)
 from scripts.member3_week9_generate_evidence_dataset import (
     build_cases as build_evidence_cases,
 )
 from scripts.member3_generate_mock_orders import build_orders
 from src.evidence.rag import classify_policy_intent, retrieve_best_policy
+from src.evidence.verification import verify_case
 
 
 def test_intent_router_handles_the_four_policy_families():
@@ -42,6 +46,32 @@ def test_final_evidence_regression_matches_all_expected_labels():
     assert regression["passed_cases"] == 12
     assert regression["pass_rate"] == 1.0
     assert regression["failures"] == []
+
+
+def test_legacy_name_adapter_requires_usable_independent_product_evidence():
+    case = next(
+        case for case in build_evidence_cases()
+        if case["scenario"] == "product_mismatch"
+    )
+    assert case["detected_product"] == "Grey Hoodie"
+    assert verify_case(case).image_order_match_status == "NOT_AVAILABLE"
+
+    adapted = _adapt_legacy_visual_product(case)
+    assert adapted["detected_product"] == "hoodie"
+    assert case["detected_product"] == "Grey Hoodie"
+    result = verify_case(adapted)
+    assert result.image_order_match_status == "MISMATCH"
+    assert result.policy_eligible is False
+
+    for missing_evidence in (
+        {"image_present": False},
+        {"image_usable": False},
+        {"detected_product": None},
+        {"detected_product": "Unknown Jacket"},
+        {"product_confidence": 0.1},
+    ):
+        untrusted = _adapt_legacy_visual_product({**case, **missing_evidence})
+        assert verify_case(untrusted).image_order_match_status == "NOT_AVAILABLE"
 
 
 def test_week9_evidence_dataset_is_balanced_across_ten_scenarios():
