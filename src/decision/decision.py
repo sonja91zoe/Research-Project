@@ -50,6 +50,14 @@ def make_decision(
             "The detected product does not match the selected order.",
         )
 
+    # No usable damage evidence should request more evidence
+    # before policy eligibility routes the case to human review.
+    if not member2.damage_detected:
+        return (
+            "REQUEST_MORE_EVIDENCE",
+            "The submitted image does not show detectable damage.",
+        )
+
     if (
         member2.damage_detected
         and member2.damage_confidence < MIN_USABLE_DAMAGE_CONFIDENCE
@@ -82,12 +90,6 @@ def make_decision(
         return (
             "REQUEST_MORE_EVIDENCE",
             "Claim-image consistency evidence is missing.",
-        )
-
-    if not member2.damage_detected:
-        return (
-            "REQUEST_MORE_EVIDENCE",
-            "The submitted image does not show detectable damage.",
         )
 
     if (
