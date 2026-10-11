@@ -1,4 +1,5 @@
 """Local customer and staff portals sharing one persistent refund workflow."""
+import os
 import hmac
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -55,6 +56,8 @@ class RefundAppHandler(BaseHTTPRequestHandler):
                 mime='text/javascript' if path.endswith('.js') else 'text/css' if path.endswith('.css') else 'text/html'
                 self._send(200,(PROJECT_ROOT/'app'/assets[path]).read_bytes(),mime+'; charset=utf-8'); return
             if path=='/api/me': self._json(200,{'account':self._session('customer')}); return
+            if path in {'/api/product-image/adidas-hoodie','/api/staff/product-image/adidas-hoodie'}:
+                self._session('staff' if '/staff/' in path else 'customer'); self._send(200,(PROJECT_ROOT/'app/assets/adidas_light_blue_hoodie.jpg').read_bytes(),'image/jpeg'); return
             if path=='/api/orders': self._json(200,SERVICE.orders_for(self._session('customer'))); return
             if path=='/api/cases': self._json(200,SERVICE.records(self._session('customer'))); return
             if path=='/api/staff/cases':
@@ -172,6 +175,7 @@ def run_evidence_case(payload):
 
 
 def main():
+    os.environ.setdefault("REFUND_ORDER_DB", str(PROJECT_ROOT/"data/orders/member4_portal_orders.json"))
     print('Customer portal: http://127.0.0.1:8765/customer')
     print('Staff portal: http://127.0.0.1:8765/staff')
     ThreadingHTTPServer(('127.0.0.1',8765),RefundAppHandler).serve_forever()

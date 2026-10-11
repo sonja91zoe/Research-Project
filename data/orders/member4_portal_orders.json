@@ -1,0 +1,18 @@
+[
+  {
+    "order_id": "ADI001",
+    "product_name": "Adidas Light Blue Hoodie",
+    "product_category": "Hoodie",
+    "price": 100.0,
+    "purchase_date": "2026-10-01",
+    "delivery_date": "2026-10-05",
+    "status": "delivered",
+    "retailer": "Adidas official website",
+    "catalog_version": "member4_adidas_v1",
+    "photo_pairing": {
+      "reference_image_path": "app/assets/adidas_light_blue_hoodie.jpg",
+      "size": "M",
+      "currency": "AUD"
+    }
+  }
+]

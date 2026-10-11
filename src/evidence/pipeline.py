@@ -6,7 +6,7 @@ from src.common.schemas import CaseInput, Member1Output, Member2Output, Member3O
 from src.evidence.models import EvidenceChain
 from src.evidence.order import retrieve_order
 from src.evidence.rag import retrieve_best_policy
-from src.evidence.verification import verify_case
+from src.evidence.verification import verify_case, policy_for_order
 
 
 def build_evidence_chain(
@@ -45,11 +45,10 @@ def build_evidence_chain(
 
     policy = None
     if order is not None:
-        policy = retrieve_best_policy(
-            " ".join(
+        policy = policy_for_order(
+            order, " ".join(
                 [order.product_category, member2.damage_type, case_input.claim_text]
             ),
-            retailer=order.retailer,
         )
 
     member3 = Member3Output(

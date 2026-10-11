@@ -108,6 +108,19 @@ def _damage_type_is_covered(damage_type: str, policy: RetrievedPolicy) -> bool:
     return bool(accepted_labels.intersection(policy.eligible_damage_types))
 
 
+def policy_for_order(order: OrderRecord, query: str) -> RetrievedPolicy:
+    if order.catalog_version == "member4_adidas_v1":
+        return RetrievedPolicy(
+            policy_id="MEMBER4_30_DAY_RULE", title="Refund requirements",
+            policy_text="The request date must be on or after delivery and no more than 30 days after delivery.",
+            policy_source="Project configured refund requirements",
+            policy_match=1.0, refund_window_days=30, requires_image=True,
+            eligible_damage_types=("hole_or_tear", "stain_or_spot"),
+            policy_kind="project_rule", retailer=order.retailer,
+        )
+    return retrieve_best_policy(query, retailer=order.retailer)
+
+
 def verify_case(case: dict[str, Any], order_source=None) -> VerifiedEvidence:
     """Retrieve order/policy evidence and verify a single refund case."""
 
@@ -136,7 +149,7 @@ def verify_case(case: dict[str, Any], order_source=None) -> VerifiedEvidence:
             case.get("claim_text", ""),
         ]
     )
-    policy = retrieve_best_policy(policy_query, retailer=order.retailer)
+    policy = policy_for_order(order, policy_query)
     image_match, image_match_status = _image_order_match(
         case.get("detected_product", ""),
         order,
