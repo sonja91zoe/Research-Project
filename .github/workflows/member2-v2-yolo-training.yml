@@ -1,0 +1,62 @@
+name: Member 2 v2 YOLO training
+
+on:
+  workflow_dispatch:
+    inputs:
+      epochs:
+        description: Training epochs
+        required: true
+        default: "20"
+      image_size:
+        description: Training image size
+        required: true
+        default: "512"
+
+permissions:
+  contents: read
+
+jobs:
+  train-member2-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install YOLO dependencies
+        run: pip install -r requirements-yolo.txt
+      - name: Rebuild the fixed 18-6-6 v2 split
+        run: python scripts/rebuild_member2_v2_split.py --apply
+      - name: Train from the original pretrained YOLO11n weights
+        run: >-
+          python scripts/train_yolo.py
+          --data data/member2_v2/dataset.yaml
+          --model yolo11n.pt
+          --epochs "${{ inputs.epochs }}"
+          --image-size "${{ inputs.image_size }}"
+          --output artifacts/member2_v2_pilot_v2
+      - name: Record validation and held-out test metrics
+        run: >-
+          python scripts/report_member2_v2_metrics.py
+          --weights artifacts/member2_v2_pilot_v2/damage_detector/weights/best.pt
+          --data data/member2_v2/dataset.yaml
+          --image-size "${{ inputs.image_size }}"
+          --output artifacts/member2_v2_pilot_v2/metrics.json
+      - name: Run frozen external evaluation without modification
+        run: >-
+          python scripts/evaluate_member2_v2_external.py
+          --weights artifacts/member2_v2_pilot_v2/damage_detector/weights/best.pt
+          --external-root external_eval_v1
+          --image-size "${{ inputs.image_size }}"
+          --output artifacts/member2_v2_pilot_v2/external_eval_v1_report.json
+      - name: Upload model, metrics, and read-only evaluation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: member2-v2-yolo-training-${{ github.run_id }}
+          path: artifacts/member2_v2_pilot_v2
+          retention-days: 90
+
