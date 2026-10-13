@@ -37,7 +37,9 @@ def main() -> None:
 
     annotation_path = args.external_root / "annotations" / "images.csv"
     image_dir = args.external_root / "images"
-    with annotation_path.open(newline="", encoding="utf-8") as handle:
+    # utf-8-sig also accepts ordinary UTF-8, while removing a possible BOM
+    # from CSV exports so the first header remains image_id.
+    with annotation_path.open(newline="", encoding="utf-8-sig") as handle:
         annotations = list(csv.DictReader(handle))
     model = YOLO(str(args.weights))
     rows: list[dict[str, object]] = []
