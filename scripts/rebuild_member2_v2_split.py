@@ -1,4 +1,4 @@
-"""Build the clean 150-image Member 2 v2 training split.
+"""Build the clean 250-image Member 2 v2 training split.
 
 This script uses only data/member2_v2/raw and raw_labels. It never reads or
 writes external_eval_v1 and does not change runtime thresholds.
@@ -8,29 +8,25 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import shutil
 from pathlib import Path
 
 
 ROOT = Path("data/member2_v2")
 CATEGORIES = ("hole_or_tear", "stain_or_spot", "clean")
-SPLIT_IDS = {
-    "train": (
-        "001", "002", "003", "006", "007", "008",
-        "011", "012", "013", "016", "017", "018",
-        "021", "022", "023", "026", "027", "028",
-        "031", "032", "033", "036", "037", "038",
-        "041", "042", "043", "046", "047", "048",
-    ),
-    "val": (
-        "004", "009",
-        "014", "019", "024", "029", "034", "039", "044", "049",
-    ),
-    "test": (
-        "005", "010",
-        "015", "020", "025", "030", "035", "040", "045", "050",
-    ),
+CATEGORY_COUNTS = {
+    "hole_or_tear": 90,
+    "stain_or_spot": 75,
+    "clean": 85,
 }
+SPLIT_COUNTS = {
+    "hole_or_tear": {"train": 63, "val": 14, "test": 13},
+    "stain_or_spot": {"train": 52, "val": 12, "test": 11},
+    "clean": {"train": 59, "val": 13, "test": 13},
+}
+SPLIT_ORDER = ("train", "val", "test")
+SEED = "member2-v2-250-2026-10-17"
 
 
 def source_name(category: str, identifier: str) -> str:
@@ -42,14 +38,24 @@ def source_name(category: str, identifier: str) -> str:
     return f"{prefix}_{identifier}"
 
 
-def validate_split_ids() -> None:
-    expected = {f"{identifier:03d}" for identifier in range(1, 51)}
-    observed = [identifier for identifiers in SPLIT_IDS.values() for identifier in identifiers]
-    if len(observed) != len(set(observed)) or set(observed) != expected:
-        raise ValueError("Split IDs must contain every identifier 001-050 exactly once.")
-    counts = {split: len(identifiers) for split, identifiers in SPLIT_IDS.items()}
-    if counts != {"train": 30, "val": 10, "test": 10}:
-        raise ValueError(f"Expected per-class 30/10/10 split, received {counts}.")
+def split_ids(category: str) -> dict[str, tuple[str, ...]]:
+    expected = [f"{identifier:03d}" for identifier in range(1, CATEGORY_COUNTS[category] + 1)]
+    identifiers = expected.copy()
+    random.Random(f"{SEED}:{category}").shuffle(identifiers)
+
+    split_map: dict[str, tuple[str, ...]] = {}
+    cursor = 0
+    for split in SPLIT_ORDER:
+        count = SPLIT_COUNTS[category][split]
+        split_map[split] = tuple(identifiers[cursor : cursor + count])
+        cursor += count
+
+    observed = [identifier for split in SPLIT_ORDER for identifier in split_map[split]]
+    if len(observed) != len(set(observed)) or set(observed) != set(expected):
+        raise ValueError(f"Split IDs must contain every expected identifier exactly once for {category}.")
+    if cursor != len(expected):
+        raise ValueError(f"Split count does not cover all expected identifiers for {category}.")
+    return split_map
 
 
 def validate_damage_label(label: Path, expected_class: int) -> None:
@@ -70,12 +76,12 @@ def validate_damage_label(label: Path, expected_class: int) -> None:
 
 
 def validate_sources() -> dict[str, dict[str, list[str]]]:
-    validate_split_ids()
     manifest: dict[str, dict[str, list[str]]] = {}
     expected_class = {"hole_or_tear": 0, "stain_or_spot": 1}
+
     for category in CATEGORIES:
         manifest[category] = {}
-        for split, identifiers in SPLIT_IDS.items():
+        for split, identifiers in split_ids(category).items():
             names: list[str] = []
             for identifier in identifiers:
                 stem = source_name(category, identifier)
@@ -95,7 +101,7 @@ def validate_sources() -> dict[str, dict[str, list[str]]]:
 
 def build(manifest: dict[str, dict[str, list[str]]]) -> None:
     for kind in ("images", "labels"):
-        for split in SPLIT_IDS:
+        for split in SPLIT_ORDER:
             destination = ROOT / kind / split
             if destination.exists():
                 shutil.rmtree(destination)
@@ -115,13 +121,13 @@ def main() -> None:
     manifest = validate_sources()
     totals = {
         split: sum(len(manifest[category][split]) for category in CATEGORIES)
-        for split in SPLIT_IDS
+        for split in SPLIT_ORDER
     }
-    assert totals == {"train": 90, "val": 30, "test": 30}, totals
+    assert totals == {"train": 174, "val": 39, "test": 37}, totals
     print(json.dumps({"manifest": manifest, "totals": totals}, indent=2))
     if args.apply:
         build(manifest)
-        print("Rebuilt data/member2_v2/images and data/member2_v2/labels with 150 images.")
+        print("Rebuilt data/member2_v2/images and data/member2_v2/labels with 250 images.")
 
 
 if __name__ == "__main__":
