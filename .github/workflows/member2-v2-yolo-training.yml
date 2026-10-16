@@ -1,4 +1,4 @@
-name: Member 2 v2 YOLO retraining (150 images)
+name: Member 2 v2 YOLO retraining (250 images)
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
           cache: pip
       - name: Install YOLO dependencies
         run: pip install -r requirements-yolo.txt
-      - name: Rebuild the fixed 90-30-30 v2 split
+      - name: Rebuild the fixed 174-39-37 v2 split
         run: python scripts/rebuild_member2_v2_split.py --apply
       - name: Train from the original pretrained YOLO11n weights
         run: >-
@@ -38,24 +38,24 @@ jobs:
           --model yolo11n.pt
           --epochs "${{ inputs.epochs }}"
           --image-size "${{ inputs.image_size }}"
-          --output artifacts/member2_v2_150
+          --output artifacts/member2_v2_250
       - name: Record validation and held-out test metrics
         run: >-
           python scripts/report_member2_v2_metrics.py
-          --weights artifacts/member2_v2_150/damage_detector/weights/best.pt
+          --weights artifacts/member2_v2_250/damage_detector/weights/best.pt
           --data data/member2_v2/dataset.yaml
           --image-size "${{ inputs.image_size }}"
-          --output artifacts/member2_v2_150/metrics.json
+          --output artifacts/member2_v2_250/metrics.json
       - name: Run frozen external evaluation without modification
         run: >-
           python scripts/evaluate_member2_v2_external.py
-          --weights artifacts/member2_v2_150/damage_detector/weights/best.pt
+          --weights artifacts/member2_v2_250/damage_detector/weights/best.pt
           --external-root external_eval_v1
           --image-size "${{ inputs.image_size }}"
-          --output artifacts/member2_v2_150/external_eval_v1_report.json
+          --output artifacts/member2_v2_250/external_eval_v1_report.json
       - name: Upload model, metrics, and read-only evaluation report
         uses: actions/upload-artifact@v4
         with:
-          name: member2-v2-yolo-retraining-150-${{ github.run_id }}
-          path: artifacts/member2_v2_150
+          name: member2-v2-yolo-retraining-250-${{ github.run_id }}
+          path: artifacts/member2_v2_250
           retention-days: 90
